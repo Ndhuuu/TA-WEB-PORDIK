@@ -1,25 +1,40 @@
 -> NOTE PROJECT WEB SPP <-
 
 Instruksi :
-SPP (Kelompok 2,9,14)
-	data master mhs, data uang yg dibayarkan, deadline pembayaran
-	data akun (admin,mhs)
-	transaksi pembayaran, 
-	notif siapa yang belum bayar
-	notif apa yang belum di bayar
-	resume keuangan, jml mhs yg lunas, jml mhs nunggak, 
-	jml nominal piutang
+    SPP (Kelompok 2,9,14)
+        data master mhs, data uang yg dibayarkan, deadline pembayaran
+        data akun (admin,mhs)
+        transaksi pembayaran, 
+        notif siapa yang belum bayar
+        notif apa yang belum di bayar
+        resume keuangan, jml mhs yg lunas, jml mhs nunggak, 
+        jml nominal piutang
 
 Halaman yang mau dibuat :
-tabel login :
-buat halaman login (done)
-konekin data login sebagai admin ke database
-konekin data login sebagai mahasiswa ke database
-tabel profil :
-konekin data profil sebagai admin ke database
-konekin data profil sebagai mahasiswa ke database
-dashboard siswa > Tagihan mahasiswa
-dashboard siswa > Unggah bukti bayar form image
-dashboard siswa > Riwayat pembayaran
 
+    Saran : Pembuatan halaman indeks, halaman yang ditampilkan sebelum user akan login
+
+    Nama database: Keuangan
+
+    Table yang akan digunakan:
+        tabel login :
+        buat halaman login (done)
+        konekin data login sebagai admin ke database
+        konekin data login sebagai mahasiswa ke database
+
+        tabel profil :
+        buat halaman profil pengguna yang sedang login baik itu admin ataupun mahasiswa
+        konekin data profil sebagai admin ke database
+        konekin data profil sebagai mahasiswa ke database
+
+        tabel transaksi :
+        buat halaman transaksi tagihan mahasiswa & deadline pembayaran
+        buat halaman transaksi unggah bukti bayar berbentuk form image jpeg & png
+        buat halaman transaksi riwayat pembayaran
+
+        tabel notifikasi :
+        buat pop up 
+
+        tabel resume :
+        buat halaman resume 
 saran login admin https://github.com/Hashtechieofficial/Form- (done)
