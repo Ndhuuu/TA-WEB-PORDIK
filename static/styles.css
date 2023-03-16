@@ -15,6 +15,11 @@ section{
     background-position: center;
     background-size: cover;
 }
+img{
+    
+    width: 100px;
+    height: 100px;
+}
 .form-box{
     position: relative;
     width: 400px;
@@ -26,7 +31,6 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 h2{
     font-size: 2em;
