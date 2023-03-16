@@ -10,6 +10,8 @@ Instruksi :
         resume keuangan, jml mhs yg lunas, jml mhs nunggak, 
         jml nominal piutang
 
+        DB = user, role, permission, bill, resume
+
 Halaman yang mau dibuat :
 
     saran : login admin https://github.com/Hashtechieofficial/Form- (done)
