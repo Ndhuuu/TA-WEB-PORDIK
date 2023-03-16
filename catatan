@@ -29,12 +29,12 @@ Halaman yang mau dibuat :
         konekin data profil sebagai mahasiswa ke database
 
         tabel transaksi :
-        buat halaman transaksi tagihan mahasiswa & deadline pembayaran
-        buat halaman transaksi unggah bukti bayar berbentuk form image jpeg & png
-        buat halaman transaksi riwayat pembayaran
+        buat halaman transaksi tagihan mahasiswa & deadline pembayaran (mahasiswa hanya baca akunnya sendiri sedangkan admin dapat membaca, menulis, merubah seluruh mahasiswa)
+        buat halaman transaksi unggah bukti bayar berbentuk form image jpeg & png (mahasiswa dapat membaca dan mengunggah bukti bayar akunnya sendiri sedangkan admin dapat membaca, menulis, dan merubah bukti bayar seluruh mahasiswa)
+        buat halaman transaksi riwayat pembayaran (mahasiswa hanya membaca riwayat pembayaran akunnya sendiri sedangkan admin dapat membaca, menulis, merubah riwayat pembayaran seluruh mahasiswa)
 
         tabel notifikasi :
-        buat pop up 
+        buat halaman yang bisa pop up notif mahasiswa yang belum bayar dan akan mendekati deadline pembayaran (hanya admin yang akan mendapat notifikasi ini)
 
         tabel resume :
-        buat halaman resume 
+        buat halaman resume yang dimana admin dapat menuliskan catatan transaksi yang terjadi (hanya admin yang dapat melihat catatan ini)
