@@ -1,15 +1,16 @@
 from flask import Flask, render_template, redirect, url_for, request
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 import pymysql
+import config
 
 application = Flask(__name__)
-application.secret_key = 'secretkeytakel14'
 
 login_manager = LoginManager()
 login_manager.init_app(application)
 login_manager.login_view = 'login'
 
-connection = pymysql.connect(host='localhost', user='root', password='', db='keuangan', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+connection = pymysql.connect(host = config.DB_HOST, user = config.DB_User, password = config.DB_Password, database = config.DB_name)
+cursor = connection.cursor()
 
 class User(UserMixin):
 	def __init__(self, id, nim, password):
@@ -17,14 +18,14 @@ class User(UserMixin):
 		self.nim = nim
 		self.password = password
 
-		@staticmethod
-		def get(user_id):
-			with connection.cursor() as cursor:
-				cursor.execute('select * from user where id = %s', (user_id,))
-				user = cursor.fetchone()
-				if not user:
-					return None
-				return User(user['id'], user['nim'], user['password'])
+	@staticmethod
+	def get(user_id):
+		with connection.cursor() as cursor:
+			cursor.execute('select * from user where id = %s', (user_id,))
+			user = cursor.fetchone()
+			if not user:
+				return None
+			return User(user['id'], user['nim'], user['password'])
 
 @application.route('/')
 @login_required
