@@ -1,4 +1,4 @@
 DB_HOST = 'localhost'
-DB_User = 'root'
-DB_Password = ''
-DB_name = 'keuangan'
+DB_USER = 'root'
+DB_PASSWORD = ''
+DB_NAME = 'keuangan'

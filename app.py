@@ -3,13 +3,15 @@ from flask_login import LoginManager, login_user, logout_user, login_required, U
 import pymysql
 import config
 
+connection = cursor = None
+
 application = Flask(__name__)
 
 login_manager = LoginManager()
 login_manager.init_app(application)
 login_manager.login_view = 'login'
 
-connection = pymysql.connect(host = config.DB_HOST, user = config.DB_User, password = config.DB_Password, database = config.DB_name)
+connection = pymysql.connect(host = config.DB_HOST, user = config.DB_USER, password = config.DB_PASSWORD, database = config.DB_NAME)
 cursor = connection.cursor()
 
 class User(UserMixin):
