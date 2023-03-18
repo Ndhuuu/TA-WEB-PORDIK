@@ -168,17 +168,3 @@ button:hover{
     background: #9f2f53;
     color: #151f38;
 }
-.register{
-    font-size: .9em;
-    color: #fff;
-    text-align: center;
-    margin: 25px 0 10px;
-}
-.register p a{
-    text-decoration: none;
-    color: #fff;
-    font-weight: 600;
-}
-.register p a:hover{
-    text-decoration: underline;
-}
