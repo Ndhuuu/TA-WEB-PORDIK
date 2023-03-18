@@ -27,5 +27,9 @@ def layanan():
 @application.route('/login')
 def login():
     return render_template('login.html')
+
+@application.route('/home')
+def home():
+    return render_template('home.html')
 	
 if __name__ == '__main__':application.run(debug=True)
