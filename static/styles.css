@@ -11,22 +11,21 @@ header{
     width: 100%;
     padding: 10px 100px;
     background: transparent;
-    border-bottom: 2px solid #fff;
+    /* border-bottom: 2px solid #fff; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 99;
 }
 .logo{
-    width: 80px;
-    height: 80px;
-    margin-left: 100px;
+    width: 90px;
+    height: 90px;
     user-select: none;
 }
 .navigation a{
     position: relative;
     font-size: 1.1em;
-    color: #fff;
+    color:#d76a70;
     text-decoration: none;
     font-weight: 500;
     margin-left: 40px;
@@ -38,33 +37,34 @@ header{
     bottom: -6px;
     width: 100%;
     height: 3px;
-    background: #fff;
+    background: #962c50;
     border-radius: 5px;
-    transform-origin: center;
+    transform-origin: right;
     transform: scaleX(0);
     transition: transform .5s;
 }
 .navigation a:hover::after{
+    transform-origin: left;
     transform: scaleX(1);
 }
 .navigation .btnLogin-popup{
     width: 130px;
     height: 50px;
     background: transparent;
-    border: 2px solid #fff;
+    border: 2px solid #962c50;
     outline: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 1.1em;
-    color: #fff;
+    color: #d76a70;
     font-weight: 500;
     margin-left: 40px;
-    margin-right: 300px;
+    margin-right: 200px;
     transition: .5s;
 }
 .navigation .btnLogin-popup:hover{
-    background: #fff;
-    color: #162938;
+    background: #962c50;
+    color: #271b29;
 }
 section{
     display: flex;
@@ -80,11 +80,12 @@ section{
 .form-box{
     position: relative;
     width: 400px;
-    height: 400px;
+    height: 450px;
     background: transparent;
-    border: 2px solid rgba(255,255,255,0.5);
+    border: 2px solid rgba(255,255,255,.5);
     border-radius: 20px;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0,0,.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,7 +116,7 @@ input:valid ~ label{
 top: -5px;
 }
 .inputbox input {
-    width: 100%;
+    width: 90%;
     height: 50px;
     background: transparent;
     border: none;
@@ -155,12 +156,17 @@ button{
     width: 100%;
     height: 40px;
     border-radius: 40px;
-    background: #fff;
+    background: #dc777a;
+    color: #151f38;
     border: none;
     outline: none;
     cursor: pointer;
     font-size: 1em;
     font-weight: 600;
+}
+button:hover{
+    background: #151f38;
+    color: #dc777a;
 }
 .register{
     font-size: .9em;
