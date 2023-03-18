@@ -30,6 +30,10 @@ class User(UserMixin):
 			return User(user['id'], user['nim'], user['password'])
 
 @application.route('/')
+def index():
+    return render_template('index.html')
+
+@application.route('/')
 @login_required
 def home():
 	return render_template('home.html')
