@@ -139,10 +139,9 @@ top: -5px;
     display: flex;
     justify-content: space-between;  
 }
-
 .forget label input{
+    accent-color: #151f38;
     margin-right: 3px;
-    
 }
 .forget label a{
     color: #fff;
