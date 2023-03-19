@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <link rel="stylesheet" href="static/styles.css">
-  <link rel="shortcut icon" href="static/logounjaya.png" type="image/x-icon">
-  <title>Kelompok 14 | Project SPP</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="shortcut icon" href="static/logounjaya.png" type="image/x-icon">
+    <title>Kelompok 14 | Project SPP</title>
 </head>
+
 <body>
     <section>
         <header>
@@ -14,28 +16,28 @@
                 <a href="tentang">Tentang</a>
                 <a href="layanan">Layanan</a>
                 <a href="https://wa.me/6289652532796">Kontak</a>
-                <button class="btnLogin-popup" onclick="window.location.href='masuk'">Masuk</button>
+                <button class="btnLogin-popup" onclick="window.location.href='login'">Masuk</button>
 
             </nav>
         </header>
         <div class="form-box">
             <div class="form-value">
-                <form action="/authenticate" method="POST">
+                <form action="">
                     <h2>PORTAL PEMBAYARAN SPP</h2>
                     <div class="inputbox">
                         <ion-icon name="person-outline"></ion-icon>
-                        <input type="text" name="nim" id="nim" required>
+                        <input type="text" required>
                         <label for="">Nomor Induk Mahasiswa</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" name="password" id="password" required>
+                        <input type="password" required>
                         <label for="">Password</label>
                     </div>
                     <div class="forget">
                         <label for=""><input type="checkbox">Ingat Saya <a href="#">Lupa Kata Sandi</a></label>
                     </div>
-                    <button type="submit" value="masuk">Masuk</button>
+                    <button onclick="window.location.href='home'">Masuk</button>
                 </form>
             </div>
         </div>
