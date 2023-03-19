@@ -12,7 +12,7 @@ application.config['MYSQL_DB'] = 'flask'
 mysql = MySQL(application)
 
 
-@application.route('/beranda')
+@application.route('/')
 def index():
     return render_template("index.html")
 
