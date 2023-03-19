@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,10 +40,32 @@
                     </div>
                     <button onclick="window.location.href='home'">Masuk</button>
                 </form>
+=======
+{% extends 'base.html' %}
+{% block title %}
+Login
+{% endblock %}
+{% block content %}
+<div class="form-box">
+    <div class="form-value">
+        <form action="">
+            <h2>PORTAL PEMBAYARAN SPP</h2>
+            <div class="inputbox">
+                <ion-icon name="person-outline"></ion-icon>
+                <input type="text" required>
+                <label for="">Nomor Induk Mahasiswa</label>
+>>>>>>> 875a92d351cc9625483b963a3a126f2cba5b347a
             </div>
-        </div>
-    </section>
-    <script src="static/scripts.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
+            <div class="inputbox">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input type="password" required>
+                <label for="">Password</label>
+            </div>
+            <div class="forget">
+                <label for=""><input type="checkbox">Ingat Saya <a href="#">Lupa Kata Sandi</a></label>
+            </div>
+            <button onclick="window.location.href='authenticate'">Masuk</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

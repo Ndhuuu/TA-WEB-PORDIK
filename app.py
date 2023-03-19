@@ -27,9 +27,10 @@ def layanan():
     return render_template('layanan.html')
 
 
-@application.route('/masuk')
-def masuk():
+@application.route('/login')
+def login():
     return render_template('login.html')
+
 
 @application.route('/authenticate', methods=['POST'])
 def authenticate():
@@ -37,7 +38,8 @@ def authenticate():
         nim = request.form['nim']
         password = request.form['password']
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM user WHERE nim=%s AND password=%s", (nim, password))
+        cur.execute(
+            "SELECT * FROM user WHERE nim=%s AND password=%s", (nim, password))
         user = cur.fetchone()
         cur.close()
         if user:
