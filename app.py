@@ -11,6 +11,11 @@ application.config['MYSQL_DB'] = 'flask'
 
 mysql = MySQL(application)
 
+# Dashboard
+@application.route('/dashboard')
+def dashboard():
+    return render_template("Dashboard/index.html")
+
 
 @application.route('/')
 def index():
