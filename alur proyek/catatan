@@ -1,6 +1,7 @@
--> NOTE PROJECT WEB SPP <-
+-> ALUR PROYEK WEB SPP KELOMPOK 14<-
 
-Instruksi :
+Instruksi dosen :
+
     SPP (Kelompok 2,9,14)
         data master mhs, data uang yg dibayarkan, deadline pembayaran
         data akun (admin,mhs)
@@ -10,25 +11,43 @@ Instruksi :
         resume keuangan, jml mhs yg lunas, jml mhs nunggak, 
         jml nominal piutang
 
-        DB = user, role, permission, bill, resume
-
 Halaman yang mau dibuat :
 
-    saran : login admin https://github.com/Hashtechieofficial/Form- (done)
-    Saran : Pembuatan halaman indeks, halaman yang ditampilkan sebelum user akan login
-
-    Nama database: Keuangan
+    Buat halaman beranda (on progress 50%)
+    Buat halaman login (done)
+        Konekin data login sebagai admin ke database (on progress)
+        Konekin data login sebagai mahasiswa ke database (on progress)
+    Buat halaman dashboard (onprogess)
+        dashboard
+        profil mahasiswa | admin
+        kartu rencana studi
+            isi rencana studi
+            lihat rencana studi
+        laporan hasil studi
+            laporan per semester
+            transkrip akademik
+        laporan keuangan
+            tagihan mahasiswa
+            unggah bukti bayar
+            riwayat pembayaran
+        keluar
+    Buat halaman tentang (on progress 50%)
+    Buat halaman layanan (on progress 50%)
+    Buat halaman kontak (done with linktree)
+    Buat halaman notifikasi yang bisa diresize pada halaman dashboard
+Nama database: Keuangan
 
     Table yang akan digunakan:
-        tabel login :
-        buat halaman login (done)
-        konekin data login sebagai admin ke database
-        konekin data login sebagai mahasiswa ke database
+        tabel user :
+        id (auto_increment) (done)
+        nim (done)
+        nama (done)
+        password (done)
+        alamat (done)
+        role (done)
 
         tabel profil :
-        buat halaman profil pengguna yang sedang login baik itu admin ataupun mahasiswa
-        konekin data profil sebagai admin ke database
-        konekin data profil sebagai mahasiswa ke database
+        (waiting list)
 
         tabel transaksi :
         buat halaman transaksi tagihan mahasiswa & deadline pembayaran (mahasiswa hanya baca akunnya sendiri sedangkan admin dapat membaca, menulis, merubah seluruh mahasiswa)

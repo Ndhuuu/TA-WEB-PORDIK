@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 
 
@@ -53,7 +53,7 @@ def autentifikasi():
         user = cur.fetchone()
         cur.close()
         if user:
-            redirect @application.route('/admin')
+            return
         else:
             return 'Nim atau password anda salah'
 
