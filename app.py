@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 
 
@@ -11,14 +11,9 @@ application.config['MYSQL_DB'] = 'flask'
 
 mysql = MySQL(application)
 
-# Dashboard
-@application.route('/dashboard')
-def dashboard():
-    return render_template("Dashboard/index.html")
 
-
-@application.route('/')
-def index():
+@application.route('/beranda')
+def beranda():
     return render_template("index.html")
 
 
@@ -32,8 +27,8 @@ def layanan():
     return render_template('layanan.html')
 
 
-@application.route('/login')
-def login():
+@application.route('/masuk')
+def masuk():
     return render_template('login.html')
 
 
@@ -48,7 +43,7 @@ def authenticate():
         user = cur.fetchone()
         cur.close()
         if user:
-            return render_template('home.html')
+            return render_template('dashboard.html')
         else:
             return 'Nim atau password anda salah'
 
