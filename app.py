@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, redirect, request
 from flask_mysqldb import MySQL
 
 
@@ -6,10 +6,15 @@ application = Flask(__name__)
 application.config['MYSQL_HOST'] = 'localhost'
 application.config['MYSQL_USER'] = 'root'
 application.config['MYSQL_PASSWORD'] = ''
-application.config['MYSQL_DB'] = 'flask'
+application.config['MYSQL_DB'] = 'keuangan'
 
 
 mysql = MySQL(application)
+
+
+@application.route('/')
+def index():
+    return render_template("index.html")
 
 
 @application.route('/beranda')
@@ -32,8 +37,13 @@ def masuk():
     return render_template('login.html')
 
 
-@application.route('/authenticate', methods=['POST'])
-def authenticate():
+@application.route('/admin')
+def admin():
+    return render_template('dashboard_admin.html')
+
+
+@application.route('/autentifikasi', methods=['POST'])
+def autentifikasi():
     if request.method == 'POST':
         nim = request.form['nim']
         password = request.form['password']
@@ -43,7 +53,7 @@ def authenticate():
         user = cur.fetchone()
         cur.close()
         if user:
-            return render_template('dashboard.html')
+            redirect @application.route('/admin')
         else:
             return 'Nim atau password anda salah'
 
