@@ -14,19 +14,18 @@ application.config['MYSQL_DB'] = 'keuangan'
 mysql = MySQL(application)
 
 
-@application.route('/')
+@application.route('/', methods=['GET', 'POST'])
+@application.route('/beranda', methods=['GET', 'POST'])
 def index():
-    return render_template("beranda.html")
+    if request.path == '/beranda':
+        return redirect('/')
+    else:
+        return render_template('beranda.html')
 
 
-@application.route('/beranda')
-def beranda():
-    return redirect(url_for('index'))
-
-
-@application.route('/tentang')
-def tentang():
-    return render_template('tentang.html')
+@application.route('/pengumuman')
+def pengumuman():
+    return render_template('pengumuman.html')
 
 
 @application.route('/layanan')
@@ -66,7 +65,6 @@ def autentifikasi():
                 return redirect(url_for('mahasiswa'))
         else:
             return 'Nim atau password anda salah'
-
 
 
 if __name__ == '__main__':

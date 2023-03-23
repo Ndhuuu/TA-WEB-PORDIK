@@ -41,6 +41,7 @@ Rencana halaman yang mau dibuat :
         a. berisi halaman notifikasi mahasiswa yang belum bayar dan akan mendekati deadline pembayaran (admin dan mahasiswa bisa mendapatkan notifikasi ini)
     8. Buat halaman resume
         a. halaman dimana admin dapat menuliskan catatan pribadi atas transaksi yang terjadi (hanya admin yang dapat melihat catatan ini)
+    9. Restricted page untuk mencegah pengguna mengakses halaman dashboard tanpa login
     
 Nama database: Keuangan
 
