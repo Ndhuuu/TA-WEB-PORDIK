@@ -16,7 +16,7 @@ mysql = MySQL(application)
 
 @application.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("beranda.html")
 
 
 @application.route('/beranda')
