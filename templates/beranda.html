@@ -4,9 +4,7 @@
 <head>
     <link rel="stylesheet" href="static/styles.css">
     <link rel="shortcut icon" href="static/logounjaya.png" type="image/x-icon">
-    <title>{% block title %}
-        Root
-        {% endblock %} - My Webpage</title>
+    <title>Kelompok 14 | Project SPP</title>
 </head>
 
 <body>
@@ -14,17 +12,12 @@
         <header>
             <img src="static/logounjaya.png" alt="logologin" class="logo">
             <nav class="navigation">
-                <a href="/">Beranda</a>
+                <a href="beranda">Beranda</a>
                 <a href="tentang">Tentang</a>
                 <a href="layanan">Layanan</a>
-                <a href="https://linktr.ee/ndhuuu">Kontak</a>
+                <a href="https://linktr.ee/Muh_Randu">Kontak</a>
                 <button class="btnLogin-popup" onclick="window.location.href='masuk'">Masuk</button>
             </nav>
         </header>
-        {% block content %}
-        {% endblock %}
     </section>
-    <script src="static/scripts.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

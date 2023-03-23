@@ -1,25 +1,27 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 
 
 application = Flask(__name__)
+application.secret_key = 'proyekspp'
+
 application.config['MYSQL_HOST'] = 'localhost'
 application.config['MYSQL_USER'] = 'root'
 application.config['MYSQL_PASSWORD'] = ''
-application.config['MYSQL_DB'] = 'flask'
+application.config['MYSQL_DB'] = 'keuangan'
 
 
 mysql = MySQL(application)
 
-# Dashboard
-@application.route('/dashboard')
-def dashboard():
-    return render_template("Dashboard/index.html")
-
 
 @application.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("beranda.html")
+
+
+@application.route('/beranda')
+def beranda():
+    return redirect(url_for('index'))
 
 
 @application.route('/tentang')
@@ -32,25 +34,39 @@ def layanan():
     return render_template('layanan.html')
 
 
-@application.route('/login')
-def login():
+@application.route('/masuk')
+def masuk():
     return render_template('login.html')
 
 
-@application.route('/authenticate', methods=['POST'])
-def authenticate():
+@application.route('/admin')
+def admin():
+    return render_template('dashboard_admin.html')
+
+@application.route('/mahasiswa')
+def mahasiswa():
+    return render_template('dashboard_mahasiswa.html')
+
+
+@application.route('/autentifikasi', methods=['POST'])
+def autentifikasi():
     if request.method == 'POST':
         nim = request.form['nim']
         password = request.form['password']
         cur = mysql.connection.cursor()
-        cur.execute(
-            "SELECT * FROM user WHERE nim=%s AND password=%s", (nim, password))
-        user = cur.fetchone()
+        cur.execute("SELECT role FROM user WHERE nim=%s AND password=%s", (nim, password))
+        user_role = cur.fetchone()
         cur.close()
-        if user:
-            return render_template('home.html')
+        if user_role:
+            if user_role[0] == 'Admin':
+                session['role'] = 'Admin'
+                return redirect(url_for('admin'))
+            elif user_role[0] == 'Mahasiswa':
+                session['role'] = 'Mahasiswa'
+                return redirect(url_for('mahasiswa'))
         else:
             return 'Nim atau password anda salah'
+
 
 
 if __name__ == '__main__':
