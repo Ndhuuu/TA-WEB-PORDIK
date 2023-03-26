@@ -17,31 +17,37 @@ Rencana halaman yang mau dibuat :
     2. Buat halaman login (done)
             Konekin data login sebagai admin ke database (done)
             Konekin data login sebagai mahasiswa ke database (done)
-    3. Buat halaman dashboard (onprogess)
-        a. dashboard (waiting list)
+    3. Buat halaman dashboard (done)
+        a. dashboard (on progress 50%)
         b. profil mahasiswa | admin (waiting list)
-        c. kartu rencana studi (display only)
-            isi rencana studi (display only)
-            lihat rencana studi (display only)
-        d. laporan hasil studi (display only)
-            laporan per semester (display only)
-            transkrip akademik (display only)
-        e. laporan keuangan (waiting list)
+        c. kartu rencana studi (display only) (done)
+            isi rencana studi (display only) (done)
+            lihat rencana studi (display only) (done)
+        d. laporan hasil studi (display only) (done)
+            laporan per semester (display only) (done)
+            transkrip akademik (display only) (done)
+        e. laporan keuangan (on progress 50%)
             tagihan mahasiswa (waiting list)
                 buat halaman transaksi tagihan mahasiswa & deadline pembayaran (mahasiswa hanya baca akunnya sendiri sedangkan admin dapat membaca, menulis, merubah seluruh mahasiswa)
             unggah bukti bayar (waiting list)
                 buat halaman transaksi unggah bukti bayar berbentuk form image jpeg & png (mahasiswa dapat membaca dan mengunggah bukti bayar akunnya sendiri sedangkan admin dapat membaca, menulis, dan merubah bukti bayar seluruh mahasiswa)
             riwayat pembayaran (waiting list)
                 buat halaman transaksi riwayat pembayaran (mahasiswa hanya membaca riwayat pembayaran akunnya sendiri sedangkan admin dapat membaca, menulis, merubah riwayat pembayaran seluruh mahasiswa)
-        f. keluar (waiting list)
-    4. Buat halaman tentang (on progress 50%)
+        f. kuesioner (display only) (done)
+        g. pengajuan Cuti (display only) (done)
+        h. yudisium (display only) (done)
+            Daftar dan upload berkas (display only) (done)
+            Lengkapi berkas (display only) (done)
+        i. program MBKM (display only) (done)
+    4. Buat halaman pengumuman (on progress 50%)
     5. Buat halaman layanan (on progress 50%)
     6. Buat halaman kontak (done with linktree)
     7. Buat halaman notifikasi yang bisa diresize pada halaman dashboard (waiting list)
         a. berisi halaman notifikasi mahasiswa yang belum bayar dan akan mendekati deadline pembayaran (admin dan mahasiswa bisa mendapatkan notifikasi ini)
     8. Buat halaman resume
         a. halaman dimana admin dapat menuliskan catatan pribadi atas transaksi yang terjadi (hanya admin yang dapat melihat catatan ini)
-    9. Restricted page untuk mencegah pengguna mengakses halaman dashboard tanpa login
+    9. Restricted page untuk mencegah pengguna mengakses halaman dashboard melalui ketik url manual, tanpa login
+    10. Tombol keluar
     
 Nama database: Keuangan
 
@@ -51,7 +57,6 @@ Nama database: Keuangan
         nim (done)
         nama (done)
         password (done)
-        alamat (done)
         role (done)
 
         tabel transaksi :
