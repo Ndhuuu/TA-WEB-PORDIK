@@ -53,7 +53,7 @@ def autentifikasi():
         nim = request.form['nim']
         password = request.form['password']
         cur = mysql.connection.cursor()
-        cur.execute("SELECT role FROM user WHERE nim=%s AND password=%s", (nim, password))
+        cur.execute("SELECT role FROM tb_user WHERE nim=%s AND password=%s", (nim, password))
         user_role = cur.fetchone()
         cur.close()
         if user_role:
