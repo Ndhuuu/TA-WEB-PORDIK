@@ -1,23 +1,2 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <link rel="stylesheet" href="static/styles.css">
-    <link rel="shortcut icon" href="static/logounjaya.png" type="image/x-icon">
-    <title>Project SPP | Pengumuman</title>
-</head>
-
-<body>
-    <section>
-        <header>
-            <img src="static/logounjaya.png" alt="logologin" class="logo">
-            <nav class="navigation">
-                <a href="beranda">Beranda</a>
-                <a href="pengumuman">Pengumuman</a>
-                <a href="layanan">Layanan</a>
-                <a href="https://linktr.ee/Muh_Randu">Kontak</a>
-                <button class="btnLogin-popup" onclick="window.location.href='masuk'">Masuk</button>
-            </nav>
-        </header>
-    </section>
-</body>
+{% extends 'before login/beranda/base.html' %} 
+{% block title %} Project SPP | Masuk {% endblock %}

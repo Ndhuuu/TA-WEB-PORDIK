@@ -1,45 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <link rel="stylesheet" href="static/styles.css">
-    <link rel="shortcut icon" href="static/logounjaya.png" type="image/x-icon">
-    <title>Project SPP | Masuk</title>
-</head>
-
-<body>
-    <section>
-        <header>
-            <img src="static/logounjaya.png" alt="logologin" class="logo">
-            <nav class="navigation">
-                <a href="beranda">Beranda</a>
-                <a href="pengumuman">Pengumuman</a>
-                <a href="layanan">Layanan</a>
-                <a href="https://linktr.ee/Muh_Randu">Kontak</a>
-                <button class="btnLogin-popup" onclick="window.location.href='masuk'">Masuk</button>
-            </nav>
-        </header>
-
-        <div class="form-box">
-            <div class="form-value">
-                <form action="/autentifikasi" method="POST">
-                    <h2>PORTAL PEMBAYARAN SPP</h2>
-                    <div class="inputbox">
-                        <ion-icon name="person-outline"></ion-icon>
-                        <input type="text" name="nim" id="nim" required>
-                        <label for="">Nomor Induk Mahasiswa</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" name="password" id="password" required>
-                        <label for="">Password</label>
-                    </div>
-                    <div class="forget">
-                        <label for=""><input type="checkbox">Ingat Saya <a href="#">Lupa Kata Sandi</a></label>
-                    </div>
-                    <button type="submit" value="masuk">Masuk</button>
-                </form>
+{% extends 'before login/beranda/base.html' %} 
+{% block title %} Project SPP | Masuk {% endblock %}
+{% block login %}
+<div class="form-box">
+    <div class="form-value">
+        <form action="/autentifikasi" method="POST">
+            <h2>PORTAL PEMBAYARAN SPP</h2>
+            <div class="inputbox">
+                <ion-icon name="person-outline"></ion-icon>
+                <input type="text" name="nim" id="nim" required>
+                <label for="">Nomor Induk Mahasiswa</label>
             </div>
-        </div>
-    </section>
-</body>
+            <div class="inputbox">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input type="password" name="password" id="password" required>
+                <label for="">Password</label>
+            </div>
+            <div class="forget">
+                <label for=""><input type="checkbox">Ingat Saya <a href="#">Lupa Kata Sandi</a></label>
+            </div>
+            <button type="submit" value="masuk">Masuk</button>
+        </form>
+    </div>
+</div>
+{% endblock%}
