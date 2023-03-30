@@ -39,12 +39,23 @@ def masuk():
 
 
 @application.route('/admin')
-def admin():
-    return render_template('dashboard_admin.html')
+def home_admin():
+    return render_template('home_admin.html')
+
 
 @application.route('/mahasiswa')
-def mahasiswa():
-    return render_template('dashboard_mahasiswa.html')
+def home_mahasiswa():
+    return render_template('home_mahasiswa.html')
+
+
+@application.route('/admin/tagihanmhs')
+def lk_tagihanmhs_admin():
+    return render_template('lk_tagihanmhs_admin.html')
+
+
+@application.route('/mahasiswa/tagihanmhs')
+def lk_tagihanmhs_mahasiswa():
+    return render_template('lk_tagihanmhs_mahasiswa.html')
 
 
 @application.route('/autentifikasi', methods=['POST'])

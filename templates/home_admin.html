@@ -2,22 +2,24 @@
 {% block title %}
 Project SPP | Dashboard Admin
 {% endblock %}
-{% block content %}
-<div class="card">
-    <h5 class="card-header">Selamat Datang</h5>
-    <div class="card-body">
-        <p class="card-text">Portal Akademik adalah Aplikasi yang memungkinkan anda dapat mengetahui aktivitas akademik, keuangan, dan proses belajar mengajar di 
-        Universitas Jenderal Achmad Yani Yogyakarta</p>
-        <p class="card-text">Disclaimer Jika ada perbedaan data yang ditampilkan dalam aplikasi ini, maka data Akademik yang menjadi acuan adalah data yang ada di 
-        Bagian Administrasi Akademik (BAA), dan data keuangan yang menjadi acuan adalah data yang ada di Bagian Keuangan Universitas Jenderal Achmad Yani Yogyakarta</p>
-        <p class="card-text">Download atau baca panduan penggunaan <a href="#">disini</a></p>
-    </div>
-  </div>
-{% endblock %}
 {% block bread %} 
 <h1 class="page-title">Halaman untuk (nama admin)!</h1>
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="admin">Home</a></li>
     <li class="breadcrumb-item active">Dashboard</li>
 </ul>
+{% endblock %}
+{% block content %}
+<div class="card border-warning mb-3">
+    <div>
+        <h5 class="card-header text-bg-warning">Selamat Datang</h5>
+    </div>
+    <div class="card-body">
+        <p class="card-text">Portal Akademik adalah Aplikasi yang memungkinkan anda dapat mengetahui aktivitas akademik, keuangan, dan proses belajar mengajar di 
+        Universitas Jenderal Achmad Yani Yogyakarta</p>
+        <p class="card-text">Disclaimer Jika ada perbedaan data yang ditampilkan dalam aplikasi ini, maka data Akademik yang menjadi acuan adalah data yang ada di 
+        Bagian Administrasi Akademik (BAA), dan data keuangan yang menjadi acuan adalah data yang ada di Bagian Keuangan Universitas Jenderal Achmad Yani Yogyakarta</p>
+        <p class="card-text">Download atau baca panduan penggunaan <a href="https://pordik.unjaya.ac.id/panduan_pordik.pdf">disini</a></p>
+    </div>
+</div>
 {% endblock %}
