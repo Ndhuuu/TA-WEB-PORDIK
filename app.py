@@ -20,42 +20,42 @@ def index():
     if request.path == '/beranda':
         return redirect('/')
     else:
-        return render_template('beranda.html')
+        return render_template('before login/beranda.html')
 
 
 @application.route('/pengumuman')
 def pengumuman():
-    return render_template('pengumuman.html')
+    return render_template('before login/pengumuman.html')
 
 
 @application.route('/layanan')
 def layanan():
-    return render_template('layanan.html')
+    return render_template('before login/layanan.html')
 
 
 @application.route('/masuk')
 def masuk():
-    return render_template('login.html')
+    return render_template('before login/login.html')
 
 
 @application.route('/admin')
 def home_admin():
-    return render_template('home_admin.html')
+    return render_template('after login/home_admin.html')
 
 
 @application.route('/mahasiswa')
 def home_mahasiswa():
-    return render_template('home_mahasiswa.html')
+    return render_template('after login/home_mahasiswa.html')
 
 
 @application.route('/admin/tagihanmhs')
 def lk_tagihanmhs_admin():
-    return render_template('lk_tagihanmhs_admin.html')
+    return render_template('after login/lk_tagihanmhs_admin.html')
 
 
 @application.route('/mahasiswa/tagihanmhs')
 def lk_tagihanmhs_mahasiswa():
-    return render_template('lk_tagihanmhs_mahasiswa.html')
+    return render_template('after login/lk_tagihanmhs_mahasiswa.html')
 
 
 @application.route('/autentifikasi', methods=['POST'])
@@ -70,10 +70,10 @@ def autentifikasi():
         if user_role:
             if user_role[0] == 'Admin':
                 session['role'] = 'Admin'
-                return redirect(url_for('admin'))
+                return redirect(url_for('home_admin'))
             elif user_role[0] == 'Mahasiswa':
                 session['role'] = 'Mahasiswa'
-                return redirect(url_for('mahasiswa'))
+                return redirect(url_for('home_mahasiswa'))
         else:
             return 'Nim atau password anda salah'
 
