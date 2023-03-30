@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
+from functools import wraps
 
 
 application = Flask(__name__)
@@ -38,22 +39,43 @@ def masuk():
     return render_template('before login/login.html')
 
 
+@application.route('/keluar')
+def keluar():
+    session.clear()
+    return redirect(url_for('masuk'))
+
+
+def login_required(*roles):
+    def wrapper(fn):
+        @wraps(fn)
+        def decorated_view(*args, **kwargs):
+            if 'role' not in session or session['role'] not in roles:
+                return redirect(url_for('masuk'))
+            return fn(*args, **kwargs)
+        return decorated_view
+    return wrapper
+
+
 @application.route('/admin')
+@login_required('Admin', 'SuperAdmin')
 def home_admin():
     return render_template('after login/home_admin.html')
 
 
 @application.route('/mahasiswa')
+@login_required('Mahasiswa', 'SuperAdmin')
 def home_mahasiswa():
     return render_template('after login/home_mahasiswa.html')
 
 
 @application.route('/admin/tagihanmhs')
+@login_required('Admin', 'SuperAdmin')
 def lk_tagihanmhs_admin():
     return render_template('after login/lk_tagihanmhs_admin.html')
 
 
 @application.route('/mahasiswa/tagihanmhs')
+@login_required('Mahasiswa', 'SuperAdmin')
 def lk_tagihanmhs_mahasiswa():
     return render_template('after login/lk_tagihanmhs_mahasiswa.html')
 
@@ -68,11 +90,12 @@ def autentifikasi():
         user_role = cur.fetchone()
         cur.close()
         if user_role:
-            if user_role[0] == 'Admin':
-                session['role'] = 'Admin'
+            session['role'] = user_role[0]
+            if user_role[0] == 'SuperAdmin':
+                return redirect(url_for('home_admin'))
+            elif user_role[0] == 'Admin':
                 return redirect(url_for('home_admin'))
             elif user_role[0] == 'Mahasiswa':
-                session['role'] = 'Mahasiswa'
                 return redirect(url_for('home_mahasiswa'))
         else:
             return 'Nim atau password anda salah'
