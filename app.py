@@ -45,37 +45,39 @@ def keluar():
     return redirect(url_for('masuk'))
 
 
-def login_required(*roles):
+def login_required(role):
     def wrapper(fn):
         @wraps(fn)
         def decorated_view(*args, **kwargs):
-            if 'role' not in session or session['role'] not in roles:
+            if 'role' not in session:
                 return redirect(url_for('masuk'))
+            elif session['role'] != role:
+                return "Unauthorized Access", 403
             return fn(*args, **kwargs)
         return decorated_view
     return wrapper
 
 
 @application.route('/admin')
-@login_required('Admin', 'SuperAdmin')
+@login_required('Admin')
 def home_admin():
     return render_template('after login/home_admin.html')
 
 
 @application.route('/mahasiswa')
-@login_required('Mahasiswa', 'SuperAdmin')
+@login_required('Mahasiswa')
 def home_mahasiswa():
     return render_template('after login/home_mahasiswa.html')
 
 
 @application.route('/admin/tagihanmhs')
-@login_required('Admin', 'SuperAdmin')
+@login_required('Admin')
 def lk_tagihanmhs_admin():
     return render_template('after login/lk_tagihanmhs_admin.html')
 
 
 @application.route('/mahasiswa/tagihanmhs')
-@login_required('Mahasiswa', 'SuperAdmin')
+@login_required('Mahasiswa')
 def lk_tagihanmhs_mahasiswa():
     return render_template('after login/lk_tagihanmhs_mahasiswa.html')
 
@@ -91,9 +93,7 @@ def autentifikasi():
         cur.close()
         if user_role:
             session['role'] = user_role[0]
-            if user_role[0] == 'SuperAdmin':
-                return redirect(url_for('home_admin'))
-            elif user_role[0] == 'Admin':
+            if user_role[0] == 'Admin':
                 return redirect(url_for('home_admin'))
             elif user_role[0] == 'Mahasiswa':
                 return redirect(url_for('home_mahasiswa'))
