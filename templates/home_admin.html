@@ -2,7 +2,7 @@
 {% block title %}
 Project SPP | Dashboard Admin
 {% endblock %}
-{% block bread %} 
+{% block bread %}
 <h1 class="page-title">Halaman untuk (nama admin)!</h1>
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="admin">Home</a></li>
@@ -10,16 +10,52 @@ Project SPP | Dashboard Admin
 </ul>
 {% endblock %}
 {% block content %}
-<div class="card border-warning mb-3">
+<div class="card border border-warning mb-3">
     <div>
         <h5 class="card-header text-bg-warning">Selamat Datang</h5>
     </div>
     <div class="card-body">
-        <p class="card-text">Portal Akademik adalah Aplikasi yang memungkinkan anda dapat mengetahui aktivitas akademik, keuangan, dan proses belajar mengajar di 
-        Universitas Jenderal Achmad Yani Yogyakarta</p>
-        <p class="card-text">Disclaimer Jika ada perbedaan data yang ditampilkan dalam aplikasi ini, maka data Akademik yang menjadi acuan adalah data yang ada di 
-        Bagian Administrasi Akademik (BAA), dan data keuangan yang menjadi acuan adalah data yang ada di Bagian Keuangan Universitas Jenderal Achmad Yani Yogyakarta</p>
-        <p class="card-text">Download atau baca panduan penggunaan <a href="https://pordik.unjaya.ac.id/panduan_pordik.pdf">disini</a></p>
+        <p class="card-text">Portal Akademik adalah Aplikasi yang memungkinkan anda dapat mengetahui aktivitas akademik,
+            keuangan, dan proses belajar mengajar di
+            Universitas Jenderal Achmad Yani Yogyakarta</p>
+        <p class="card-text">Disclaimer Jika ada perbedaan data yang ditampilkan dalam aplikasi ini, maka data Akademik
+            yang menjadi acuan adalah data yang ada di
+            Bagian Administrasi Akademik (BAA), dan data keuangan yang menjadi acuan adalah data yang ada di Bagian
+            Keuangan Universitas Jenderal Achmad Yani Yogyakarta</p>
+        <p class="card-text">Download atau baca panduan penggunaan <a
+                href="https://pordik.unjaya.ac.id/panduan_pordik.pdf">disini</a></p>
+    </div>
+</div>
+<div class="d-flex gap-3">
+    <div class="card bg-info">
+        <div class="card-body">
+            <h5 class="card-title">Info Akademik</h5>
+            <p class="card-text">Kumpulan informasi akademik dan proses belajar mengajar di Universitas Jendral
+                Achmad Yani Yogyakarta</p>
+        </div>
+        <a href="#" class="text-center card-footer bg-info-subtle h-25">
+            <small class="text-body-secondary">Info Selengkapnya! <i class="fa-solid fa-circle-right pl-2"></i></small>
+        </a>
+    </div>
+    <div class="card bg-success">
+        <div class="card-body">
+            <h5 class="card-title">Info Keuangan</h5>
+            <p class="card-text">Kumpulan informasi keuangan dan biaya kuliah di Universitas Jendral Achmad Yani
+                Yogyakarta</p>
+        </div>
+        <a href="#" class="text-center card-footer bg-success-subtle h-25">
+            <small class="text-body-secondary">Info Selengkapnya! <i class="fa-solid fa-circle-right pl-2"></i></small>
+        </a>
+    </div>
+    <div class="card bg-warning">
+        <div class="card-body">
+            <h5 class="card-title">Info Kemahasiswaan</h5>
+            <p class="card-text">Kumpulan informasi kegiatan kemahasiswaan dan beasiswa di Universitas Jendral
+                Achmad Yani Yogyakarta</p>
+        </div>
+        <a href="#" class="text-center card-footer bg-warning-subtle h-25">
+            <small class="text-body-secondary">Info Selengkapnya! <i class="fa-solid fa-circle-right pl-2"></i></small>
+        </a>
     </div>
 </div>
 {% endblock %}
