@@ -1,43 +1,46 @@
-{% extends 'after login/dashboard/base.html' %} 
-{% block title %} Portal Pendidikan | Dashboard Mahasiswa {% endblock %} 
+{% extends 'after login/dashboard/base.html' %}
+{% block title %} Portal Pendidikan | Dashboard Mahasiswa {% endblock %}
 {% block bread %}
 <h1 class="page-title">Halaman untuk (nama mahasiswa)!</h1>
 <ul class="breadcrumb">
-  <li class="breadcrumb-item"><a href="mahasiswa">Home</a></li>
-  <li class="breadcrumb-item active">Dashboard</li>
+    <li class="breadcrumb-item"><a href="mahasiswa">Home</a></li>
+    <li class="breadcrumb-item active">Dashboard</li>
 </ul>
-{% endblock %} 
+{% endblock %}
 {% block content %}
 <div class="card border" style="border-color: #f39c12 !important;">
-  <div class="card-header" style="background-color: #f39c12;">
-    <h5 class="mb-0">
-        Selamat Datang
-        <i class="float-right icon-collapse fas fa-minus"></i>
-        <i class="float-right icon-remove fas fa-times"></i>
-    </h5>
-  </div>
-  <div class="card-body">
-    <p class="card-text">Portal Akademik adalah Aplikasi yang memungkinkan anda dapat mengetahui aktivitas akademik,
+    <div class="card-header" style="background-color: #f39c12;">
+        <div class="d-flex ">
+            <h5 class="mb-0 flex-grow-1">
+                Selamat Datang
+            </h5>
+            <i class="float-right btn icon-collapse hidden fas fa-minus"></i>
+            <i class="float-right btn icon-remove fas fa-times"></i>
+        </div>
+    </div>
+    <div class="card-body">
+        <p class="card-text">Portal Akademik adalah Aplikasi yang memungkinkan anda dapat mengetahui aktivitas akademik,
             keuangan, dan proses belajar mengajar di
             Universitas Jenderal Achmad Yani Yogyakarta</p>
         <p class="card-text">Disclaimer Jika ada perbedaan data yang ditampilkan dalam aplikasi ini, maka data Akademik
             yang menjadi acuan adalah data yang ada di
             Bagian Administrasi Akademik (BAA), dan data keuangan yang menjadi acuan adalah data yang ada di Bagian
             Keuangan Universitas Jenderal Achmad Yani Yogyakarta</p>
-        <p class="card-text">Download atau baca panduan penggunaan <a href="https://pordik.unjaya.ac.id/panduan_pordik.pdf">disini</a></p>
-  </div>
-  <script>
-      // collapse card
-      document.querySelector('.icon-collapse').addEventListener('click', function() {
-          var cardBody = this.parentElement.parentElement.nextElementSibling;
-          cardBody.classList.toggle('collapse');
-      });
-    
-      // remove card
-      document.querySelector('.icon-remove').addEventListener('click', function() {
-          var card = this.parentElement.parentElement.parentElement;
-          card.remove();
-      });
+        <p class="card-text">Download atau baca panduan penggunaan <a
+                href="https://pordik.unjaya.ac.id/panduan_pordik.pdf">disini</a></p>
+    </div>
+    <script>
+        // collapse card
+        document.querySelector('.icon-collapse').addEventListener('click', function () {
+            var cardBody = this.parentElement.parentElement.nextElementSibling;
+            cardBody.classList.toggle('collapse');
+        });
+
+        // remove card
+        document.querySelector('.icon-remove').addEventListener('click', function () {
+            var card = this.parentElement.parentElement.parentElement;
+            card.remove();
+        });
     </script>
 </div>
 
