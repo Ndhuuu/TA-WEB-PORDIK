@@ -4,32 +4,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
     <title>{% block title %} {% endblock %}</title>
-    <link rel="shortcut icon" href="static/logounjaya.png" />
-    <link rel="stylesheet" href="static/styles.css" />
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   </head>
   <body>
-    <section>
-      <header>
-        <div class="container">
-          <div class="logo">
-            <img src="static/logounjaya.png" alt="logologin" class="logo-img" />
-            <div class="text-logo">
-              <h3>Portal Akademik</h3>
-              <span>Universitas Jenderal Achmad Yani Yogyakarta</span>
-            </div>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="static/logounjaya.png" alt="logologin" class="logo-img" />
+          <div class="text-logo">
+            <h3>Portal Akademik</h3>
+            <span>Universitas Jenderal Achmad Yani Yogyakarta</span>
           </div>
-          <nav class="navigation">
-            <a href="beranda">Beranda</a>
-            <a href="pengumuman">Pengumuman</a>
-            <a href="layanan">Layanan</a>
-            <a href="https://linktr.ee/Muh_Randu">Kontak</a>
-            <button class="btnLogin-popup" onclick="window.location.href='masuk'">
-              Masuk
-            </button>
-          </nav>
         </div>
-      </header>
-      {% block login %} {% endblock%}
-    </section>
+        <nav class="navigation">
+          <a href="beranda">Beranda</a>
+          <a href="pengumuman">Pengumuman</a>
+          <a href="layanan">Layanan</a>
+          <a href="https://linktr.ee/Muh_Randu">Kontak</a>
+          <button class="btnLogin-popup" onclick="window.location.href='masuk'">
+            Masuk
+          </button>
+        </nav>
+      </div>
+    </header>
+    {% block login %} {% endblock%}
+    {% block beranda %} {% endblock %}
+
   </body>
 </html>
