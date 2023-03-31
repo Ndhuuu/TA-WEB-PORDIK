@@ -52,7 +52,7 @@ def login_required(role):
             if 'role' not in session:
                 return redirect(url_for('masuk'))
             elif session['role'] != role:
-                return "Unauthorized Access", 403
+                return "Anda tidak dapat mengakses halaman ini, karena anda tidak memiliki hak akses ke halaman ini.", 403
             return fn(*args, **kwargs)
         return decorated_view
     return wrapper
