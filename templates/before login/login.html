@@ -1,25 +1,27 @@
 {% extends 'before login/beranda/base.html' %} 
 {% block title %} Portal Pendidikan | Masuk {% endblock %}
 {% block login %}
-<div class="form-box">
-    <div class="form-value">
-        <form action="/autentifikasi" method="POST">
-            <h2>PORTAL PEMBAYARAN SPP</h2>
-            <div class="inputbox">
-                <ion-icon name="person-outline"></ion-icon>
-                <input type="text" name="nim" id="nim" required>
-                <label for="">Nomor Induk Mahasiswa</label>
-            </div>
-            <div class="inputbox">
-                <ion-icon name="lock-closed-outline"></ion-icon>
-                <input type="password" name="password" id="password" required>
-                <label for="">Password</label>
-            </div>
-            <div class="forget">
-                <label for=""><input type="checkbox">Ingat Saya <a href="#">Lupa Kata Sandi</a></label>
-            </div>
-            <button type="submit" value="masuk">Masuk</button>
-        </form>
+<div class="center">
+    <div class="form-box">
+        <div class="form-value">
+            <form action="/autentifikasi" method="POST">
+                <h2>PORTAL PEMBAYARAN SPP</h2>
+                <div class="inputbox">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="text" name="nim" id="nim" required>
+                    <label for="">Nomor Induk Mahasiswa</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" name="password" id="password" required>
+                    <label for="">Password</label>
+                </div>
+                <div class="forget">
+                    <label for=""><input type="checkbox">Ingat Saya <a href="#">Lupa Kata Sandi</a></label>
+                </div>
+                <button type="submit" value="masuk">Masuk</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock%}
