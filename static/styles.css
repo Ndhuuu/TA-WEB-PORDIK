@@ -2,82 +2,110 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "poppins", sans-serif;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Bagian untuk bar navigasi */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px 100px;
-  background: transparent;
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 99;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
 }
+
 .logo {
-  width: 90px;
-  height: 90px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
   user-select: none;
 }
-.navigation a {
-  position: relative;
-  font-size: 1.1em;
-  color: #d76a70;
-  text-decoration: none;
-  font-weight: 500;
-  margin-left: 40px;
+
+.logo h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
 }
+
+.logo h4 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 5px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navigation a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 30px;
+  position: relative;
+}
+
 .navigation a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -6px;
+  bottom: -3px;
   width: 100%;
   height: 3px;
-  background: #962c50;
+  background-color: #fff;
   border-radius: 5px;
   transform-origin: right;
   transform: scaleX(0);
-  transition: transform 0.5s;
+  transition: transform 0.3s ease-in-out;
 }
+
 .navigation a:hover::after {
   transform-origin: left;
   transform: scaleX(1);
 }
-.navigation .btnLogin-popup {
+
+.btnLogin-popup {
   width: 130px;
   height: 50px;
   background: transparent;
-  border: 2px solid #962c50;
+  border: 2px solid #fff;
   outline: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 1.1em;
-  color: #d76a70;
+  font-size: 1.1rem;
+  color: #fff;
   font-weight: 500;
-  margin-left: 40px;
-  margin-right: 200px;
-  transition: 0.5s;
+  margin-left: 30px;
+  transition: 0.3s;
 }
-.navigation .btnLogin-popup:hover {
-  background: #962c50;
+
+.btnLogin-popup:hover {
+  background-color: #fff;
   color: #151f38;
 }
+
 section {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   width: 100%;
-
   background: url("background.jpg") no-repeat;
   background-position: center;
   background-size: cover;
 }
+
 
 /* Bagian untuk form login */
 .form-box {
@@ -170,5 +198,3 @@ button:hover {
   background: #9f2f53;
   color: #151f38;
 }
-
-/* Bagian untuk dashboard */

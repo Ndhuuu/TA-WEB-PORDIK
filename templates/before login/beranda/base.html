@@ -10,16 +10,22 @@
   <body>
     <section>
       <header>
-        <img src="static/logounjaya.png" alt="logologin" class="logo" />
-        <nav class="navigation">
-          <a href="beranda">Beranda</a>
-          <a href="pengumuman">Pengumuman</a>
-          <a href="layanan">Layanan</a>
-          <a href="https://linktr.ee/Muh_Randu">Kontak</a>
-          <button class="btnLogin-popup" onclick="window.location.href='masuk'">
-            Masuk
-          </button>
-        </nav>
+        <div class="container">
+          <div class="logo">
+            <img src="static/logounjaya.png" alt="logologin" class="logo-img" />
+            <h3>Portal Akademik</h3>
+            <p>Universitas Jenderal Achmad Yani Yogyakarta</p>
+          </div>
+          <nav class="navigation">
+            <a href="beranda">Beranda</a>
+            <a href="pengumuman">Pengumuman</a>
+            <a href="layanan">Layanan</a>
+            <a href="https://linktr.ee/Muh_Randu">Kontak</a>
+            <button class="btnLogin-popup" onclick="window.location.href='masuk'">
+              Masuk
+            </button>
+          </nav>
+        </div>
       </header>
       {% block login %} {% endblock%}
     </section>
