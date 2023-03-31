@@ -6,14 +6,20 @@
   font-family: "Poppins", sans-serif;
 }
 
+header {
+  height: 10vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
+
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 10px;
+  padding-right: 10%;
+  padding-left: 10%;
 }
 
 .logo {
@@ -21,24 +27,28 @@
   align-items: center;
 }
 
+.text-logo {
+  display: grid;
+  grid-template-rows: 1 1;
+  text-align: justify;
+}
+
 .logo-img {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: auto;
   margin-right: 10px;
   user-select: none;
 }
 
-.logo h3 {
-  font-size: 1.5rem;
+.text-logo h3 {
+  font-size: 2.3rem;
   font-weight: 600;
   color: #fff;
 }
 
-.logo h4 {
-  font-size: 1.2rem;
-  font-weight: 500;
+.text-logo > span { 
+  font-size: small;
   color: #fff;
-  margin-top: 5px;
 }
 
 .navigation {
@@ -95,7 +105,7 @@
   color: #151f38;
 }
 
-section {
+/* section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,10 +114,17 @@ section {
   background: url("background.jpg") no-repeat;
   background-position: center;
   background-size: cover;
-}
+} */
 
 
 /* Bagian untuk form login */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
 .form-box {
   position: relative;
   width: 400px;
@@ -123,21 +140,21 @@ section {
 }
 h2 {
   font-size: 1.5em;
-  color: #fff;
+  color: black;
   text-align: center;
 }
 .inputbox {
   position: relative;
   margin: 30px 0;
   width: 310px;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid black;
 }
 .inputbox label {
   position: absolute;
   top: 50%;
   left: 5px;
   transform: translateY(-50%);
-  color: #fff;
+  color: black;
   font-size: 1em;
   pointer-events: none;
   transition: 0.5s;
@@ -154,19 +171,19 @@ input:valid ~ label {
   outline: none;
   font-size: 1em;
   padding: 0 35px 0 5px;
-  color: #fff;
+  color: black;
 }
 .inputbox ion-icon {
   position: absolute;
   right: 8px;
-  color: #fff;
+  color: black;
   font-size: 1.2em;
   top: 20px;
 }
 .forget {
   margin: -15px 0 15px;
   font-size: 0.9em;
-  color: #fff;
+  color: black;
   display: flex;
   justify-content: space-between;
 }
@@ -175,7 +192,7 @@ input:valid ~ label {
   margin-right: 3px;
 }
 .forget label a {
-  color: #fff;
+  color: black;
   text-decoration: none;
   margin-left: 90px;
 }
