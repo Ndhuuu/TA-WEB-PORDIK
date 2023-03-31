@@ -27,17 +27,17 @@ header {
   align-items: center;
 }
 
-.text-logo {
-  display: grid;
-  grid-template-rows: 1 1;
-  text-align: justify;
-}
-
 .logo-img {
   width: 80px;
   height: auto;
   margin-right: 10px;
   user-select: none;
+}
+
+.text-logo {
+  display: grid;
+  grid-template-rows: 1 1;
+  text-align: justify;
 }
 
 .text-logo h3 {
