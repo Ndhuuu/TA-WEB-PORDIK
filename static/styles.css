@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 
-
 /* Bagian untuk universal */
 * {
   margin: 0;
@@ -9,15 +8,42 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  background-color: #F9F5EB;
+  background-color: #f9f5eb;
 }
 
+/* Nav by Randi */
+.wel {
+  width: 100%;
+  height: 20%;
+}
+
+.welcon {
+  padding: 0% 5% 0% 5%;
+  background-color: #df2e38;
+}
+
+.welflex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weleft {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.welright {
+  display: flex;
+  align-items: center;
+}
 
 /* Bagian untuk before login */
 header {
-  height: 10vh;
+  height: 5%;
   width: 100%;
-  background-color: #DF2E38;
+  background-color: #df2e38;
   padding-top: 5px;
 }
 
@@ -53,7 +79,7 @@ header {
   color: #fff;
 }
 
-.text-logo span { 
+.text-logo span {
   font-size: small;
   color: #fff;
 }
@@ -65,12 +91,12 @@ header {
 }
 
 .navigation a {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: #fff;
   text-decoration: none;
-  margin-left: 30px;
   position: relative;
+  margin: 0rem 0.8rem 0rem 0.8rem;
 }
 
 .navigation a::after {
@@ -112,7 +138,6 @@ header {
   color: #151f38;
 }
 
-
 /* Bagian untuk image slider */
 /* .swiper {
   width: 100%;
@@ -120,13 +145,12 @@ header {
   object-fit: cover;
 } */
 
-.img-slider{
-  width: 2000px;
-  height: 600px;
+.img-slider {
+  width: 100%;
+  height: 50vh;
   object-fit: cover;
   object-position: 100% 50%;
 }
-
 
 /* Bagian untuk form login */
 .center {
@@ -138,9 +162,8 @@ header {
 
 .form-box {
   position: relative;
-  width: 400px;
-  height: 500px;
-  background: #DF2E38;
+  width: 30%;
+  background: #df2e38;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   backdrop-filter: blur(20px);
@@ -151,8 +174,7 @@ header {
 }
 
 .form-value {
-  justify-content: center;
-  align-items: center;
+  padding: 3rem 2rem 3rem 2rem;
 }
 
 h2 {
@@ -164,7 +186,7 @@ h2 {
 .inputbox {
   position: relative;
   margin: 30px 0;
-  width: 310px;
+  width: 100%;
   border-bottom: 2px solid #fff;
 }
 
@@ -204,7 +226,6 @@ input:valid ~ label {
 }
 
 .forget {
-  margin: -15px 0 15px;
   font-size: 0.9em;
   color: #fff;
   display: flex;
@@ -216,7 +237,7 @@ input:valid ~ label {
   margin-right: 3px;
 }
 
-.forget label a {
+.forget a {
   color: #fff;
   text-decoration: none;
   margin-left: 90px;
@@ -232,6 +253,7 @@ input:valid ~ label {
   border: #fff 1px solid;
   border-radius: 40px;
   background: transparent;
+  margin-top: 1rem;
   color: #fff;
   cursor: pointer;
   font-size: 1em;
@@ -242,11 +264,13 @@ input:valid ~ label {
   border-radius: 40px;
   border: #fff 2px solid;
   background: #fff;
-  color: #DF2E38;
+  color: #df2e38;
 }
 
 .note {
-  font-size: small;
+  font-size: 12px;
   text-align: center;
+  margin-top: 1rem;
+  width: 100%;
   color: #fff;
 }

@@ -1,38 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
-    <title>{% block title %} {% endblock %}</title>
-    <link rel="stylesheet" href="static/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-  </head>
-  <body>
-    <header>
-      <div class="container">
-        <div class="logo">
-          <img src="static/logounjaya.png" alt="logologin" class="logo-img" />
-          <div class="text-logo">
-            <h3>PORTAL AKADEMIK</h3>
-            <span>Universitas Jenderal Achmad Yani Yogyakarta</span>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+  <title>{% block title %} {% endblock %}</title>
+  <link rel="stylesheet" href="static/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+  <nav>
+    <div class="wel">
+      <div class="welcon">
+        <div class="welflex">
+          <div class="weleft">
+            <img src="static/logounjaya.png" alt="logologin" class="logo-img" />
+            <div class="text-logo">
+              <h3>PORTAL AKADEMIK</h3>
+              <span>Universitas Jenderal Achmad Yani Yogyakarta</span>
+            </div>
+          </div>
+          <div class="welright navigation">
+            <a href="beranda">Beranda</a>
+            <a href="pengumuman">Pengumuman</a>
+            <a href="layanan">Layanan</a>
+            <a href="https://linktr.ee/Muh_Randu">Kontak</a>
+            <button class="btnLogin-popup" onclick="window.location.href='masuk'">
+              MASUK
+            </button>
           </div>
         </div>
-        <nav class="navigation">
-          <a href="beranda">BERANDA</a>
-          <a href="pengumuman">PENGUMUMAN</a>
-          <a href="layanan">LAYANAN</a>
-          <!-- <a href="https://linktr.ee/Muh_Randu">Kontak</a> -->
-          <button class="btnLogin-popup" onclick="window.location.href='masuk'">
-            MASUK
-          </button>
-        </nav>
       </div>
-    </header>
-    {% block login %} {% endblock%}
-    {% block beranda %} {% endblock %}
+    </div>
+  </nav>
+  <!-- 
+  <header>
+    <div class="">
+      <div class="logo">
+        <img src="static/logounjaya.png" alt="logologin" class="logo-img" />
+        <div class="text-logo">
+          <h3>PORTAL AKADEMIK</h3>
+          <span>Universitas Jenderal Achmad Yani Yogyakarta</span>
+        </div>
+      </div>
+      <nav class="navigation">
+        <a href="beranda">BERANDA</a>
+        <a href="pengumuman">PENGUMUMAN</a>
+        <a href="layanan">LAYANAN</a>
+        <a href="https://linktr.ee/Muh_Randu">Kontak</a>
+        <button class="btnLogin-popup" onclick="window.location.href='masuk'">
+          MASUK
+        </button>
+      </nav>
+    </div>
+  </header>
+  -->
+  <main>
+    {% block content %} {% endblock%}
+  </main>
+</body>
 
-  </body>
 </html>

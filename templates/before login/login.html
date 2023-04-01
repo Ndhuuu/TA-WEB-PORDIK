@@ -1,6 +1,6 @@
-{% extends 'before login/beranda/base.html' %} 
+{% extends 'before login/beranda/base.html' %}
 {% block title %} PORTAL AKADEMIK | MASUK {% endblock %}
-{% block login %}
+{% block content %}
 <div class="center">
     <div class="form-box">
         <div class="form-value">
@@ -17,10 +17,13 @@
                     <label for="">PASSWORD</label>
                 </div>
                 <div class="forget">
-                    <label for=""><input type="checkbox">Ingat Saya <a href="#">Lupa Kata Sandi</a></label>
+                    <label for=""><input type="checkbox">Ingat Saya</label>
+                    <a href="#">Lupa Kata Sandi</a>
                 </div>
                 <button class="btnLogin-masuk" type="submit" value="masuk">Masuk</button>
             </form>
+            <p class="note">Jika anda belum mempunyai Username dan Password silahkan hubungi Bagian Administrasi
+                Akademik</p>
         </div>
     </div>
 </div>
