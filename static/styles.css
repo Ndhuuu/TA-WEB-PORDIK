@@ -139,7 +139,7 @@ header {
 .form-box {
   position: relative;
   width: 400px;
-  height: 450px;
+  height: 500px;
   background: #DF2E38;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
@@ -240,8 +240,9 @@ input:valid ~ label {
   color: #fff;
 }
 
-.note p {
-  display: block;
-  text-align: justify;
+.note {
+  position: relative;
+  top: 10px;
+  text-align: center;
   color: #fff;
 }
