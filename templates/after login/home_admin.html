@@ -1,4 +1,4 @@
-{% extends 'after login/dashboard/base.html' %}
+{% extends 'after login/dashboard/base_admin.html' %}
 {% block title %} PORTAL AKADEMIK | DASHBOARD ADMIN {% endblock %}
 {% block bread %}
 <h1 class="page-title">Halaman untuk (nama admin)!</h1>
@@ -8,9 +8,15 @@
 </ul>
 {% endblock %}
 {% block content %}
-<div class="card border border-warning mb-3">
-    <div>
-        <h5 class="card-header text-bg-warning">Selamat Datang</h5>
+<div class="card border" style="border-color: #f39c12 !important;">
+    <div class="card-header" style="background-color: #f39c12;">
+        <div class="d-flex ">
+            <h5 class="mb-0 flex-grow-1">
+                Selamat Datang
+            </h5>
+            <i class="float-right btn icon-collapse hidden fas fa-minus"></i>
+            <i class="float-right btn icon-remove fas fa-times"></i>
+        </div>
     </div>
     <div class="card-body">
         <p class="card-text">Portal Akademik adalah Aplikasi yang memungkinkan anda dapat mengetahui aktivitas akademik,
@@ -23,9 +29,24 @@
         <p class="card-text">Download atau baca panduan penggunaan <a
                 href="https://pordik.unjaya.ac.id/panduan_pordik.pdf">disini</a></p>
     </div>
+    <script>
+        // collapse card
+        document.querySelector('.icon-collapse').addEventListener('click', function () {
+            var cardBody = this.parentElement.parentElement.nextElementSibling;
+            cardBody.classList.toggle('collapse');
+        });
+
+        // remove card
+        document.querySelector('.icon-remove').addEventListener('click', function () {
+            var card = this.parentElement.parentElement.parentElement;
+            card.remove();
+        });
+    </script>
 </div>
+
+
 <div class="d-flex gap-3">
-    <div class="card bg-info">
+    <div class="card" style="background-color: #00c0ef;">
         <div class="card-body">
             <h5 class="card-title">Info Akademik</h5>
             <p class="card-text">Kumpulan informasi akademik dan proses belajar mengajar di Universitas Jendral
@@ -35,7 +56,7 @@
             <small class="text-body-secondary">Info Selengkapnya! <i class="fa-solid fa-circle-right pl-2"></i></small>
         </a>
     </div>
-    <div class="card bg-success">
+    <div class="card" style="background-color: #00a65a;">
         <div class="card-body">
             <h5 class="card-title">Info Keuangan</h5>
             <p class="card-text">Kumpulan informasi keuangan dan biaya kuliah di Universitas Jendral Achmad Yani
@@ -45,7 +66,7 @@
             <small class="text-body-secondary">Info Selengkapnya! <i class="fa-solid fa-circle-right pl-2"></i></small>
         </a>
     </div>
-    <div class="card bg-warning">
+    <div class="card" style="background-color: #f39c12;">
         <div class="card-body">
             <h5 class="card-title">Info Kemahasiswaan</h5>
             <p class="card-text">Kumpulan informasi kegiatan kemahasiswaan dan beasiswa di Universitas Jendral

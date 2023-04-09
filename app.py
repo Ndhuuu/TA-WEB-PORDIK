@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from flask import flash
 from flask_mysqldb import MySQL
 from functools import wraps
 
@@ -94,11 +95,14 @@ def autentifikasi():
         if user_role:
             session['role'] = user_role[0]
             if user_role[0] == 'Admin':
+                flash('Anda berhasil masuk sebagai admin', 'success')
                 return redirect(url_for('home_admin'))
             elif user_role[0] == 'Mahasiswa':
+                flash('Anda berhasil masuk sebagai mahasiswa', 'success')
                 return redirect(url_for('home_mahasiswa'))
         else:
-            return 'Nim atau password anda salah'
+            flash('Nim atau password anda salah!', 'danger')
+            return redirect(url_for('masuk'))
 
 
 if __name__ == '__main__':

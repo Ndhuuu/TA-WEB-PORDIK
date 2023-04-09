@@ -99,6 +99,10 @@ header {
   margin: 0rem 0.8rem 0rem 0.8rem;
 }
 
+.navigation a:hover {
+  color: #151f38;
+}
+
 .navigation a::after {
   content: "";
   position: absolute;
@@ -162,7 +166,7 @@ header {
 
 .form-box {
   position: relative;
-  width: 30%;
+  width: 25%;
   background: #df2e38;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
