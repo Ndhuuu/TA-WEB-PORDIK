@@ -62,7 +62,7 @@ def login_required(role):
 @application.route('/admin')
 @login_required('Admin')
 def home_admin():
-    return render_template('after login/home_admin.html')
+    return render_template('after login/dashboard/home_admin.html')
 
 
 @application.route('/admin/data-mahasiswa')
@@ -81,7 +81,7 @@ def data_mahasiswa():
 @application.route('/mahasiswa')
 @login_required('Mahasiswa')
 def home_mahasiswa():
-    return render_template('after login/home_mahasiswa.html')
+    return render_template('after login/dashboard/home_mahasiswa.html')
 
 
 # @application.route('/mahasiswa/tagihanmhs')
