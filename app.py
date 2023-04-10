@@ -16,6 +16,7 @@ application.config['MYSQL_DB'] = 'keuangan'
 mysql = MySQL(application)
 
 
+# INDEX AREA
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/beranda', methods=['GET', 'POST'])
 def index():
@@ -46,6 +47,7 @@ def keluar():
     return redirect(url_for('masuk'))
 
 
+# RESTRICTION PAGE AREA
 def login_required(role):
     def wrapper(fn):
         @wraps(fn)
@@ -58,6 +60,7 @@ def login_required(role):
         return decorated_view
     return wrapper
 
+
 # ADMIN AREA
 @application.route('/admin')
 @login_required('Admin')
@@ -65,10 +68,24 @@ def home_admin():
     return render_template('after login/dashboard/home_admin.html')
 
 
+@application.route('/data-login-user')
+@login_required('Admin')
+def data_user():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM tb_user")
+    user = cur.fetchall()
+    cur.close()
+    return render_template('after login/data_master/data_user.html', user=user)
+
+
 @application.route('/data-mahasiswa')
 @login_required('Admin')
 def data_mahasiswa():
-    return render_template('after login/data_master/data_mhs.html')
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM tb_mahasiswa")
+    mhs = cur.fetchall()
+    cur.close()
+    return render_template('after login/data_master/data_mhs.html', mhs=mhs)
 
 
 # @application.route('/tagihanmhs')
@@ -90,6 +107,7 @@ def home_mahasiswa():
 #     return render_template('after login/lk_tagihanmhs_mahasiswa.html')
 
 
+# LOGIN AREA
 @application.route('/autentifikasi', methods=['POST'])
 def autentifikasi():
     if request.method == 'POST':

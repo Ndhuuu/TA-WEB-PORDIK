@@ -1,0 +1,54 @@
+{% extends 'after login/dashboard/base_admin.html' %}
+{% block title %} PORTAL AKADEMIK | DATA LOGIN USER {% endblock %}
+{% block bread %}
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="admin">Dashboard</a></li>
+    <li class="breadcrumb-item active">Data Login User</li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title mb-2">Data Login User</h3>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="datatable table table-stripped" id="myTable">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Nim</th>
+                        <th>Password</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for users in users %}
+                    <tr>
+                        <td>{{ user.nama }}</td>
+                        <td>{{ user.nim }}</td>
+                        <td>{{ user.password }}</td>
+                        <td>{{ user.role }}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning">
+                                <i class="fa-solid fa-pencil"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    $('#myTable').DataTable({
+        select: true
+    });
+</script>
+{% endblock %}
