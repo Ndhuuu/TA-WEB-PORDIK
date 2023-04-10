@@ -1,11 +1,14 @@
 {% extends 'after login/dashboard/base_admin.html' %}
+
 {% block title %} PORTAL AKADEMIK | DATA LOGIN USER {% endblock %}
+
 {% block bread %}
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="admin">Dashboard</a></li>
     <li class="breadcrumb-item active">Data Login User</li>
 </ul>
 {% endblock %}
+
 {% block content %}
 <div class="card">
     <div class="card-header">
@@ -16,20 +19,23 @@
             <table class="datatable table table-stripped" id="myTable">
                 <thead>
                     <tr>
-                        <th>Nama</th>
-                        <th>Nim</th>
+                        <th>Nama Lengkap</th>
+                        <th>Usename/Nim</th>
                         <th>Password</th>
                         <th>Role</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for users in users %}
+                    {% for user in data_user %}
                     <tr>
-                        <td>{{ user.nama }}</td>
-                        <td>{{ user.nim }}</td>
-                        <td>{{ user.password }}</td>
-                        <td>{{ user.role }}</td>
+                        <td>{{ user[0] }}</td>
+                        <td>{{ user[1] }}</td>
+                        <td>{{ user[2] }}</td>
+                        <td>{{ user[3] }}</td>
                         <td>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
                             <button type="button" class="btn btn-warning">
                                 <i class="fa-solid fa-pencil"></i>
                             </button>
@@ -45,6 +51,7 @@
     </div>
 </div>
 {% endblock %}
+
 {% block script %}
 <script>
     $('#myTable').DataTable({

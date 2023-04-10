@@ -69,13 +69,13 @@ def home_admin():
 
 
 @application.route('/data-login-user')
-@login_required('Admin')
 def data_user():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM tb_user")
-    user = cur.fetchall()
+    cur.execute("SELECT nama, nim, password, role FROM tb_user")
+    data_user = cur.fetchall()
     cur.close()
-    return render_template('after login/data_master/data_user.html', user=user)
+    return render_template('after login/data_master/data_user.html', data_user=data_user)
+
 
 
 @application.route('/data-mahasiswa')

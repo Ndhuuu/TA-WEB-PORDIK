@@ -26,14 +26,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for mahasiswa in data_mahasiswa %}
                     <tr>
-                        <td>212103032</td>
-                        <td>Muhammad Randu Diva</td>
-                        <td>Sleman, 06 Desember 2001</td>
-                        <td>Laki-Laki</td>
-                        <td>Sleman</td>
-                        <td>089652532796</td>
-                        <td>ndhu2001@gmail.com</td>
+                        <td>{{ mahasiswa.nim }}</td>
+                        <td>{{ mahasiswa.nama }}</td>
+                        <td>{{ mahasiswa.tempat_lahir }}, {{ mahasiswa.tanggal_lahir }}</td>
+                        <td>{{ mahasiswa.jenis_kelamin }}</td>
+                        <td>{{ mahasiswa.alamat }}</td>
+                        <td>{{ mahasiswa.nomor_telepon }}</td>
+                        <td>{{ mahasiswa.email }}</td>
                         <td>
                             <button type="button" class="btn btn-warning">
                                 <i class="fa-solid fa-pencil"></i>
@@ -43,22 +44,7 @@
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                        <td>
-                            <button type="button" class="btn btn-warning">
-                                <i class="fa-solid fa-pencil"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
