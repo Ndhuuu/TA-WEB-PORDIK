@@ -1,40 +1,41 @@
 {% extends 'before login/beranda/base.html' %}
 {% block title %} PORTAL AKADEMIK | MASUK {% endblock %}
 {% block content %}
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }} alert-dismissible fade show mx-auto" role="alert" style="text-align: center; max-width: 600px;">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
 <div class="center">
-    <div class="form-box">
-        <div class="form-value">
-            <form action="/autentifikasi" method="POST">
-                <h2>PORTAL AKADEMIK UNJAYA</h2>
-                <div class="inputbox">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" name="nim" id="nim" required>
-                    <label for="">USERNAME/NIM</label>
-                </div>
-                <div class="inputbox">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" name="password" id="password" required>
-                    <label for="">PASSWORD</label>
-                </div>
-                <div class="forget">
-                    <label for=""><input type="checkbox">Ingat Saya</label>
-                    <a href="#">Lupa Kata Sandi</a>
-                </div>
-                <button class="btnLogin-masuk" type="submit" value="masuk">Masuk</button>
-            </form>
-            <p class="note">Jika anda belum mempunyai Username dan Password silahkan hubungi Bagian Administrasi
-                Akademik</p>
+  <div class="form-box">
+    <div class="form-value">
+      <form action="/autentifikasi" method="POST">
+        <h2>PORTAL AKADEMIK UNJAYA</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show mx-auto" role="alert"
+          style="text-align: center; max-width: 600px;">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="inputbox">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" name="nim" id="nim" required>
+          <label for="">USERNAME/NIM</label>
+        </div>
+        <div class="inputbox">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" name="password" id="password" required>
+          <label for="">PASSWORD</label>
+        </div>
+        <div class="forget">
+          <label for=""><input type="checkbox">Ingat Saya</label>
+          <a href="#">Lupa Kata Sandi</a>
+        </div>
+        <button class="btnLogin-masuk" type="submit" value="masuk">Masuk</button>
+      </form>
+      <p class="note">Jika anda belum mempunyai Username dan Password silahkan hubungi Bagian Administrasi
+        Akademik</p>
     </div>
+  </div>
 </div>
 {% endblock%}

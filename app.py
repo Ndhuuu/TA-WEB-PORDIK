@@ -89,7 +89,8 @@ def autentifikasi():
         nim = request.form['nim']
         password = request.form['password']
         cur = mysql.connection.cursor()
-        cur.execute("SELECT role FROM tb_user WHERE nim=%s AND password=%s", (nim, password))
+        cur.execute(
+            "SELECT role FROM tb_user WHERE nim=%s AND password=%s", (nim, password))
         user_role = cur.fetchone()
         cur.close()
         if user_role:
@@ -103,6 +104,13 @@ def autentifikasi():
         else:
             flash('Nim atau password anda salah!', 'danger')
             return redirect(url_for('masuk'))
+
+# Data Mahasiswa
+
+
+@application.route('/data-mahasiswa')
+def data_mahasiswa():
+    return render_template('after login/data_master/data_mhs.html')
 
 
 if __name__ == '__main__':
