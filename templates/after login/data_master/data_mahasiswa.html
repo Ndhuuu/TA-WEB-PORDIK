@@ -28,13 +28,8 @@
                 <tbody>
                     {% for mahasiswa in data_mahasiswa %}
                     <tr>
-                        <td>{{ mahasiswa.nim }}</td>
-                        <td>{{ mahasiswa.nama }}</td>
-                        <td>{{ mahasiswa.tempat_lahir }}, {{ mahasiswa.tanggal_lahir }}</td>
-                        <td>{{ mahasiswa.jenis_kelamin }}</td>
-                        <td>{{ mahasiswa.alamat }}</td>
-                        <td>{{ mahasiswa.nomor_telepon }}</td>
-                        <td>{{ mahasiswa.email }}</td>
+                        <td>{{ mahasiswa[0] }}</td>
+                        <td>{{ mahasiswa[1] }}</td>
                         <td>
                             <button type="button" class="btn btn-warning">
                                 <i class="fa-solid fa-pencil"></i>
