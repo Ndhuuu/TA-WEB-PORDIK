@@ -46,8 +46,8 @@
                         <span class="user-img">
                             <img class="rounded-circle" src="static/logounjaya.png" width="31" alt="logo" />
                             <div class="user-text">
-                                <h6>Nama</h6>
-                                <p class="text-muted mb-0">Role</p>
+                                <h6>{{ session['nama'] }}</h6>
+                                <p class="text-muted mb-0">{{ session['role'] }}</p>
                             </div>
                         </span>
                     </a>
@@ -59,8 +59,8 @@
                                 <img src="static/logounjaya.png" alt="User Image" class="avatar-img rounded-circle" />
                             </div>
                             <div class="user-text">
-                                <h6>Nama</h6>
-                                <p class="text-muted mb-0">Role</p>
+                                <h6>{{ session['nama'] }}</h6>
+                                <p class="text-muted mb-0">{{ session['role'] }}</p>
                             </div>
                         </div>
                         <a class="dropdown-item" href="profile.html">Profil</a>

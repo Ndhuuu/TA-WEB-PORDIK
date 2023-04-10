@@ -89,16 +89,16 @@ def autentifikasi():
         nim = request.form['nim']
         password = request.form['password']
         cur = mysql.connection.cursor()
-        cur.execute(
-            "SELECT role FROM tb_user WHERE nim=%s AND password=%s", (nim, password))
-        user_role = cur.fetchone()
+        cur.execute("SELECT role, nama FROM tb_user WHERE nim=%s AND password=%s", (nim, password))
+        user_data = cur.fetchone()
         cur.close()
-        if user_role:
-            session['role'] = user_role[0]
-            if user_role[0] == 'Admin':
+        if user_data:
+            session['role'] = user_data[0]
+            session['nama'] = user_data[1]
+            if user_data[0] == 'Admin':
                 flash('Anda berhasil masuk sebagai admin', 'success')
                 return redirect(url_for('home_admin'))
-            elif user_role[0] == 'Mahasiswa':
+            elif user_data[0] == 'Mahasiswa':
                 flash('Anda berhasil masuk sebagai mahasiswa', 'success')
                 return redirect(url_for('home_mahasiswa'))
         else:

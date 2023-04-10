@@ -1,7 +1,9 @@
 {% extends 'after login/dashboard/base_mhs.html' %}
 {% block title %} PORTAL AKADEMIK | DASHBOARD MAHASISWA {% endblock %}
 {% block bread %}
-<h1 class="page-title">Halaman untuk (nama mahasiswa)!</h1>
+{% if 'nama' in session %}
+<h1 class="page-title">Halaman untuk {{ session['nama'] }}!</h1>
+{% endif %}
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="mahasiswa">Home</a></li>
     <li class="breadcrumb-item active">Dashboard</li>
