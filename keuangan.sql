@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2023 at 10:12 AM
+-- Generation Time: Apr 10, 2023 at 06:39 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -29,11 +29,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_admin` (
   `id` int(11) NOT NULL,
+  `nim` varchar(11) NOT NULL,
   `nama` varchar(25) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `no_telpon` int(20) NOT NULL,
-  `email` varchar(50) NOT NULL
+  `tempat_lahir` varchar(20) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `no_telpon` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `foto` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_admin`
+--
+
+INSERT INTO `tb_admin` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `no_telpon`, `email`, `foto`) VALUES
+(1, 'admin1', 'Ferdy Sambo', 'Barru', '1973-02-09', 'Jalan menuju neraka', '089612345', 'sambocs@gmail.com', '');
 
 -- --------------------------------------------------------
 
@@ -124,7 +135,7 @@ CREATE TABLE `tb_riwayat` (
 
 CREATE TABLE `tb_user` (
   `id` int(11) NOT NULL,
-  `nama_user` varchar(80) NOT NULL,
+  `nama` varchar(80) NOT NULL,
   `nim` varchar(11) NOT NULL,
   `password` varchar(50) NOT NULL,
   `role` varchar(10) NOT NULL
@@ -134,10 +145,11 @@ CREATE TABLE `tb_user` (
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`id`, `nama_user`, `nim`, `password`, `role`) VALUES
+INSERT INTO `tb_user` (`id`, `nama`, `nim`, `password`, `role`) VALUES
 (1, 'Muhammad Randu Diva', '212103032', 'mahasiswa1', 'Mahasiswa'),
 (2, 'Rakhmat Mukti Wibowo', '212103035', 'mahasiswa2', 'Mahasiswa'),
-(3, 'Ferdy Sambo', 'admin', 'admin', 'Admin');
+(3, 'Ferdy Sambo', 'admin1', 'admin', 'Admin'),
+(4, 'Teddy Minahasa', 'admin2', 'admin', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -193,37 +205,13 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_admin`
 --
 ALTER TABLE `tb_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tb_deadline`
---
-ALTER TABLE `tb_deadline`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tb_pembayaran`
---
-ALTER TABLE `tb_pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tb_piutang`
---
-ALTER TABLE `tb_piutang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tb_riwayat`
---
-ALTER TABLE `tb_riwayat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
