@@ -65,13 +65,13 @@ def home_admin():
     return render_template('after login/dashboard/home_admin.html')
 
 
-@application.route('/admin/data-mahasiswa')
+@application.route('/data-mahasiswa')
 @login_required('Admin')
 def data_mahasiswa():
     return render_template('after login/data_master/data_mhs.html')
 
 
-# @application.route('/admin/tagihanmhs')
+# @application.route('/tagihanmhs')
 # @login_required('Admin')
 # def lk_tagihanmhs_admin():
 #     return render_template('after login/lk_tagihanmhs_admin.html')
@@ -84,7 +84,7 @@ def home_mahasiswa():
     return render_template('after login/dashboard/home_mahasiswa.html')
 
 
-# @application.route('/mahasiswa/tagihanmhs')
+# @application.route('/tagihanmhs')
 # @login_required('Mahasiswa')
 # def lk_tagihanmhs_mahasiswa():
 #     return render_template('after login/lk_tagihanmhs_mahasiswa.html')
