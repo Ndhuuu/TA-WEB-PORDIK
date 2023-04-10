@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask import flash
 from flask_mysqldb import MySQL
 from functools import wraps
+from datetime import datetime
 
 
 application = Flask(__name__)
@@ -84,6 +85,7 @@ def data_mahasiswa():
     cur = mysql.connection.cursor()
     cur.execute("SELECT nim, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, alamat, no_telepon, email FROM tb_mahasiswa")
     data_mahasiswa = cur.fetchall()
+    data_mahasiswa = [(row[0], row[1], row[2], datetime.strptime(row[3], '%Y-%m-%d'), row[4], row[5], row[6], row[7]) for row in data_mahasiswa]
     cur.close()
     return render_template('after login/data_master/data_mahasiswa.html', data_mahasiswa=data_mahasiswa)
 
