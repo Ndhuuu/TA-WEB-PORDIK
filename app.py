@@ -58,29 +58,36 @@ def login_required(role):
         return decorated_view
     return wrapper
 
-
+# ADMIN AREA
 @application.route('/admin')
 @login_required('Admin')
 def home_admin():
     return render_template('after login/home_admin.html')
 
 
+@application.route('/admin/data-mahasiswa')
+@login_required('Admin')
+def data_mahasiswa():
+    return render_template('after login/data_master/data_mhs.html')
+
+
+# @application.route('/admin/tagihanmhs')
+# @login_required('Admin')
+# def lk_tagihanmhs_admin():
+#     return render_template('after login/lk_tagihanmhs_admin.html')
+
+
+# MAHASISWA AREA
 @application.route('/mahasiswa')
 @login_required('Mahasiswa')
 def home_mahasiswa():
     return render_template('after login/home_mahasiswa.html')
 
 
-@application.route('/admin/tagihanmhs')
-@login_required('Admin')
-def lk_tagihanmhs_admin():
-    return render_template('after login/lk_tagihanmhs_admin.html')
-
-
-@application.route('/mahasiswa/tagihanmhs')
-@login_required('Mahasiswa')
-def lk_tagihanmhs_mahasiswa():
-    return render_template('after login/lk_tagihanmhs_mahasiswa.html')
+# @application.route('/mahasiswa/tagihanmhs')
+# @login_required('Mahasiswa')
+# def lk_tagihanmhs_mahasiswa():
+#     return render_template('after login/lk_tagihanmhs_mahasiswa.html')
 
 
 @application.route('/autentifikasi', methods=['POST'])
@@ -104,13 +111,6 @@ def autentifikasi():
         else:
             flash('Nim atau password anda salah!', 'danger')
             return redirect(url_for('masuk'))
-
-# Data Mahasiswa
-
-
-@application.route('/data-mahasiswa')
-def data_mahasiswa():
-    return render_template('after login/data_master/data_mhs.html')
 
 
 if __name__ == '__main__':
