@@ -48,6 +48,30 @@ def keluar():
     return redirect(url_for('masuk'))
 
 
+# LOGIN AREA
+@application.route('/autentifikasi', methods=['POST'])
+def autentifikasi():
+    if request.method == 'POST':
+        nim = request.form['nim']
+        password = request.form['password']
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT role, nama FROM tb_user WHERE nim=%s AND password=%s", (nim, password))
+        user_data = cur.fetchone()
+        cur.close()
+        if user_data:
+            session['role'] = user_data[0]
+            session['nama'] = user_data[1]
+            if user_data[0] == 'Admin':
+                flash('Anda berhasil masuk sebagai admin', 'success')
+                return redirect(url_for('home_admin'))
+            elif user_data[0] == 'Mahasiswa':
+                flash('Anda berhasil masuk sebagai mahasiswa', 'success')
+                return redirect(url_for('home_mahasiswa'))
+        else:
+            flash('Nim atau password anda salah!', 'danger')
+            return redirect(url_for('masuk'))
+
+
 # RESTRICTION PAGE AREA
 def login_required(role):
     def wrapper(fn):
@@ -56,10 +80,30 @@ def login_required(role):
             if 'role' not in session:
                 return redirect(url_for('masuk'))
             elif session['role'] != role:
-                return "Anda tidak dapat mengakses halaman ini, karena anda tidak memiliki hak akses ke halaman ini.", 403
+                return redirect(url_for('kesalahan_403'))
             return fn(*args, **kwargs)
         return decorated_view
     return wrapper
+
+
+@application.route('/kesalahan-403')
+def kesalahan_403():
+    return render_template('403.html')
+
+
+@application.route('/kesalahan-404')
+def kesalahan_404():
+    return render_template('404.html')
+
+
+@application.route('/kembali')
+def kembali():
+    if 'role' in session:
+        if session['role'] == 'Admin':
+            return redirect(url_for('home_admin'))
+        elif session['role'] == 'Mahasiswa':
+            return redirect(url_for('home_mahasiswa'))
+    return redirect(url_for('masuk'))
 
 
 # ADMIN AREA
@@ -107,30 +151,6 @@ def home_mahasiswa():
 # @login_required('Mahasiswa')
 # def lk_tagihanmhs_mahasiswa():
 #     return render_template('after login/lk_tagihanmhs_mahasiswa.html')
-
-
-# LOGIN AREA
-@application.route('/autentifikasi', methods=['POST'])
-def autentifikasi():
-    if request.method == 'POST':
-        nim = request.form['nim']
-        password = request.form['password']
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT role, nama FROM tb_user WHERE nim=%s AND password=%s", (nim, password))
-        user_data = cur.fetchone()
-        cur.close()
-        if user_data:
-            session['role'] = user_data[0]
-            session['nama'] = user_data[1]
-            if user_data[0] == 'Admin':
-                flash('Anda berhasil masuk sebagai admin', 'success')
-                return redirect(url_for('home_admin'))
-            elif user_data[0] == 'Mahasiswa':
-                flash('Anda berhasil masuk sebagai mahasiswa', 'success')
-                return redirect(url_for('home_mahasiswa'))
-        else:
-            flash('Nim atau password anda salah!', 'danger')
-            return redirect(url_for('masuk'))
 
 
 if __name__ == '__main__':
