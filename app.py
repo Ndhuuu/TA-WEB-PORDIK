@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, abort
 from flask import flash
 from flask_mysqldb import MySQL
 from functools import wraps
@@ -80,20 +80,20 @@ def login_required(role):
             if 'role' not in session:
                 return redirect(url_for('masuk'))
             elif session['role'] != role:
-                return redirect(url_for('kesalahan_403'))
+                return abort(403)
             return fn(*args, **kwargs)
         return decorated_view
     return wrapper
 
 
-@application.route('/kesalahan-403')
-def kesalahan_403():
-    return render_template('403.html')
+@application.errorhandler(403)
+def forbidden_page(error):
+    return render_template('403.html'), 403
 
 
-@application.route('/kesalahan-404')
-def kesalahan_404():
-    return render_template('404.html')
+@application.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
 
 
 @application.route('/kembali')
