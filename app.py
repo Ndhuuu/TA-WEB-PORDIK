@@ -122,7 +122,6 @@ def data_user():
     return render_template('after login/data_master/data_user.html', data_user=data_user)
 
 
-
 @application.route('/data-mahasiswa')
 @login_required('Admin')
 def data_mahasiswa():
