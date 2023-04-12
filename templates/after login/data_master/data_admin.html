@@ -1,15 +1,15 @@
 {% extends 'after login/dashboard/base_admin.html' %}
-{% block title %} PORTAL AKADEMIK | DATA MAHASISWA {% endblock %}
+{% block title %} PORTAL AKADEMIK | DATA ADMIN {% endblock %}
 {% block bread %}
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="admin">Dashboard</a></li>
-    <li class="breadcrumb-item active">Data Mahasiswa</li>
+    <li class="breadcrumb-item active">Data Admin</li>
 </ul>
 {% endblock %}
 {% block content %}
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title mb-2">Data Mahasiswa</h3>
+        <h3 class="card-title mb-2">Data Admin</h3>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -27,15 +27,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for mahasiswa in data_mahasiswa %}
+                    {% for admin in data_admin %}
                     <tr>
-                        <td>{{ mahasiswa[0] }}</td>
-                        <td>{{ mahasiswa[1] }}</td>
-                        <td>{{ mahasiswa[2] }}</td>
-                        <td>{{ mahasiswa[3] }}</td>
-                        <td>{{ mahasiswa[4] }}</td>
-                        <td>{{ mahasiswa[5] }}</td>
-                        <td>{{ mahasiswa[6] }}</td>
+                        <td>{{ admin[0] }}</td>
+                        <td>{{ admin[1] }}</td>
+                        <td>{{ admin[2] }}</td>
+                        <td>{{ admin[3] }}</td>
+                        <td>{{ admin[4] }}</td>
+                        <td>{{ admin[5] }}</td>
+                        <td>{{ admin[6] }}</td>
                         <td>
                             <button type="button" class="btn btn-primary">
                                 <i class="fa-solid fa-eye"></i>

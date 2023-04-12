@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2023 at 06:42 AM
+-- Generation Time: Apr 12, 2023 at 02:36 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -33,6 +33,7 @@ CREATE TABLE `tb_admin` (
   `nama` varchar(25) NOT NULL,
   `tempat_lahir` varchar(20) NOT NULL,
   `tanggal_lahir` date NOT NULL,
+  `jenis_kelamin` varchar(20) NOT NULL,
   `alamat` varchar(255) NOT NULL,
   `no_telpon` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
@@ -43,8 +44,8 @@ CREATE TABLE `tb_admin` (
 -- Dumping data for table `tb_admin`
 --
 
-INSERT INTO `tb_admin` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `no_telpon`, `email`, `foto`) VALUES
-(1, 'admin1', 'Ferdy Sambo', 'Barru', '1973-02-09', 'Jalan menuju neraka', '089612345', 'sambocs@gmail.com', '');
+INSERT INTO `tb_admin` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `alamat`, `no_telpon`, `email`, `foto`) VALUES
+(1, 'admin1', 'Ferdy Sambo', 'Barru', '1973-02-09', 'Laki-Laki', 'Jakarta', '089612345', 'sambocs@gmail.com', '');
 
 -- --------------------------------------------------------
 
@@ -72,13 +73,21 @@ CREATE TABLE `tb_mahasiswa` (
   `id` int(11) NOT NULL,
   `nim` int(10) NOT NULL,
   `nama` varchar(20) NOT NULL,
-  `jurusan` varchar(20) NOT NULL,
-  `alamat` text NOT NULL,
-  `tanggal_lahir` int(30) NOT NULL,
+  `tempat_lahir` varchar(20) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
   `jenis_kelamin` varchar(20) NOT NULL,
-  `semester` int(5) NOT NULL,
-  `no_telpon` int(25) NOT NULL
+  `alamat` varchar(255) NOT NULL,
+  `no_telepon` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `foto` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_mahasiswa`
+--
+
+INSERT INTO `tb_mahasiswa` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `alamat`, `no_telepon`, `email`, `foto`) VALUES
+(1, 212103032, 'Muhammad Randu Diva', 'Sleman', '2001-12-06', 'Laki-Laki', 'Sleman', '089652532796', 'ndhu2001@gmail.com', '');
 
 -- --------------------------------------------------------
 
@@ -146,8 +155,8 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `nama`, `nim`, `password`, `role`) VALUES
-(1, 'Muhammad Randu Diva', '212103032', 'mahasiswa1', 'Mahasiswa'),
-(2, 'Rakhmat Mukti Wibowo', '212103035', 'mahasiswa2', 'Mahasiswa'),
+(1, 'Muhammad Randu Diva', '212103032', 'mahasiswa', 'Mahasiswa'),
+(2, 'Rakhmat Mukti Wibowo', '212103035', 'mahasiswa', 'Mahasiswa'),
 (3, 'Ferdy Sambo', 'admin1', 'admin', 'Admin'),
 (4, 'Teddy Minahasa', 'admin2', 'admin', 'Admin');
 
@@ -205,6 +214,12 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_admin`
 --
 ALTER TABLE `tb_admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tb_mahasiswa`
+--
+ALTER TABLE `tb_mahasiswa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
