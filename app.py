@@ -138,7 +138,7 @@ def data_admin():
     cur.execute("SELECT nim, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, alamat, no_telepon, email FROM tb_admin")
     data_admin = cur.fetchall()
     cur.close()
-    return render_template('after login/data_master/data_mahasiswa.html', data_admin=data_admin)
+    return render_template('after login/data_master/data_admin.html', data_admin=data_admin)
 
 
 # @application.route('/tagihanmhs')
