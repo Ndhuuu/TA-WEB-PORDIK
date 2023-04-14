@@ -3,7 +3,6 @@ from flask import flash
 from flask_mysqldb import MySQL
 from functools import wraps
 
-
 application = Flask(__name__)
 application.secret_key = 'proyekspp'
 
@@ -11,7 +10,6 @@ application.config['MYSQL_HOST'] = 'localhost'
 application.config['MYSQL_USER'] = 'root'
 application.config['MYSQL_PASSWORD'] = ''
 application.config['MYSQL_DB'] = 'keuangan'
-
 
 mysql = MySQL(application)
 
@@ -159,7 +157,7 @@ def home_admin():
 # DATA MASTER
 # DATA LOGIN USER
 @application.route('/data-login-user')
-def data_user():
+def read_user():
     cur = mysql.connection.cursor()
     cur.execute("SELECT nama, nim, password, role FROM tb_user")
     data_user = cur.fetchall()
@@ -169,7 +167,7 @@ def data_user():
 
 # TAMBAH DATA LOGIN USER
 @application.route('/tambah-login-user', methods=['GET', 'POST'])
-def insert_user():
+def create_user():
     if request.method == 'POST':
         nama = request.form['nama']
         password = request.form['password']
@@ -181,7 +179,38 @@ def insert_user():
         cur.close()
         return redirect(url_for('data_user'))
     else:
-        return render_template('after login/data_master/insert_datauser.html')
+        return render_template('after login/data_master/create_datauser.html')
+
+
+# EDIT DATA LOGIN USER
+@application.route('/edit-login-user/<int:id>', methods=['GET', 'POST'])
+def update_user(id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM tb_user WHERE id=%s", [id])
+    data = cur.fetchone()
+    cur.close()
+    return render_template('after login/data_master/update_datauser.html', data=data)
+
+
+@application.route('/update_process', methods=['POST'])
+def update_process():
+    id = request.form['id']
+    nama = request.form['nama']
+    password = request.form['password']
+    role = request.form['role']
+    data_user = (nama, password, role, id)
+    cur = mysql.connection.cursor()
+    cur.execute("UPDATE tb_user SET nama=%s, password=%s, role=%s WHERE id=%s", data_user)
+    mysql.connection.commit()
+    cur.close()
+    return redirect(url_for('data_user'))
+
+
+# HAPUS DATA LOGIN USER
+def delete_user():
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM tb_user WHERE id=%s")
+    cur.close()
 
 
 @application.route('/data-mahasiswa')
