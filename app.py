@@ -9,7 +9,7 @@ application.secret_key = 'proyekspp'
 application.config['MYSQL_HOST'] = 'localhost'
 application.config['MYSQL_USER'] = 'root'
 application.config['MYSQL_PASSWORD'] = ''
-application.config['MYSQL_DB'] = 'keuangan'
+application.config['MYSQL_DB'] = 'db_pordik'
 
 mysql = MySQL(application)
 
@@ -43,15 +43,14 @@ def masuk():
 @application.route('/autentifikasi', methods=['POST'])
 def autentifikasi():
     if request.method == 'POST':
-        nim = request.form['nim']
+        username = request.form['username']
         password = request.form['password']
         cur = mysql.connection.cursor()
-        cur.execute(
-            "SELECT role, nama FROM tb_user WHERE nim=%s AND password=%s", (nim, password))
+        cur.execute("SELECT role_id, nama FROM tb_user WHERE username=%s AND password=%s", (username, password))
         user_data = cur.fetchone()
         cur.close()
         if user_data:
-            session['role'] = user_data[0]
+            session['role_id'] = user_data[0]
             session['nama'] = user_data[1]
             if user_data[0] == 'Admin':
                 flash('Anda berhasil masuk sebagai admin', 'success')
