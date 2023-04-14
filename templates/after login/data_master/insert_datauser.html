@@ -5,13 +5,13 @@
 {% block bread %}
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="admin">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="/data-login-user">Data Login User</a></li>
+    <li class="breadcrumb-item"><a href="data-login-user">Data Login User</a></li>
     <li class="breadcrumb-item active">Tambah Data Login User</li>
 </ul>
 {% endblock %}
 
 {% block content %}
-<form action="" method="post">
+<form action="{{ url_for('insert_user') }}" method="post">
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Tambah User</h5>
@@ -21,29 +21,29 @@
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Nama Lengkap</label>
                 <div class="col-md-10">
-                    <input type="text" placeholder="Masukan nama lengkap" class="form-control">
+                    <input type="text" name="nama" placeholder="Masukan nama lengkap" class="form-control">
                 </div>
             </div>
             <!-- User -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Username / NIM</label>
                 <div class="col-md-10">
-                    <input type="text" placeholder="Masukan username atau NIM" class="form-control">
+                    <input type="text" name="" placeholder="Masukan username atau NIM" class="form-control">
                 </div>
             </div>
             <!-- password -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Password</label>
                 <div class="col-md-10">
-                    <input type="password" placeholder="Masukan password" class="form-control">
+                    <input type="password" name="password" placeholder="Masukan password" class="form-control">
                 </div>
             </div>
-            <!-- Role (Kalau bisa lu lakuin looping sama kya di table itu bagus) -->
+            <!-- Roles -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Roles</label>
                 <div class="col-md-10">
-                    <select class="form-control form-select">
-                        <option hidden>-- Select --</option>
+                    <select name="role" class="form-control form-select">
+                        <option hidden>-- Pilih --</option>
                         <option>Mahasiswa</option>
                         <option>Admin</option>
                     </select>
@@ -53,7 +53,7 @@
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-success">
                     <i class="fa-solid fa-circle-check"></i>
-                    <span>Save</span>
+                    <span>Simpan</span>
                 </button>
             </div>
         </div>

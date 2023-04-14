@@ -41,12 +41,6 @@ def masuk():
     return render_template('before login/login.html')
 
 
-@application.route('/keluar')
-def keluar():
-    session.clear()
-    return redirect(url_for('masuk'))
-
-
 # LOGIN AREA
 @application.route('/autentifikasi', methods=['POST'])
 def autentifikasi():
@@ -70,6 +64,12 @@ def autentifikasi():
         else:
             flash('Nim atau password anda salah!', 'danger')
             return redirect(url_for('masuk'))
+
+
+@application.route('/keluar')
+def keluar():
+    session.clear()
+    return redirect(url_for('masuk'))
 
 
 # RESTRICTION PAGE AREA
@@ -107,12 +107,57 @@ def kembali():
 
 
 # ADMIN AREA
+    # DASHBOARD ADMIN
+    # DATA MASTER
+        # DATA LOGIN USER
+            # TAMBAH DATA LOGIN USER
+            # EDIT DATA LOGIN USER
+            # HAPUS
+        # DATA ADMIN
+            # TAMBAH DATA ADMIN
+            # EDIT DATA ADMIN
+            # HAPUS
+        # DATA MAHASISWA
+            # TAMBAH DATA MAHASISWA
+            # EDIT DATA MAHASISWA
+            # HAPUS
+    # DATA TRANSAKSI
+        # TAGIHAN MAHASISWA
+            # TAMBAH
+            # EDIT
+            # HAPUS
+        # UNGGAH BUKTI BAYAR
+            # TAMBAH
+            # EDIT
+            # HAPUS
+        # RIWAYAT PEMBAYARAN
+            # TAMBAH
+            # EDIT
+            # HAPUS
+    # DATA RESUME
+        # MAHASISWA LUNAS
+            # TAMBAH
+            # EDIT
+            # HAPUS
+        # MAHASISWA NUNGGAK
+            # TAMBAH
+            # EDIT
+            # HAPUS
+        # PIUTANG
+            # TAMBAH
+            # EDIT
+            # HAPUS
+
+
+# DASHBOARD ADMIN
 @application.route('/admin')
 @login_required('Admin')
 def home_admin():
     return render_template('after login/dashboard/home_admin.html')
 
 
+# DATA MASTER
+# DATA LOGIN USER
 @application.route('/data-login-user')
 def data_user():
     cur = mysql.connection.cursor()
@@ -121,12 +166,22 @@ def data_user():
     cur.close()
     return render_template('after login/data_master/data_user.html', data_user=data_user)
 
-# Add data user login
 
-
-@application.route('/add-data-login-user')
-def add_data_user():
-    return render_template('after login/data_master/add_data_user.html')
+# TAMBAH DATA LOGIN USER
+@application.route('/tambah-login-user', methods=['GET', 'POST'])
+def insert_user():
+    if request.method == 'POST':
+        nama = request.form['nama']
+        password = request.form['password']
+        role = request.form['role']
+        data_user = (nama, password, role)
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO tb_user (nama, password, role) VALUES (%s, %s, %s)", data_user)
+        mysql.connection.commit()
+        cur.close()
+        return redirect(url_for('data_user'))
+    else:
+        return render_template('after login/data_master/insert_datauser.html')
 
 
 @application.route('/data-mahasiswa')
