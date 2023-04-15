@@ -24,6 +24,11 @@ def index():
         return render_template('before login/beranda.html')
 
 
+@application.route('/index')
+def indeks():
+    return render_template('before login/index.html')
+
+
 @application.route('/pengumuman')
 def pengumuman():
     return render_template('before login/pengumuman.html')
