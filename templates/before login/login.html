@@ -38,11 +38,11 @@
                 {% endfor %}
                 {% endif %}
                 {% endwith %}
-                <form action="index.html">
+                <form action="autentifikasi" method="POST">
                   <div class="form-group">
                     <label>Username/Nip/Nim <span class="login-danger">*</span>
                     </label>
-                    <input class="form-control" type="text" />
+                    <input class="form-control" id="username" type="text" />
                     <span class="profile-views">
                       <i class="fas fa-user-circle"></i>
                     </span>
@@ -50,7 +50,7 @@
                   <div class="form-group">
                     <label>Password <span class="login-danger">*</span>
                     </label>
-                    <input class="form-control pass-input" type="text" />
+                    <input class="form-control pass-input" id="password" type="text" />
                     <span class="profile-views feather-eye toggle-password"></span>
                   </div>
                   <div class="forgotpass">
