@@ -4,7 +4,7 @@ from flask_mysqldb import MySQL
 from functools import wraps
 
 application = Flask(__name__)
-application.secret_key = 'proyekspp'
+application.secret_key = 'portalakademik'
 
 application.config['MYSQL_HOST'] = 'localhost'
 application.config['MYSQL_USER'] = 'root'
@@ -15,8 +15,8 @@ mysql = MySQL(application)
 
 
 # INDEX AREA
-@application.route('/', methods=['GET', 'POST'])
-@application.route('/beranda', methods=['GET', 'POST'])
+@application.route('/', methods=['GET'])
+@application.route('/beranda', methods=['GET'])
 def index():
     if request.path == '/beranda':
         return redirect('/')
@@ -34,12 +34,12 @@ def layanan():
     return render_template('before login/layanan.html')
 
 
+# LOGIN AREA
 @application.route('/masuk')
 def masuk():
     return render_template('before login/login.html')
 
 
-# LOGIN AREA
 @application.route('/autentifikasi', methods=['POST'])
 def autentifikasi():
     if request.method == 'POST':
@@ -59,14 +59,21 @@ def autentifikasi():
                 flash('Anda berhasil masuk sebagai mahasiswa', 'success')
                 return redirect(url_for('home_mahasiswa'))
         else:
+            session.clear()
             flash('Nim atau password anda salah!', 'danger')
             return redirect(url_for('masuk'))
+    return redirect(url_for('masuk'))
 
 
 @application.route('/keluar')
 def keluar():
     session.clear()
     return redirect(url_for('masuk'))
+
+
+@application.route('/lupa-password')
+def lupa_password():
+    return render_template('before login/lupa_password.html')
 
 
 # RESTRICTION PAGE AREA

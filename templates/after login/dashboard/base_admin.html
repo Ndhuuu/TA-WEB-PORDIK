@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
     <title>{% block title %} {% endblock %}</title>
-    <link rel="icon" href="https://pordik.unjaya.ac.id/wp-content/uploads/2022/08/ahmadd-150x150.png">
+    <link rel="icon" href="https://pordik.unjaya.ac.id/wp-content/uploads/2022/08/ahmadd-150x150.png" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="static/assets/plugins/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="static/assets/plugins/feather/feather.css" />
@@ -13,176 +12,175 @@
     <!-- Font Awensome -->
     <script src="https://kit.fontawesome.com/87bb52e196.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="static/assets/css/style.css" />
-    <link rel="stylesheet" href="static/assets/plugins/datatables/datatables.min.css">
-</head>
-
-<body>
+    <link rel="stylesheet" href="static/assets/plugins/datatables/datatables.min.css" />
+  </head>
+  <body>
     <div class="main-wrapper">
-        <!-- Header -->
-        <div class="header">
-            <div class="header-left">
-                <a href="admin" class="logo">
-                    <img src="static/logounjaya.png" alt="Logo" />
-                    <span style="padding-left: 3px;">Portal Akademik Unjaya</span>
-                </a>
-                <a href="admin" class="logo logo-small">
-                    <img src="static/logounjaya.png" alt="Logo" width="30" height="30" />
-                </a>
-            </div>
-            <div class="menu-toggle">
-                <a href="javascript:void(0);" id="toggle_btn">
-                    <i class="fas fa-bars"></i>
-                </a>
-            </div>
-            <a class="mobile_btn" id="mobile_btn">
-                <i class="fas fa-bars"></i>
-            </a>
-            <!-- User Profile -->
-            <ul class="nav user-menu">
-                <li class="nav-item dropdown has-arrow new-user-menus">
-                    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                        <span class="user-img">
-                            <img class="rounded-circle" src="static/logounjaya.png" width="31" alt="logo" />
-                            <div class="user-text">
-                                <h6>{{ session['nama'] }}</h6>
-                                <p class="text-muted mb-0">{{ session['role'] }}</p>
-                            </div>
-                        </span>
-                    </a>
-                    <!-- Dropdown User Menu -->
-                    <div class="dropdown-menu">
-                        <div class="user-header">
-                            <div class="avatar avatar-sm">
-                                <!-- Profile Picture -->
-                                <img src="static/logounjaya.png" alt="User Image" class="avatar-img rounded-circle" />
-                            </div>
-                            <div class="user-text">
-                                <h6>{{ session['nama'] }}</h6>
-                                <p class="text-muted mb-0">{{ session['role'] }}</p>
-                            </div>
-                        </div>
-                        <a class="dropdown-item" href="profile.html">Profil</a>
-                        <a class="dropdown-item" href="keluar">Keluar</a>
-                    </div>
-                </li>
-            </ul>
+      <!-- Header -->
+      <div class="header">
+        <div class="header-left">
+          <a href="admin" class="logo">
+            <img src="static/logounjaya.png" alt="Logo" />
+            <span style="padding-left: 3px">Portal Akademik Unjaya</span>
+          </a>
+          <a href="admin" class="logo logo-small">
+            <img src="static/logounjaya.png" alt="Logo" width="30" height="30" />
+          </a>
         </div>
-        <!-- Sidebar -->
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-inner slimscroll">
-                <div id="sidebar-menu" class="sidebar-menu">
-                    <ul>
-                        <li class="menu-title">
-                            <span>Menu Utama</span>
-                        </li>
-                        <!-- Dashboard -->
-                        <li class="submenu active">
-                            <a href="admin">
-                                <i class="feather-grid"></i>
-                                <span> Dashboard</span>
-                            </a>
-                        </li>
-                        <!-- Data master -->
-                        <li class="submenu">
-                            <a href="#">
-                                <i class="fa-solid fa-database"></i>
-                                <span>Data Master</span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="data-login-user">
-                                        <i class="fa-solid fa-users"></i>
-                                        <span>Data Login User</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="data-mahasiswa">
-                                        <i class="fa-solid fa-user"></i>
-                                        <span>Data Mahasiswa</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="data-admin">
-                                        <i class="fa-solid fa-user-plus"></i>
-                                        <span>Data Admin</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- Data Transaksi -->
-                        <li class="submenu">
-                            <a href="#">
-                                <i class="fa-solid fa-money-bill-transfer"></i>
-                                <span>Data Transaksi</span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-receipt"></i>
-                                        <span>Tagihan Mahasiswa</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-file-arrow-up"></i>
-                                        <span>Unggah bukti bayar</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-sharp fa-solid fa-clock-rotate-left"></i>
-                                        <span>Riwayat Pembayaran</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- Data Resume -->
-                        <li class="submenu">
-                            <a href="#">
-                                <i class="fa-solid fa-file"></i>
-                                <span>Data Resume</span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-wallet"></i>
-                                        <span>Mahasiswa Lunas</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-wallet"></i>
-                                        <span>Mahasiswa Nunggak</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-wallet"></i>
-                                        <span>Piutang</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+        <div class="menu-toggle">
+          <a href="javascript:void(0);" id="toggle_btn">
+            <i class="fas fa-bars"></i>
+          </a>
+        </div>
+        <a class="mobile_btn" id="mobile_btn">
+          <i class="fas fa-bars"></i>
+        </a>
+        <!-- User Profile -->
+        <ul class="nav user-menu">
+          <li class="nav-item dropdown has-arrow new-user-menus">
+            <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+              <span class="user-img">
+                <img class="rounded-circle" src="static/logounjaya.png" width="31" alt="logo" />
+                <div class="user-text">
+                  <h6>{{ session['nama'] }}</h6>
+                  <p class="text-muted mb-0">{{ session['role'] }}</p>
                 </div>
+              </span>
+            </a>
+            <!-- Dropdown User Menu -->
+            <div class="dropdown-menu">
+              <div class="user-header">
+                <div class="avatar avatar-sm">
+                  <!-- Profile Picture -->
+                  <img src="static/logounjaya.png" alt="User Image" class="avatar-img rounded-circle" />
+                </div>
+                <div class="user-text">
+                  <h6>{{ session['nama'] }}</h6>
+                  <p class="text-muted mb-0">{{ session['role'] }}</p>
+                </div>
+              </div>
+              <a class="dropdown-item" href="profile.html">Profil</a>
+              <a class="dropdown-item" href="keluar">Keluar</a>
             </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+          <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+              <li class="menu-title">
+                <span>Menu Utama</span>
+              </li>
+              <!-- Dashboard -->
+              <li class="submenu active">
+                <a href="admin">
+                  <i class="feather-grid"></i>
+                  <span> Dashboard</span>
+                </a>
+              </li>
+              <!-- Data master -->
+              <li class="submenu">
+                <a href="#">
+                  <i class="fa-solid fa-database"></i>
+                  <span>Data Master</span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <ul>
+                  <li>
+                    <a href="data-login-user">
+                      <i class="fa-solid fa-users"></i>
+                      <span>Data Login User</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="data-mahasiswa">
+                      <i class="fa-solid fa-user"></i>
+                      <span>Data Mahasiswa</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="data-admin">
+                      <i class="fa-solid fa-user-plus"></i>
+                      <span>Data Admin</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- Data Transaksi -->
+              <li class="submenu">
+                <a href="#">
+                  <i class="fa-solid fa-money-bill-transfer"></i>
+                  <span>Data Transaksi</span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <ul>
+                  <li>
+                    <a href="#">
+                      <i class="fa-solid fa-receipt"></i>
+                      <span>Tagihan Mahasiswa</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa-solid fa-file-arrow-up"></i>
+                      <span>Unggah bukti bayar</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa-sharp fa-solid fa-clock-rotate-left"></i>
+                      <span>Riwayat Pembayaran</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- Data Resume -->
+              <li class="submenu">
+                <a href="#">
+                  <i class="fa-solid fa-file"></i>
+                  <span>Data Resume</span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <ul>
+                  <li>
+                    <a href="#">
+                      <i class="fa-solid fa-wallet"></i>
+                      <span>Mahasiswa Lunas</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa-solid fa-wallet"></i>
+                      <span>Mahasiswa Nunggak</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa-solid fa-wallet"></i>
+                      <span>Piutang</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
-        <!-- Content -->
-        <div class="page-wrapper">
-            <div class="content container-fluid">
-                <!-- Page Header -->
-                <div class="page-header">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="page-sub-header"> {% block bread %} {% endblock %} </div>
-                        </div>
-                    </div>
-                </div> {% block content %} {% endblock %}
+      </div>
+      <!-- Content -->
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+          <!-- Page Header -->
+          <div class="page-header">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="page-sub-header"> {% block bread %} {% endblock %} </div>
+              </div>
             </div>
+          </div> {% block content %} {% endblock %}
         </div>
+      </div>
     </div>
     <script src="static/assets/js/jquery-3.6.0.min.js"></script>
     <script src="static/assets/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -192,8 +190,6 @@
     <script src="static/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="static/assets/plugins/apexchart/apexcharts.min.js"></script>
     <script src="static/assets/plugins/apexchart/chart-data.js"></script>
-    <script src="static/assets/js/script.js"></script>
-    {% block script %} {% endblock %}
-</body>
-
+    <script src="static/assets/js/script.js"></script> {% block script %} {% endblock %}
+  </body>
 </html>
