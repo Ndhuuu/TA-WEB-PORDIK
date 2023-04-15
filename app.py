@@ -15,28 +15,9 @@ mysql = MySQL(application)
 
 
 # INDEX AREA
-@application.route('/', methods=['GET'])
-@application.route('/beranda', methods=['GET'])
-def index():
-    if request.path == '/beranda':
-        return redirect('/')
-    else:
-        return render_template('before login/beranda.html')
-
-
-@application.route('/index')
+@application.route('/')
 def indeks():
-    return render_template('before login/index.html')
-
-
-@application.route('/pengumuman')
-def pengumuman():
-    return render_template('before login/pengumuman.html')
-
-
-@application.route('/layanan')
-def layanan():
-    return render_template('before login/layanan.html')
+    return render_template('before login/beranda.html')
 
 
 # LOGIN AREA
