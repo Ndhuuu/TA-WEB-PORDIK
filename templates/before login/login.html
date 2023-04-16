@@ -30,7 +30,7 @@
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                 {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show mx-auto" role="alert"
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert"
                   style="text-align: center; max-width: 600px;">
                   {{ message }}
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -38,11 +38,11 @@
                 {% endfor %}
                 {% endif %}
                 {% endwith %}
-                <form action="autentifikasi" method="POST">
+                <form action="/autentifikasi" method="POST">
                   <div class="form-group">
                     <label>Username/Nip/Nim <span class="login-danger">*</span>
                     </label>
-                    <input class="form-control" id="username" type="text" required/>
+                    <input class="form-control" name="username" type="text" required/>
                     <span class="profile-views">
                       <i class="fas fa-user-circle"></i>
                     </span>
@@ -50,7 +50,7 @@
                   <div class="form-group">
                     <label>Password <span class="login-danger">*</span>
                     </label>
-                    <input class="form-control pass-input" id="password" type="text" required/>
+                    <input class="form-control pass-input" name="password" type="text" required/>
                     <span class="profile-views feather-eye toggle-password"></span>
                   </div>
                   <div class="forgotpass">

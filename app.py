@@ -38,10 +38,10 @@ def autentifikasi():
         if user_data:
             session['role_id'] = user_data[0]
             session['nama'] = user_data[1]
-            if user_data[0] == 'Admin':
+            if user_data[0] == 1:
                 flash('Anda berhasil masuk sebagai admin', 'success')
                 return redirect(url_for('home_admin'))
-            elif user_data[0] == 'Mahasiswa':
+            elif user_data[0] == 2:
                 flash('Anda berhasil masuk sebagai mahasiswa', 'success')
                 return redirect(url_for('home_mahasiswa'))
         else:
@@ -63,13 +63,13 @@ def lupa_password():
 
 
 # RESTRICTION PAGE AREA
-def login_required(role):
+def login_required(role_id):
     def wrapper(fn):
         @wraps(fn)
         def decorated_view(*args, **kwargs):
-            if 'role' not in session:
+            if 'role_id' not in session:
                 return redirect(url_for('masuk'))
-            elif session['role'] != role:
+            elif session['role_id'] != role_id:
                 return abort(403)
             return fn(*args, **kwargs)
         return decorated_view
@@ -88,10 +88,10 @@ def page_not_found(error):
 
 @application.route('/kembali')
 def kembali():
-    if 'role' in session:
-        if session['role'] == 'Admin':
+    if 'role_id' in session:
+        if session['role_id'] == '1':
             return redirect(url_for('home_admin'))
-        elif session['role'] == 'Mahasiswa':
+        elif session['role_id'] == '2':
             return redirect(url_for('home_mahasiswa'))
     return redirect(url_for('masuk'))
 
@@ -141,7 +141,7 @@ def kembali():
 
 # DASHBOARD ADMIN
 @application.route('/admin')
-@login_required('Admin')
+@login_required(1)
 def home_admin():
     return render_template('after login/dashboard/home_admin.html')
 
@@ -149,9 +149,10 @@ def home_admin():
 # DATA MASTER
 # DATA LOGIN USER
 @application.route('/data-login-user')
+@login_required(1)
 def read_user():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT nama, nim, password, role FROM tb_user")
+    cur.execute("SELECT nama, username, password, CASE role_id WHEN 1 THEN 'admin' WHEN 2 THEN 'mahasiswa' END AS role, foto FROM tb_user")
     data_user = cur.fetchall()
     cur.close()
     return render_template('after login/data_master/data_user.html', data_user=data_user)
@@ -159,6 +160,7 @@ def read_user():
 
 # TAMBAH DATA LOGIN USER
 @application.route('/tambah-login-user', methods=['GET', 'POST'])
+@login_required(1)
 def create_user():
     if request.method == 'POST':
         nama = request.form['nama']
@@ -176,6 +178,7 @@ def create_user():
 
 # EDIT DATA LOGIN USER
 @application.route('/edit-login-user/<int:id>', methods=['GET', 'POST'])
+@login_required(1)
 def update_user(id):
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM tb_user WHERE id=%s", [id])
@@ -185,6 +188,7 @@ def update_user(id):
 
 
 @application.route('/update_process', methods=['POST'])
+@login_required(1)
 def update_process():
     id = request.form['id']
     nama = request.form['nama']
@@ -206,7 +210,7 @@ def delete_user():
 
 
 @application.route('/data-mahasiswa')
-@login_required('Admin')
+@login_required(1)
 def data_mahasiswa():
     cur = mysql.connection.cursor()
     cur.execute("SELECT nim, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, alamat, no_telepon, email FROM tb_mahasiswa")
@@ -216,7 +220,7 @@ def data_mahasiswa():
 
 
 @application.route('/data-admin')
-@login_required('Admin')
+@login_required(1)
 def data_admin():
     cur = mysql.connection.cursor()
     cur.execute("SELECT nim, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, alamat, no_telepon, email FROM tb_admin")
@@ -233,7 +237,7 @@ def data_admin():
 
 # MAHASISWA AREA
 @application.route('/mahasiswa')
-@login_required('Mahasiswa')
+@login_required(2)
 def home_mahasiswa():
     return render_template('after login/dashboard/home_mahasiswa.html')
 
