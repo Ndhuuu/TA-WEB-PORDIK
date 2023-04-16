@@ -84,6 +84,15 @@ body {
 .team .card {
 	box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.15);
 }
+.services .card-body {
+	height: 450px;
+}
+.portfolio .card-body {
+	height: 780px;
+}
+.team .card-body {
+	height: 350px;
+}
 .services .card-body i {
 	font-size: 50px;
 }
