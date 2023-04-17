@@ -1,0 +1,116 @@
+{% extends 'after login/dashboard/base_admin.html' %}
+
+{% block title %} PORTAL AKADEMIK | DATA LOGIN USER {% endblock %}
+
+{% block bread %}
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="admin">Dashboard</a></li>
+    <li class="breadcrumb-item active">Data Admin/Mahasiswa</li>
+    <li class="breadcrumb-item active">Tambah Data</li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<form action="{{ url_for('create_user') }}" method="post">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Tambah Data</h5>
+        </div>
+        <div class="card-body">
+            <!-- Nama -->
+            <div class="form-group row">
+                <label class="col-form-label col-md-2">Nama</label>
+                <div class="col-md-10">
+                    <input type="text" name="nama" placeholder="Masukan nama lengkap" class="form-control">
+                </div>
+            </div>
+            <!-- Username -->
+            <div class="form-group row">
+                <label class="col-form-label col-md-2">Username</label>
+                <div class="col-md-10">
+                    <input type="text" name="username" placeholder="Masukan username" class="form-control">
+                </div>
+            </div>
+            <!-- Password -->
+            <div class="form-group row">
+                <label class="col-form-label col-md-2">Password</label>
+                <div class="col-md-10">
+                    <input type="password" name="password" placeholder="Masukan password" class="form-control">
+                </div>
+            </div>
+            <!-- Tempat lahir -->
+            <div class="form-group row">
+                <label class="col-form-label col-md-2">Tempat Lahir</label>
+                <div class="col-md-10">
+                    <input type="text" name="tempat_lahir" placeholder="Masukan tempat lahir" class="form-control">
+                </div>
+            </div>
+            <!-- Tanggal lahir -->
+            <div class="form-group row">
+                <label class="col-form-label col-md-2">Tanggal Lahir</label>
+                <div class="col-md-10">
+                    <input type="date" name="tanggal_lahir" class="form-control">
+                </div>
+            </div>
+            <!-- Jenis kelamin -->
+
+            <!-- Agama -->
+            <div class="form-group row">
+                <label class="col-form-label col-md-2">Agama</label>
+                <div class="col-md-10">
+                    <select name="role_id" class="form-control form-select">
+                        <option hidden>-- Pilih Agama --</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Kristen">Kristen</option>
+                        <option value="Katholik">Katholik</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Budha">Budha</option>
+                        <option value="Konghucu">Konghucu</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Alamat -->
+            <div class="form-group row">
+                <label class="col-form-label col-md-2">Alamat</label>
+                <div class="col-md-10">
+                    <input type="text" name="alamat" placeholder="Masukan alamat" class="form-control">
+                </div>
+            </div>
+            <!-- Nomor Telepon -->
+            <div class="form-group row">
+                <label class="col-form-label col-md-2">Nomor Telepon</label>
+                <div class="col-md-10">
+                    <input type="text" name="no_telepon" placeholder="Masukan nomor telepon" class="form-control">
+                </div>
+            </div>
+            <!-- Email -->
+            <div class="form-group row">
+                <label class="col-form-label col-md-2">Email</label>
+                <div class="col-md-10">
+                    <input type="text" name="email" placeholder="Masukan email" class="form-control">
+                </div>
+            </div>
+            <!-- Foto -->
+
+            <!-- Role -->
+            <div class="form-group row">
+                <label class="col-form-label col-md-2">Role</label>
+                <div class="col-md-10">
+                    <select name="role_id" class="form-control form-select">
+                        <option hidden>-- Pilih Role --</option>
+                        <option value="admin">Admin</option>
+                        <option value="mahasiswa">Mahasiswa</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Submit button -->
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Simpan</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
