@@ -178,8 +178,13 @@ def create_user():
 @login_required(1)
 def update_user(id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM tb_user WHERE id=%s", [id])
-    data = cur.fetchone()
+    role_id = cur.fetchone()[0]
+    if role_id == 1:
+        cur.execute("SELECT * FROM tb_dataadmin WHERE id=%s", [id])
+        data = cur.fetchone()
+    else:
+        cur.execute("SELECT * FROM tb_datamahasiswa WHERE id=%s", [id])
+        data = cur.fetchone()
     cur.close()
     return render_template('after login/data_master/update_datauser.html', data=data)
 
@@ -188,16 +193,30 @@ def update_user(id):
 @login_required(1)
 def update_process():
     id = request.form['id']
-    nama = request.form['nama']
     username = request.form['username']
     password = request.form['password']
+    nama = request.form['nama']
+    tempat_lahir = request.form['tempat_lahir']
+    tanggal_lahir = request.form['tanggal_lahir']
+    jenis_kelamin = request.form['jenis_kelamin']
+    agama = request.form['agama']
+    alamat = request.form['alamat']
+    no_telepon = request.form['no_telepon']
+    email = request.form['email']
+    # foto = request.form['foto']
     role_id = request.form['role_id']
-    data_user = (id, nama, username, password, role_id)
+    data_user = (id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
     cur = mysql.connection.cursor()
-    cur.execute("UPDATE tb_user SET nama=%s, password=%s, role_id=%s WHERE id=%s", data_user)
-    mysql.connection.commit()
-    cur.close()
-    return redirect(url_for('data_user'))
+    if role_id == 'admin':
+        cur.execute("UPDATE tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
+        mysql.connection.commit()
+        cur.close()
+        return redirect(url_for('read_admin'))
+    else:
+        cur.execute("UPDATE tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
+        mysql.connection.commit()
+        cur.close()
+        return redirect(url_for('read_mahasiswa'))
 
 
 # HAPUS DATA ADMIN & MAHASISWA
