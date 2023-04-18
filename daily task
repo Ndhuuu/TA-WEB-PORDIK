@@ -1,5 +1,5 @@
-buat base.html laporan keuangan (move class submenu active from dashboard to laporan keuangan)
+move class submenu active from dashboard to laporan keuangan
 minor adjustment card selamat datang (font oversize, card oversize)
 icon overlay card zoom in when hover
-cari ide buat base.html before login
-fix tulisan dibawah button masuk pada login.html
+benerin button dilogin.html
+benerin form create_data.html ada beberapa yang kurang tepat (jenis_kelamin = radio button, alamat = text area, foto = file jpg jpeg png) tapi untuk foto dimatiin dulu, belum implementasi file handling

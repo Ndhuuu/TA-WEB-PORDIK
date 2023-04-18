@@ -32,7 +32,7 @@ def autentifikasi():
         username = request.form['username']
         password = request.form['password']
         cur = mysql.connection.cursor()
-        cur.execute("SELECT role_id, nama FROM tb_user WHERE username=%s AND password=%s", (username, password))
+        cur.execute("SELECT role_id, nama FROM tb_dataadmin WHERE username=%s AND password=%s UNION SELECT role_id, nama FROM tb_datamahasiswa WHERE username=%s AND password=%s", (username, password, username, password))
         user_data = cur.fetchone()
         cur.close()
         if user_data:
