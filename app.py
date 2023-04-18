@@ -107,17 +107,7 @@ def home_admin():
 
 
 # DATA MASTER
-# DATA LOGIN USER
-# @application.route('/data-login-user')
-# @login_required(1)
-# def read_user():
-#     cur = mysql.connection.cursor()
-#     cur.execute("SELECT nama, username, password, CASE role_id WHEN 1 THEN 'admin' WHEN 2 THEN 'mahasiswa' END AS role FROM tb_user")
-#     data_user = cur.fetchall()
-#     cur.close()
-#     return render_template('after login/data_master/data_user.html', data_user=data_user)
-
-
+# DATA MAHASISWA
 @application.route('/data-mahasiswa')
 @login_required(1)
 def read_mahasiswa():
@@ -128,6 +118,7 @@ def read_mahasiswa():
     return render_template('after login/data_master/data_mahasiswa.html', data_mahasiswa=data_mahasiswa)
 
 
+# DATA ADMIN
 @application.route('/data-admin')
 @login_required(1)
 def read_admin():
