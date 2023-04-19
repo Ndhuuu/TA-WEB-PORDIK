@@ -40,11 +40,11 @@ def autentifikasi():
             session['nama'] = user_data[1]
             if user_data[0] == 1:
                 session['role'] = 'admin'
-                flash('SELAMAT DATANG ADMIN!', 'success')
+                flash('ANDA MASUK SESI SEBAGAI ADMIN!', 'success')
                 return redirect(url_for('home_admin'))
             elif user_data[0] == 2:
                 session['role'] = 'mahasiswa'
-                flash('SELAMAT DATANG MAHASISWA!', 'success')
+                flash('ANDA MASUK SESI SEBAGAI MAHASISWA!', 'success')
                 return redirect(url_for('home_mahasiswa'))
         else:
             session.clear()
