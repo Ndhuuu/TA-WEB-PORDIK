@@ -149,7 +149,7 @@ def create_admin():
         role_id = request.form['role_id']
         data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
+        cur.execute("INSERT INTO tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
         mysql.connection.commit()
         cur.close()
         return redirect(url_for('read_admin'))
