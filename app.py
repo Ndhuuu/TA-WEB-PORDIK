@@ -124,33 +124,16 @@ def read_mahasiswa():
 @login_required(1)
 def read_admin():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT username, password, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_dataadmin")
+    cur.execute("SELECT id, username, password, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_dataadmin")
     data_admin = cur.fetchall()
     cur.close()
     return render_template('after login/data_master/data_admin.html', data_admin=data_admin)
 
 
-# BREAD CRUMB
-@application.route('/data/<jenis_data>/<action>', methods=['GET', 'POST'])
+# TAMBAH DATA ADMIN
+@application.route('/tambah-data-admin', methods=['GET', 'POST'])
 @login_required(1)
-def tambah_edit_data(jenis_data, action):
-    if action == 'tambah':
-        tambah_edit_text = 'Tambah Data'
-    elif action == 'edit':
-        tambah_edit_text = 'Edit Data'
-
-    if jenis_data == 'admin':
-        breadcrumb = [('Dashboard', 'home_admin'), ('Data Admin', 'data_admin'), (tambah_edit_text, '#')]
-    elif jenis_data == 'mahasiswa':
-        breadcrumb = [('Dashboard', 'home_admin'), ('Data Mahasiswa', 'data_mahasiswa'), (tambah_edit_text, '#')]
-
-    return render_template('tambah_edit_data.html', breadcrumb=breadcrumb, jenis_data=jenis_data, action=action)
-
-
-# TAMBAH DATA ADMIN & MAHASISWA
-@application.route('/tambah-data', methods=['GET', 'POST'])
-@login_required(1)
-def create_user():
+def create_admin():
     if request.method == 'POST':
         username = request.form['username']
         password = generate_password_hash(request.form['password'], method='sha256')
@@ -166,36 +149,23 @@ def create_user():
         role_id = request.form['role_id']
         data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
         cur = mysql.connection.cursor()
-        if role_id == 'admin':
-            role_id = 1
-            cur.execute("INSERT INTO tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
-            mysql.connection.commit()
-            cur.close()
-            return redirect(url_for('read_admin'))
-        else:
-            role_id = 2
-            cur.execute("INSERT INTO tb_datamahasiswa (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
-            mysql.connection.commit()
-            cur.close()
-            return redirect(url_for('read_mahasiswa'))
+        cur.execute("INSERT INTO tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
+        mysql.connection.commit()
+        cur.close()
+        return redirect(url_for('read_admin'))
     else:
-        return render_template('after login/data_master/create_data.html')
+        return render_template('after login/data_master/create_dataadmin.html')
 
 
-# EDIT DATA ADMIN & MAHASISWA
-@application.route('/edit-data/<int:id>', methods=['GET', 'POST'])
+# EDIT DATA ADMIN
+@application.route('/edit-data-admin/<int:id>', methods=['GET', 'POST'])
 @login_required(1)
-def update_user(id):
+def update_admin(id):
     cur = mysql.connection.cursor()
-    role_id = cur.fetchone()[0]
-    if role_id == 1:
-        cur.execute("SELECT * FROM tb_dataadmin WHERE id=%s", [id])
-        data = cur.fetchone()
-    else:
-        cur.execute("SELECT * FROM tb_datamahasiswa WHERE id=%s", [id])
-        data = cur.fetchone()
+    cur.execute("SELECT * FROM tb_dataadmin WHERE id=%s", [id])
+    data = cur.fetchone()
     cur.close()
-    return render_template('after login/data_master/update_datauser.html', data=data)
+    return render_template('after login/data_master/update_dataadmin.html', data=data)
 
 
 @application.route('/update_process', methods=['POST'])
@@ -216,23 +186,21 @@ def update_process():
     role_id = request.form['role_id']
     data_user = (id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
     cur = mysql.connection.cursor()
-    if role_id == 'admin':
-        cur.execute("UPDATE tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
-        mysql.connection.commit()
-        cur.close()
-        return redirect(url_for('read_admin'))
-    else:
-        cur.execute("UPDATE tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
-        mysql.connection.commit()
-        cur.close()
-        return redirect(url_for('read_mahasiswa'))
-
-
-# HAPUS DATA ADMIN & MAHASISWA
-def delete_user():
-    cur = mysql.connection.cursor()
-    cur.execute("DELETE FROM tb_user WHERE id=%s")
+    cur.execute("UPDATE tb_dataadmin SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, role_id=%s WHERE id=%s", data_user)
     cur.close()
+    return redirect(url_for('update_dataadmin', id=id))
+
+
+# HAPUS DATA ADMIN
+@application.route('/hapus-data-admin/<int:id>')
+@login_required(1)
+def delete_admin(id):
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM tb_dataadmin WHERE id=%s", [id])
+    mysql.connection.commit()
+    cur.close()
+    return redirect(url_for('read_admin'))
+
 
 
 # MAHASISWA AREA

@@ -3,15 +3,15 @@
 {% block bread %}
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="admin">Dashboard</a></li>
-    <li class="breadcrumb-item active">Data Admin/Data Mahasiswa</li>
-    <li class="breadcrumb-item active">Tambah Data/Edit Data</li>
+    <li class="breadcrumb-item"><a href="read_admin">Data Admin</a></li>
+    <li class="breadcrumb-item active">Tambah Data Admin</li>
 </ul>
 {% endblock %}
 {% block content %}
-<form action="{{ url_for('create_user') }}" method="post">
+<form action="{{ url_for('create_admin') }}" method="post">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Tambah Data</h5>
+            <h5 class="card-title">Tambah Data Admin</h5>
         </div>
         <div class="card-body">
             <!-- Nama -->
