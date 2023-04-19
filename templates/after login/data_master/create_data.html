@@ -1,15 +1,12 @@
 {% extends 'after login/dashboard/base_admin.html' %}
-
 {% block title %} PORTAL AKADEMIK | DATA LOGIN USER {% endblock %}
-
 {% block bread %}
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="admin">Dashboard</a></li>
-    <li class="breadcrumb-item active">Data Admin/Mahasiswa</li>
-    <li class="breadcrumb-item active">Tambah Data</li>
+    <li class="breadcrumb-item active">Data Admin/Data Mahasiswa</li>
+    <li class="breadcrumb-item active">Tambah Data/Edit Data</li>
 </ul>
 {% endblock %}
-
 {% block content %}
 <form action="{{ url_for('create_user') }}" method="post">
     <div class="card">

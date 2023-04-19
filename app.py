@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, a
 from flask import flash
 from flask_mysqldb import MySQL
 from functools import wraps
+from werkzeug.security import generate_password_hash
 
 application = Flask(__name__)
 application.secret_key = 'portalakademik'
@@ -129,13 +130,30 @@ def read_admin():
     return render_template('after login/data_master/data_admin.html', data_admin=data_admin)
 
 
+# BREAD CRUMB
+@application.route('/data/<jenis_data>/<action>', methods=['GET', 'POST'])
+@login_required(1)
+def tambah_edit_data(jenis_data, action):
+    if action == 'tambah':
+        tambah_edit_text = 'Tambah Data'
+    elif action == 'edit':
+        tambah_edit_text = 'Edit Data'
+
+    if jenis_data == 'admin':
+        breadcrumb = [('Dashboard', 'home_admin'), ('Data Admin', 'data_admin'), (tambah_edit_text, '#')]
+    elif jenis_data == 'mahasiswa':
+        breadcrumb = [('Dashboard', 'home_admin'), ('Data Mahasiswa', 'data_mahasiswa'), (tambah_edit_text, '#')]
+
+    return render_template('tambah_edit_data.html', breadcrumb=breadcrumb, jenis_data=jenis_data, action=action)
+
+
 # TAMBAH DATA ADMIN & MAHASISWA
 @application.route('/tambah-data', methods=['GET', 'POST'])
 @login_required(1)
 def create_user():
     if request.method == 'POST':
         username = request.form['username']
-        password = request.form['password']
+        password = generate_password_hash(request.form['password'], method='sha256')
         nama = request.form['nama']
         tempat_lahir = request.form['tempat_lahir']
         tanggal_lahir = request.form['tanggal_lahir']
