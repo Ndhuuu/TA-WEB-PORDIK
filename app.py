@@ -175,7 +175,6 @@ def update_admin(id):
 @application.route('/update_process', methods=['POST'])
 @login_required(1)
 def update_process():
-    id = request.form['id']
     username = request.form['username']
     password = request.form['password']
     nama = request.form['nama']
@@ -188,11 +187,11 @@ def update_process():
     email = request.form['email']
     # foto = request.form['foto']
     role_id = request.form['role_id']
-    data_user = (id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
+    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
     cur = mysql.connection.cursor()
     cur.execute("UPDATE tb_dataadmin SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, role_id=%s WHERE id=%s", data_user)
     cur.close()
-    return redirect(url_for('update_dataadmin', id=id))
+    return redirect(url_for('edit-data-admin', id=id))
 
 
 # HAPUS DATA ADMIN
