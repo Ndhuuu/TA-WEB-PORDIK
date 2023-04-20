@@ -113,7 +113,7 @@ def home_admin():
 @login_required(1)
 def read_mahasiswa():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT username, password, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_datamahasiswa")
+    cur.execute("SELECT username, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_datamahasiswa")
     data_mahasiswa = cur.fetchall()
     cur.close()
     return render_template('after login/data_master/data_mahasiswa.html', data_mahasiswa=data_mahasiswa)
@@ -124,7 +124,7 @@ def read_mahasiswa():
 @login_required(1)
 def read_admin():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT id, username, password, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_dataadmin")
+    cur.execute("SELECT id, username, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_dataadmin")
     data_admin = cur.fetchall()
     cur.close()
     return render_template('after login/data_master/data_admin.html', data_admin=data_admin)
@@ -187,11 +187,11 @@ def update_process():
     email = request.form['email']
     # foto = request.form['foto']
     role_id = request.form['role_id']
-    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
+    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
     cur = mysql.connection.cursor()
     cur.execute("UPDATE tb_dataadmin SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, role_id=%s WHERE id=%s", data_user)
     cur.close()
-    return redirect(url_for('edit-data-admin', id=id))
+    return redirect(url_for('data-admin', id=id))
 
 
 # HAPUS DATA ADMIN
