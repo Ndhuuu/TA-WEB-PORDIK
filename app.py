@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, a
 from flask import flash
 from flask_mysqldb import MySQL
 from functools import wraps
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 application = Flask(__name__)
 application.secret_key = 'portalakademik'
@@ -33,12 +33,12 @@ def autentifikasi():
         username = request.form['username']
         password = request.form['password']
         cur = mysql.connection.cursor()
-        cur.execute("SELECT role_id, nama FROM tb_dataadmin WHERE username=%s AND password=%s UNION SELECT role_id, nama FROM tb_datamahasiswa WHERE username=%s AND password=%s", (username, password, username, password))
+        cur.execute("SELECT role_id, password, nama FROM tb_dataadmin WHERE username=%s UNION SELECT role_id, password, nama FROM tb_datamahasiswa WHERE username=%s", (username, username))
         user_data = cur.fetchone()
         cur.close()
-        if user_data:
+        if user_data and check_password_hash(user_data[1], password):
             session['role_id'] = user_data[0]
-            session['nama'] = user_data[1]
+            session['nama'] = user_data[2]
             if user_data[0] == 1:
                 session['role'] = 'admin'
                 flash('ANDA MASUK SESI SEBAGAI ADMIN!', 'success')
@@ -136,7 +136,7 @@ def read_admin():
 def create_admin():
     if request.method == 'POST':
         username = request.form['username']
-        password = generate_password_hash(request.form['password'], method='sha256')
+        password = generate_password_hash(request.form['password'], method='pbkdf2:sha256', salt_length=16)
         nama = request.form['nama']
         tempat_lahir = request.form['tempat_lahir']
         tanggal_lahir = request.form['tanggal_lahir']
@@ -147,6 +147,10 @@ def create_admin():
         email = request.form['email']
         # foto = request.form['foto']
         role_id = request.form['role_id']
+        if role_id == 'admin':
+            role_id = 1
+        else:
+            role_id = 2
         data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
@@ -200,7 +204,6 @@ def delete_admin(id):
     mysql.connection.commit()
     cur.close()
     return redirect(url_for('read_admin'))
-
 
 
 # MAHASISWA AREA

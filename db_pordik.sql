@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2023 at 03:53 PM
+-- Generation Time: Apr 20, 2023 at 10:07 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `tb_dataadmin` (
   `id` int(11) NOT NULL,
   `username` varchar(10) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `nama` varchar(25) NOT NULL,
   `tempat_lahir` varchar(20) NOT NULL,
   `tanggal_lahir` date NOT NULL,
@@ -48,8 +48,8 @@ CREATE TABLE `tb_dataadmin` (
 --
 
 INSERT INTO `tb_dataadmin` (`id`, `username`, `password`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `alamat`, `no_telepon`, `email`, `foto`, `role_id`) VALUES
-(1, 'admin1', 'admin', 'Ferdy Sambo', 'Barru', '1973-02-09', 'Laki-Laki', 'Kristen', 'Jakarta', '089612345', 'sambocs@gmail.com', NULL, 1),
-(2, 'admin2', 'admin', 'Teddy Minahasa', 'Manado', '1970-11-23', 'Laki-Laki', 'Kristen', 'Sulawesi', '0896678910', 'teddycs@gmail.com', NULL, 1);
+(8, 'admin1', 'pbkdf2:sha256:260000$0XUGKJsKJ5QuYKjR$88219c8c4ef7bda1489b4c1c875f63bffd3f4a865e2bf9beb6f643cfc93dd0b4', 'Ferdy Sambo', 'Barru', '1973-02-09', 'Laki-laki', 'Islam', 'Jakarta', '0895', 'sambocs@gmail.com', NULL, 1),
+(9, 'admin2', 'pbkdf2:sha256:260000$1kT5XLlYmVW8Ml5y$66c6fa52aaaeab64118605be4b558f38d096bef660102ca162fde719646fd6c5', 'Teddy Minahasa', 'Manado', '1970-11-23', 'Laki-laki', 'Kristen', 'Sulawesi', '0895', 'teddycs@gmail.com', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -132,7 +132,7 @@ ALTER TABLE `tb_role`
 -- AUTO_INCREMENT for table `tb_dataadmin`
 --
 ALTER TABLE `tb_dataadmin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tb_datamahasiswa`
