@@ -113,10 +113,85 @@ def home_admin():
 @login_required(1)
 def read_mahasiswa():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT username, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_datamahasiswa")
+    cur.execute("SELECT id, username, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_datamahasiswa")
     data_mahasiswa = cur.fetchall()
     cur.close()
     return render_template('after login/data_master/data_mahasiswa.html', data_mahasiswa=data_mahasiswa)
+
+
+# TAMBAH DATA MAHASISWA
+@application.route('/tambah-data-mahasiswa', methods=['GET', 'POST'])
+@login_required(1)
+def create_mahasiswa():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = generate_password_hash(request.form['password'], method='pbkdf2:sha256', salt_length=16)
+        nama = request.form['nama']
+        tempat_lahir = request.form['tempat_lahir']
+        tanggal_lahir = request.form['tanggal_lahir']
+        jenis_kelamin = request.form['jenis_kelamin']
+        agama = request.form['agama']
+        alamat = request.form['alamat']
+        no_telepon = request.form['no_telepon']
+        email = request.form['email']
+        # foto = request.form['foto']
+        role_id = request.form['role_id']
+        if role_id == 'admin':
+            role_id = 1
+        else:
+            role_id = 2
+        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO tb_datamahasiswa (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
+        mysql.connection.commit()
+        cur.close()
+        return redirect(url_for('read_mahasiswa'))
+    else:
+        return render_template('after login/data_master/create_datamahasiswa.html')
+
+
+# EDIT DATA MAHASISWA
+@application.route('/edit-data-mahasiswa/<int:id>', methods=['GET', 'POST'])
+@login_required(1)
+def update_mahasiswa(id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM tb_datamahasiswa WHERE id=%s", [id])
+    data = cur.fetchone()
+    cur.close()
+    return render_template('after login/data_master/update_datamahasiswa.html', data=data)
+
+
+@application.route('/update-process-mahasiswa', methods=['POST'])
+@login_required(1)
+def update_process_mahasiswa():
+    username = request.form['username']
+    password = request.form['password']
+    nama = request.form['nama']
+    tempat_lahir = request.form['tempat_lahir']
+    tanggal_lahir = request.form['tanggal_lahir']
+    jenis_kelamin = request.form['jenis_kelamin']
+    agama = request.form['agama']
+    alamat = request.form['alamat']
+    no_telepon = request.form['no_telepon']
+    email = request.form['email']
+    # foto = request.form['foto']
+    role_id = request.form['role_id']
+    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
+    cur = mysql.connection.cursor()
+    cur.execute("UPDATE tb_datamahasiswa SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, role_id=%s WHERE id=%s", data_user)
+    cur.close()
+    return redirect(url_for('read_mahasiswa', id=id))
+
+
+# HAPUS DATA ADMIN
+@application.route('/hapus-data-admin/<int:id>')
+@login_required(1)
+def delete_mahasiswa(id):
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM tb_datamahasiswa WHERE id=%s", [id])
+    mysql.connection.commit()
+    cur.close()
+    return redirect(url_for('read_mahasiswa'))
 
 
 # DATA ADMIN
@@ -172,9 +247,9 @@ def update_admin(id):
     return render_template('after login/data_master/update_dataadmin.html', data=data)
 
 
-@application.route('/update_process', methods=['POST'])
+@application.route('/update-process-admin', methods=['POST'])
 @login_required(1)
-def update_process():
+def update_process_admin():
     username = request.form['username']
     password = request.form['password']
     nama = request.form['nama']

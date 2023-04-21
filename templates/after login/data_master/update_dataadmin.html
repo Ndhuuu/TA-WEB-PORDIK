@@ -2,13 +2,13 @@
 {% block title %} PORTAL AKADEMIK | DATA LOGIN USER {% endblock %}
 {% block bread %}
 <ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="admin">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="data-admin">Data Admin</a></li>
+    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="/data-admin">Data Admin</a></li>
     <li class="breadcrumb-item active">Edit Data Admin</li>
 </ul>
 {% endblock %}
 {% block content %}
-<form action="{{ url_for('update_process') }}" method="post">
+<form action="{{ url_for('update-process-admin') }}" method="post">
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Edit Data Admin</h5>

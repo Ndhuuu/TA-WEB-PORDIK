@@ -2,7 +2,7 @@
 {% block title %} PORTAL AKADEMIK | DATA MAHASISWA {% endblock %}
 {% block bread %}
 <ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="admin">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
     <li class="breadcrumb-item active">Data Mahasiswa</li>
 </ul>
 {% endblock %}
@@ -10,7 +10,7 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h3 class="card-title mb-2">Data Mahasiswa</h3>
-        <a href="{{ url_for('create_user') }}">
+        <a href="{{ url_for('create_mahasiswa') }}">
             <button type="button" class="btn btn-primary">
             <i class="fa-solid fa-user-plus"></i>
             <span>Tambah Mahasiswa</span>
@@ -22,8 +22,8 @@
             <table class="datatable table table-stripped" id="myTable">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Username</th>
-                        <th>Password</th>
                         <th>Nama</th>
                         <th>Tempat tanggal lahir</th>
                         <th>Jenis kelamin</th>
@@ -49,12 +49,16 @@
                         <td>{{ mahasiswa[8] }}</td>
                         <td>{{ mahasiswa[9] }}</td>
                         <td>
-                            <button type="button" class="btn btn-warning">
+                            <a href="{{ url_for('update_mahasiswa', id=mahasiswa[0]) }}">
+                                <button type="button" class="btn btn-warning">
                                 <i class="fa-solid fa-pencil"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger">
+                                </button>
+                            </a>
+                            <a href="{{ url_for('delete_mahasiswa', id=mahasiswa[0]) }}">
+                                <button type="button" class="btn btn-danger">
                                 <i class="fa-solid fa-trash-can"></i>
-                            </button>
+                                </button>
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}
