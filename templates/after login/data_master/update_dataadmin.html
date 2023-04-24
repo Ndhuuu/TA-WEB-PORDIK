@@ -1,5 +1,5 @@
 {% extends 'after login/dashboard/base_admin.html' %}
-{% block title %} PORTAL AKADEMIK | DATA LOGIN USER {% endblock %}
+{% block title %} PORTAL AKADEMIK | EDIT DATA ADMIN {% endblock %}
 {% block bread %}
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
@@ -18,28 +18,28 @@
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Username</label>
                 <div class="col-md-10">
-                    <input type="text" name="username" value="{{ data_user['1'] }}" class="form-control">
+                    <input type="text" name="username" value="{{ data_user['1'] }}" maxlength="10" class="form-control">
                 </div>
             </div>
             <!-- Password -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Password</label>
                 <div class="col-md-10">
-                    <input type="password" name="password" class="form-control">
+                    <input type="password" name="password" maxlength="20" class="form-control">
                 </div>
             </div>
             <!-- Nama -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Nama</label>
                 <div class="col-md-10">
-                    <input type="text" name="nama" id="nama" value="{{ data_user['3'] }}" class="form-control">
+                    <input type="text" name="nama" id="nama" value="{{ data_user['3'] }}" maxlength="25" class="form-control">
                 </div>
             </div>
             <!-- Tempat lahir -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Tempat Lahir</label>
                 <div class="col-md-10">
-                    <input type="text" name="tempat_lahir" value="{{ data_user['4'] }}" class="form-control">
+                    <input type="text" name="tempat_lahir" value="{{ data_user['4'] }}" maxlength="20" class="form-control">
                 </div>
             </div>
             <!-- Tanggal lahir -->
@@ -82,21 +82,21 @@
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Alamat</label>
                 <div class="col-md-10">
-                    <textarea name="alamat" value="{{ data_user['8'] }}" class="form-control"></textarea>
+                    <textarea name="alamat" value="{{ data_user['8'] }}" maxlength="255" class="form-control"></textarea>
                 </div>
             </div>
             <!-- Nomor Telepon -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Nomor Telepon</label>
                 <div class="col-md-10">
-                    <input type="tel" name="no_telepon" value="{{ data_user['9'] }}" class="form-control">
+                    <input type="tel" name="no_telepon" value="{{ data_user['9'] }}" maxlength="15" class="form-control">
                 </div>
             </div>
             <!-- Email -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Email</label>
                 <div class="col-md-10">
-                    <input type="email" name="email" value="{{ data_user['10'] }}" class="form-control">
+                    <input type="email" name="email" value="{{ data_user['10'] }}" maxlength="20" class="form-control">
                 </div>
             </div>
             <!-- Foto -->
@@ -114,7 +114,6 @@
                     <select name="role_id" class="form-control form-select">
                         <option hidden>-- Pilih Role --</option>
                         <option value="admin">Admin</option>
-                        <option value="mahasiswa">Mahasiswa</option>
                     </select>
                 </div>
             </div>

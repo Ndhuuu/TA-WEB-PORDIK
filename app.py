@@ -243,7 +243,6 @@ def update_admin(id):
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM tb_dataadmin WHERE id='%s'" % id)
     data_user = cur.fetchone()
-    print(data_user)
     return render_template('after login/data_master/update_dataadmin.html', data_user=data_user)
 
 
