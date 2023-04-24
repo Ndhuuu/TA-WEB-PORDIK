@@ -8,24 +8,17 @@
 </ul>
 {% endblock %}
 {% block content %}
-<form action="{{ url_for('update-process-admin') }}" method="post">
+<form action="{{ url_for('update_process_admin') }}" method="post">
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Edit Data Admin</h5>
         </div>
         <div class="card-body">
-            <!-- Nama -->
-            <div class="form-group row">
-                <label class="col-form-label col-md-2">Nama</label>
-                <div class="col-md-10">
-                    <input type="text" name="nama" id="nama" value="{{ data.nama }}" class="form-control">
-                </div>
-            </div>
             <!-- Username -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Username</label>
                 <div class="col-md-10">
-                    <input type="text" name="username" value="{{ username }}" class="form-control">
+                    <input type="text" name="username" value="{{ data_user['1'] }}" class="form-control">
                 </div>
             </div>
             <!-- Password -->
@@ -35,18 +28,25 @@
                     <input type="password" name="password" class="form-control">
                 </div>
             </div>
+            <!-- Nama -->
+            <div class="form-group row">
+                <label class="col-form-label col-md-2">Nama</label>
+                <div class="col-md-10">
+                    <input type="text" name="nama" id="nama" value="{{ data_user['3'] }}" class="form-control">
+                </div>
+            </div>
             <!-- Tempat lahir -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Tempat Lahir</label>
                 <div class="col-md-10">
-                    <input type="text" name="tempat_lahir" value="{{ tempat_lahir }}" class="form-control">
+                    <input type="text" name="tempat_lahir" value="{{ data_user['4'] }}" class="form-control">
                 </div>
             </div>
             <!-- Tanggal lahir -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Tanggal Lahir</label>
                 <div class="col-md-10">
-                    <input type="date" name="tanggal_lahir" value="{{ tanggal_lahir }}" class="form-control">
+                    <input type="date" name="tanggal_lahir" value="{{ data_user['5'] }}" class="form-control">
                 </div>
             </div>
             <!-- Jenis kelamin -->
@@ -82,21 +82,21 @@
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Alamat</label>
                 <div class="col-md-10">
-                    <textarea name="alamat" class="form-control"></textarea>
+                    <textarea name="alamat" value="{{ data_user['8'] }}" class="form-control"></textarea>
                 </div>
             </div>
             <!-- Nomor Telepon -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Nomor Telepon</label>
                 <div class="col-md-10">
-                    <input type="tel" name="no_telepon" class="form-control" placeholder="Masukkan nomor telepon">
+                    <input type="tel" name="no_telepon" value="{{ data_user['9'] }}" class="form-control">
                 </div>
             </div>
             <!-- Email -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Email</label>
                 <div class="col-md-10">
-                    <input type="email" name="email" class="form-control" placeholder="Masukkan email">
+                    <input type="email" name="email" value="{{ data_user['10'] }}" class="form-control">
                 </div>
             </div>
             <!-- Foto -->

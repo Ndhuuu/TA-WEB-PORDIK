@@ -237,17 +237,17 @@ def create_admin():
 
 
 # EDIT DATA ADMIN
-@application.route('/edit-data-admin/<int:id>', methods=['GET', 'POST'])
+@application.route('/edit-data-admin/<int:id>')
 @login_required(1)
 def update_admin(id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM tb_dataadmin WHERE id=%s", [id])
-    data = cur.fetchone()
-    cur.close()
-    return render_template('after login/data_master/update_dataadmin.html', data=data)
+    cur.execute("SELECT * FROM tb_dataadmin WHERE id='%s'" % id)
+    data_user = cur.fetchone()
+    print(data_user)
+    return render_template('after login/data_master/update_dataadmin.html', data_user=data_user)
 
 
-@application.route('/update-process-admin', methods=['POST'])
+@application.route('/update-process-admin', methods=['GET', 'POST'])
 @login_required(1)
 def update_process_admin():
     username = request.form['username']
@@ -264,9 +264,10 @@ def update_process_admin():
     role_id = request.form['role_id']
     data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
     cur = mysql.connection.cursor()
-    cur.execute("UPDATE tb_dataadmin SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, role_id=%s WHERE id=%s", data_user)
+    cur.execute("UPDATE tb_dataadmin SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, role_id=%s WHERE id=%s" % data_user)
+    mysql.connection.commit()
     cur.close()
-    return redirect(url_for('data-admin', id=id))
+    return redirect(url_for('read_admin'))
 
 
 # HAPUS DATA ADMIN
