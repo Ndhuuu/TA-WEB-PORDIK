@@ -1,17 +1,17 @@
 {% extends 'after login/dashboard/base_admin.html' %}
-{% block title %} PORTAL AKADEMIK | EDIT DATA ADMIN {% endblock %}
+{% block title %} PORTAL AKADEMIK | EDIT DATA MAHASISWA {% endblock %}
 {% block bread %}
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="/data-admin">Data Admin</a></li>
-    <li class="breadcrumb-item active">Edit Data Admin</li>
+    <li class="breadcrumb-item"><a href="/data-mahasiswa">Data Mahasiswa</a></li>
+    <li class="breadcrumb-item active">Edit Data Mahasiswa</li>
 </ul>
 {% endblock %}
 {% block content %}
-<form action="{{ url_for('update_process_admin') }}" method="post">
+<form action="{{ url_for('update_process_mahasiswa') }}" method="post">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Edit Data Admin</h5>
+            <h5 class="card-title">Edit Data Mahasiswa</h5>
         </div>
         <div class="card-body">
             <!-- Username -->
@@ -113,7 +113,7 @@
                 <div class="col-md-10">
                     <select name="role_id" class="form-control form-select">
                         <option hidden>-- Pilih Role --</option>
-                        <option value="1" {% if data_user[11] == 1 %} selected {% endif %}>Admin</option>
+                        <option value="2" {% if data_user[11] == 2 %} selected {% endif %}>Mahasiswa</option>
                     </select>
                 </div>
             </div>
