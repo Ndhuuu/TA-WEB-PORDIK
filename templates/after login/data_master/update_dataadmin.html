@@ -18,7 +18,7 @@
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Username</label>
                 <div class="col-md-10">
-                    <input type="text" name="username" value="{{ data_user['1'] }}" maxlength="10" class="form-control">
+                    <input type="text" name="username" value="{{ data_user[1] }}" maxlength="10" class="form-control">
                 </div>
             </div>
             <!-- Password -->
@@ -32,21 +32,21 @@
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Nama</label>
                 <div class="col-md-10">
-                    <input type="text" name="nama" id="nama" value="{{ data_user['3'] }}" maxlength="25" class="form-control">
+                    <input type="text" name="nama" id="nama" value="{{ data_user[3] }}" maxlength="25" class="form-control">
                 </div>
             </div>
             <!-- Tempat lahir -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Tempat Lahir</label>
                 <div class="col-md-10">
-                    <input type="text" name="tempat_lahir" value="{{ data_user['4'] }}" maxlength="20" class="form-control">
+                    <input type="text" name="tempat_lahir" value="{{ data_user[4] }}" maxlength="20" class="form-control">
                 </div>
             </div>
             <!-- Tanggal lahir -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Tanggal Lahir</label>
                 <div class="col-md-10">
-                    <input type="date" name="tanggal_lahir" value="{{ data_user['5'] }}" class="form-control">
+                    <input type="date" name="tanggal_lahir" value="{{ data_user[5] }}" class="form-control">
                 </div>
             </div>
             <!-- Jenis kelamin -->
@@ -82,21 +82,21 @@
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Alamat</label>
                 <div class="col-md-10">
-                    <textarea name="alamat" value="{{ data_user['8'] }}" maxlength="255" class="form-control"></textarea>
+                    <textarea name="alamat" maxlength="255" class="form-control">{{ data_user[8] }}</textarea>
                 </div>
             </div>
             <!-- Nomor Telepon -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Nomor Telepon</label>
                 <div class="col-md-10">
-                    <input type="tel" name="no_telepon" value="{{ data_user['9'] }}" maxlength="15" class="form-control">
+                    <input type="tel" name="no_telepon" value="{{ data_user[9] }}" maxlength="15" class="form-control">
                 </div>
             </div>
             <!-- Email -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Email</label>
                 <div class="col-md-10">
-                    <input type="email" name="email" value="{{ data_user['10'] }}" maxlength="20" class="form-control">
+                    <input type="email" name="email" value="{{ data_user[10] }}" maxlength="20" class="form-control">
                 </div>
             </div>
             <!-- Foto -->

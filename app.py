@@ -241,8 +241,9 @@ def create_admin():
 @login_required(1)
 def update_admin(id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM tb_dataadmin WHERE id='%s'" % id)
+    cur.execute("SELECT id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id FROM tb_dataadmin WHERE id='%s'" % id)
     data_user = cur.fetchone()
+    # return str(len(data_user))
     return render_template('after login/data_master/update_dataadmin.html', data_user=data_user)
 
 
@@ -262,6 +263,7 @@ def update_process_admin():
     # foto = request.form['foto']
     role_id = request.form['role_id']
     data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
+    print(data_user)
     cur = mysql.connection.cursor()
     cur.execute("UPDATE tb_dataadmin SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, role_id=%s WHERE id=%s" % data_user)
     mysql.connection.commit()
@@ -274,7 +276,7 @@ def update_process_admin():
 @login_required(1)
 def delete_admin(id):
     cur = mysql.connection.cursor()
-    cur.execute("DELETE FROM tb_dataadmin WHERE id=%s", [id])
+    cur.execute("DELETE FROM tb_dataadmin WHERE id='%s'" % id)
     mysql.connection.commit()
     cur.close()
     return redirect(url_for('read_admin'))
