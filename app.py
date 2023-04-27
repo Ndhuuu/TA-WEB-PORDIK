@@ -224,8 +224,6 @@ def create_admin():
         role_id = request.form['role_id']
         if role_id == 'admin':
             role_id = 1
-        else:
-            role_id = 2
         data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
@@ -243,15 +241,15 @@ def update_admin(id):
     cur = mysql.connection.cursor()
     cur.execute("SELECT id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id FROM tb_dataadmin WHERE id='%s'" % id)
     data_user = cur.fetchone()
-    # return str(len(data_user))
     return render_template('after login/data_master/update_dataadmin.html', data_user=data_user)
 
 
 @application.route('/update-process-admin', methods=['GET', 'POST'])
 @login_required(1)
 def update_process_admin():
+    id = request.form['id']
     username = request.form['username']
-    password = request.form['password']
+    password = generate_password_hash(request.form['password'], method='pbkdf2:sha256', salt_length=16)
     nama = request.form['nama']
     tempat_lahir = request.form['tempat_lahir']
     tanggal_lahir = request.form['tanggal_lahir']
@@ -262,10 +260,11 @@ def update_process_admin():
     email = request.form['email']
     # foto = request.form['foto']
     role_id = request.form['role_id']
-    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
-    print(data_user)
+    if role_id == 'admin':
+        role_id = 1
+    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
     cur = mysql.connection.cursor()
-    cur.execute("UPDATE tb_dataadmin SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, role_id=%s WHERE id=%s" % data_user)
+    cur.execute("UPDATE tb_dataadmin SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', role_id='%s' WHERE id=%s" % data_user)
     mysql.connection.commit()
     cur.close()
     return redirect(url_for('read_admin'))
@@ -276,7 +275,7 @@ def update_process_admin():
 @login_required(1)
 def delete_admin(id):
     cur = mysql.connection.cursor()
-    cur.execute("DELETE FROM tb_dataadmin WHERE id='%s'" % id)
+    cur.execute("DELETE FROM tb_dataadmin WHERE id='%s'", id)
     mysql.connection.commit()
     cur.close()
     return redirect(url_for('read_admin'))
