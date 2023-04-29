@@ -33,12 +33,13 @@ def autentifikasi():
         username = request.form['username']
         password = request.form['password']
         cur = mysql.connection.cursor()
-        cur.execute("SELECT role_id, password, nama FROM tb_dataadmin WHERE username=%s UNION SELECT role_id, password, nama FROM tb_datamahasiswa WHERE username=%s", (username, username))
+        cur.execute("SELECT role_id, password, nama, username FROM tb_dataadmin WHERE username=%s UNION SELECT role_id, password, nama, username FROM tb_datamahasiswa WHERE username=%s", (username, username))
         user_data = cur.fetchone()
         cur.close()
         if user_data and check_password_hash(user_data[1], password):
             session['role_id'] = user_data[0]
             session['nama'] = user_data[2]
+            session['username'] = user_data[3]
             if user_data[0] == 1:
                 session['role'] = 'admin'
                 flash(f'Anda masuk sesi sebagai admin!', 'success')
@@ -280,6 +281,17 @@ def delete_admin(id):
     mysql.connection.commit()
     cur.close()
     return redirect(url_for('read_admin'))
+
+
+# DATA PROFIL ADMIN
+@application.route('/profil-admin')
+@login_required(1)
+def profil_admin():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM tb_dataadmin WHERE username=%s", (session['username'],))
+    profil_admin = cur.fetchone()
+    cur.close()
+    return render_template('after login admin/profil_admin/data_profiladmin.html', profil_admin=profil_admin)
 
 
 # MAHASISWA AREA
