@@ -10,6 +10,9 @@
 body {
   background-color: #f9f5eb;
 }
+.slimscroll {
+  height: 100vh;
+}
 
 /* Nav by Randi */
 .wel {
