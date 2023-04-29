@@ -4,26 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
     <title>{% block title %} {% endblock %}</title>
-    <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../static/img/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="static/assets/plugins/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="static/assets/plugins/feather/feather.css" />
-    <link rel="stylesheet" href="static/assets/plugins/icons/flags/flags.css" />
+    <link rel="stylesheet" href="../static/assets/plugins/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/assets/plugins/feather/feather.css" />
     <!-- Font Awensome -->
     <script src="https://kit.fontawesome.com/87bb52e196.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="static/assets/css/style.css" />
+    <link rel="stylesheet" href="../static/assets/css/style.css" />
   </head>
   <body>
     <div class="main-wrapper">
       <!-- Header -->
       <div class="header">
         <div class="header-left">
-          <a href="admin" class="logo">
-            <img src="static/logounjaya.png" alt="Logo" />
-            <span style="padding-left: 5px">Portal Pendidikan</span>
+          <a href="mahasiswa" class="logo">
+            <img src="../static/img/logounjaya.png" alt="Logo" />
+            <span style="padding-left: 3px;">Portal Akademik Unjaya</span>
           </a>
-          <a href="admin" class="logo logo-small">
-            <img src="static/logounjaya.png" alt="Logo" width="30" height="30" />
+          <a href="mahasiswa" class="logo logo-small">
+            <img src="../static/img/logounjaya.png" alt="Logo" width="30" height="30" />
           </a>
         </div>
         <div class="menu-toggle">
@@ -39,10 +38,10 @@
           <li class="nav-item dropdown has-arrow new-user-menus">
             <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
               <span class="user-img">
-                <img class="rounded-circle" src="static/logounjaya.png" width="31" alt="logo" />
+                <img class="rounded-circle" src="../static/img/logounjaya.png" width="31" alt="logo" />
                 <div class="user-text">
-                  <h6>Nama</h6>
-                  <p class="text-muted mb-0">Role</p>
+                  <h6>{{ session['nama'] }}</h6>
+                  <p class="text-muted mb-0">{{ session['role'] }}</p>
                 </div>
               </span>
             </a>
@@ -51,11 +50,11 @@
               <div class="user-header">
                 <div class="avatar avatar-sm">
                   <!-- Profile Picture -->
-                  <img src="static/logounjaya.png" alt="User Image" class="avatar-img rounded-circle" />
+                  <img src="../static/img/logounjaya.png" alt="User Image" class="avatar-img rounded-circle" />
                 </div>
                 <div class="user-text">
-                  <h6>Nama</h6>
-                  <p class="text-muted mb-0">Role</p>
+                  <h6>{{ session['nama'] }}</h6>
+                  <p class="text-muted mb-0">{{ session['role'] }}</p>
                 </div>
               </div>
               <a class="dropdown-item" href="profile.html">Profil</a>
@@ -133,14 +132,14 @@
                 <ul>
                   <li>
                     <a href="#">
-                      <i class="fa-solid fa-money-check-dollar"></i>
+                      <i class="fa-solid fa-receipt"></i>
                       <span>Tagihan Mahasiswa</span>
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i class="fa-solid fa-money-bill-transfer"></i>
-                      <span>Upload Bukti Bayar</span>
+                      <i class="fa-solid fa-file-arrow-up"></i>
+                      <span>Unggah Bukti Bayar</span>
                     </a>
                   </li>
                   <li>
@@ -175,7 +174,7 @@
                 <ul>
                   <li>
                     <a href="#">
-                      <i class="fa-solid fa-upload"></i>
+                      <i class="fa-solid fa-file-arrow-up"></i>
                       <span>Upload Berkas</span>
                     </a>
                   </li>
@@ -197,7 +196,7 @@
                 <ul>
                   <li>
                     <a href="#">
-                      <i class="fa-solid fa-list-ol"></i>
+                      <i class="fa-solid fa-list"></i>
                       <span>Daftar Mata Kuliah</span>
                     </a>
                   </li>
@@ -236,15 +235,14 @@
             </div>
           </div> {% block content %} {% endblock %}
         </div>
-        <!-- <footer class="sticky-bottom"><p>Copyright © 2022 Dreamguys.</p></footer> -->
       </div>
     </div>
-    <script src="static/assets/js/jquery-3.6.0.min.js"></script>
-    <script src="static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="static/assets/js/feather.min.js"></script>
-    <script src="static/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="static/assets/plugins/apexchart/apexcharts.min.js"></script>
-    <script src="static/assets/plugins/apexchart/chart-data.js"></script>
-    <script src="static/assets/js/script.js"></script>
+    <script src="../static/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/assets/js/feather.min.js"></script>
+    <script src="../static/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../static/assets/plugins/apexchart/apexcharts.min.js"></script>
+    <script src="../static/assets/plugins/apexchart/chart-data.js"></script>
+    <script src="../static/assets/js/script.js"></script>
   </body>
 </html>

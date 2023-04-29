@@ -41,11 +41,11 @@ def autentifikasi():
             session['nama'] = user_data[2]
             if user_data[0] == 1:
                 session['role'] = 'admin'
-                flash('ANDA MASUK SESI SEBAGAI ADMIN!', 'success')
+                flash(f'Anda masuk sesi sebagai admin!', 'success')
                 return redirect(url_for('home_admin'))
             elif user_data[0] == 2:
                 session['role'] = 'mahasiswa'
-                flash('ANDA MASUK SESI SEBAGAI MAHASISWA!', 'success')
+                flash(f'Anda masuk sesi sebagai mahasiswa!', 'success')
                 return redirect(url_for('home_mahasiswa'))
         else:
             session.clear()
@@ -104,7 +104,7 @@ def kembali():
 @application.route('/admin')
 @login_required(1)
 def home_admin():
-    return render_template('after login/dashboard/home_admin.html')
+    return render_template('after login admin/dashboard/home_admin.html')
 
 
 # DATA MASTER
@@ -116,7 +116,7 @@ def read_mahasiswa():
     cur.execute("SELECT id, username, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_datamahasiswa")
     data_mahasiswa = cur.fetchall()
     cur.close()
-    return render_template('after login/data_master/data_mahasiswa.html', data_mahasiswa=data_mahasiswa)
+    return render_template('after login admin/data_master/data_mahasiswa.html', data_mahasiswa=data_mahasiswa)
 
 
 # TAMBAH DATA MAHASISWA
@@ -145,7 +145,7 @@ def create_mahasiswa():
         cur.close()
         return redirect(url_for('read_mahasiswa'))
     else:
-        return render_template('after login/data_master/create_datamahasiswa.html')
+        return render_template('after login admin/data_master/create_datamahasiswa.html')
 
 
 # EDIT DATA MAHASISWA
@@ -155,7 +155,7 @@ def update_mahasiswa(id):
     cur = mysql.connection.cursor()
     cur.execute("SELECT id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id FROM tb_datamahasiswa WHERE id='%s'" % id)
     data_user = cur.fetchone()
-    return render_template('after login/data_master/update_datamahasiswa.html', data_user=data_user)
+    return render_template('after login admin/data_master/update_datamahasiswa.html', data_user=data_user)
 
 
 @application.route('/update-process-mahasiswa', methods=['GET', 'POST'])
@@ -203,7 +203,7 @@ def read_admin():
     cur.execute("SELECT id, username, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_dataadmin")
     data_admin = cur.fetchall()
     cur.close()
-    return render_template('after login/data_master/data_admin.html', data_admin=data_admin)
+    return render_template('after login admin/data_master/data_admin.html', data_admin=data_admin)
 
 
 # TAMBAH DATA ADMIN
@@ -232,7 +232,7 @@ def create_admin():
         cur.close()
         return redirect(url_for('read_admin'))
     else:
-        return render_template('after login/data_master/create_dataadmin.html')
+        return render_template('after login admin/data_master/create_dataadmin.html')
 
 
 # EDIT DATA ADMIN
@@ -242,7 +242,7 @@ def update_admin(id):
     cur = mysql.connection.cursor()
     cur.execute("SELECT id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id FROM tb_dataadmin WHERE id='%s'" % id)
     data_user = cur.fetchone()
-    return render_template('after login/data_master/update_dataadmin.html', data_user=data_user)
+    return render_template('after login admin/data_master/update_dataadmin.html', data_user=data_user)
 
 
 @application.route('/update-process-admin', methods=['GET', 'POST'])
@@ -286,7 +286,7 @@ def delete_admin(id):
 @application.route('/mahasiswa')
 @login_required(2)
 def home_mahasiswa():
-    return render_template('after login/dashboard/home_mahasiswa.html')
+    return render_template('after login mahasiswa/dashboard/home_mahasiswa.html')
 
 
 if __name__ == '__main__':

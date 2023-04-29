@@ -1,35 +1,39 @@
-{% extends 'after login/dashboard/base_mahasiswa.html' %}
-{% block title %} PORTAL AKADEMIK | DASHBOARD MAHASISWA {% endblock %}
+{% extends 'after login admin/dashboard/base_admin.html' %}
+{% block title %} PORTAL AKADEMIK | DASHBOARD ADMIN {% endblock %}
 {% block bread %}
 {% if 'nama' in session %}
-<h1 class="page-title">Halaman untuk {{ session['nama'] }}!</h1>
+<h1 class="page-title">Selamat Datang {{ session['nama'] }}!</h1>
 {% endif %}
 <ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="mahasiswa">Home</a></li>
+    <li class="breadcrumb-item"><a href="admin">Home</a></li>
     <li class="breadcrumb-item active">Dashboard</li>
 </ul>
 {% endblock %}
 {% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert"
+style="text-align: center;">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
 <div class="card border" style="border-color: #f39c12 !important;">
     <div class="card-header" style="background-color: #f39c12;">
         <div class="d-flex ">
             <h5 class="mb-0 flex-grow-1">
-                Selamat Datang
+                Panduan Singkat
             </h5>
             <i class="float-right btn icon-collapse hidden fas fa-minus"></i>
             <i class="float-right btn icon-remove fas fa-times"></i>
         </div>
     </div>
     <div class="card-body">
-        <p class="card-text">Portal Akademik adalah Aplikasi yang memungkinkan anda dapat mengetahui aktivitas akademik,
-            keuangan, dan proses belajar mengajar di
-            Universitas Jenderal Achmad Yani Yogyakarta</p>
-        <p class="card-text">Disclaimer Jika ada perbedaan data yang ditampilkan dalam aplikasi ini, maka data Akademik
-            yang menjadi acuan adalah data yang ada di
-            Bagian Administrasi Akademik (BAA), dan data keuangan yang menjadi acuan adalah data yang ada di Bagian
-            Keuangan Universitas Jenderal Achmad Yani Yogyakarta</p>
-        <p class="card-text">Download atau baca panduan penggunaan <a
-                href="https://pordik.unjaya.ac.id/panduan_pordik.pdf">disini</a></p>
+        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates id sit expedita, nostrum voluptatibus, 
+            quod fugit facere debitis asperiores ut labore? Ab doloremque sit, aperiam ipsam voluptate reprehenderit pariatur quas!</p>
     </div>
     <script>
         // collapse card
@@ -51,8 +55,8 @@
     <div class="card" style="background-color: #00c0ef;">
         <div class="card-body">
             <h5 class="card-title">Info Akademik</h5>
-            <p class="card-text">Kumpulan informasi akademik dan proses belajar mengajar di Universitas Jendral
-                Achmad Yani Yogyakarta</p>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque neque exercitationem molestiae modi 
+                doloremque nemo animi eos assumenda necessitatibus iste! Quaerat nobis exercitationem dolore quod commodi error tenetur rerum ea.</p>
         </div>
         <a href="#" class="text-center card-footer bg-info-subtle h-25">
             <small class="text-body-secondary">Info Selengkapnya! <i class="fa-solid fa-circle-right pl-2"></i></small>
@@ -61,8 +65,8 @@
     <div class="card" style="background-color: #00a65a;">
         <div class="card-body">
             <h5 class="card-title">Info Keuangan</h5>
-            <p class="card-text">Kumpulan informasi keuangan dan biaya kuliah di Universitas Jendral Achmad Yani
-                Yogyakarta</p>
+            <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, repudiandae aperiam enim doloribus 
+                quidem odit distinctio, earum modi quas adipisci ipsum at, eos blanditiis officia! Excepturi doloremque commodi fugit. Neque.</p>
         </div>
         <a href="#" class="text-center card-footer bg-success-subtle h-25">
             <small class="text-body-secondary">Info Selengkapnya! <i class="fa-solid fa-circle-right pl-2"></i></small>
@@ -71,8 +75,8 @@
     <div class="card" style="background-color: #f39c12;">
         <div class="card-body">
             <h5 class="card-title">Info Kemahasiswaan</h5>
-            <p class="card-text">Kumpulan informasi kegiatan kemahasiswaan dan beasiswa di Universitas Jendral
-                Achmad Yani Yogyakarta</p>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere ex impedit ea error tenetur rem nostrum 
+                ducimus inventore eveniet quae, cupiditate possimus, incidunt tempora molestiae animi saepe culpa corporis quidem.</p>
         </div>
         <a href="#" class="text-center card-footer bg-warning-subtle h-25">
             <small class="text-body-secondary">Info Selengkapnya! <i class="fa-solid fa-circle-right pl-2"></i></small>

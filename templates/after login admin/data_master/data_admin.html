@@ -1,25 +1,25 @@
-{% extends 'after login/dashboard/base_admin.html' %}
-{% block title %} PORTAL AKADEMIK | DATA MAHASISWA {% endblock %}
+{% extends 'after login admin/dashboard/base_admin.html' %}
+{% block title %} PORTAL AKADEMIK | DATA ADMIN {% endblock %}
 {% block bread %}
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-    <li class="breadcrumb-item active">Data Mahasiswa</li>
+    <li class="breadcrumb-item active">Data Admin</li>
 </ul>
 {% endblock %}
 {% block content %}
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="card-title mb-2">Data Mahasiswa</h3>
-        <a href="{{ url_for('create_mahasiswa') }}">
+        <h3 class="card-title mb-2">Data Admin</h3>
+        <a href="{{ url_for('create_admin') }}">
             <button type="button" class="btn btn-primary">
             <i class="fa-solid fa-user-plus"></i>
-            <span>Tambah Mahasiswa</span>
+            <span>Tambah Admin</span>
             </button>
         </a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="datatable table table-stripped" id="myTable">
+            <table class="datatable table table-striped" id="myTable">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -36,25 +36,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for mahasiswa in data_mahasiswa %}
+                    {% for admin in data_admin %}
                     <tr>
-                        <td>{{ mahasiswa[0] }}</td>
-                        <td>{{ mahasiswa[1] }}</td>
-                        <td>{{ mahasiswa[2] }}</td>
-                        <td>{{ mahasiswa[3] }}</td>
-                        <td>{{ mahasiswa[4] }}</td>
-                        <td>{{ mahasiswa[5] }}</td>
-                        <td>{{ mahasiswa[6] }}</td>
-                        <td>{{ mahasiswa[7] }}</td>
-                        <td>{{ mahasiswa[8] }}</td>
-                        <td>{{ mahasiswa[9] }}</td>
+                        <td>{{ admin[0] }}</td>
+                        <td>{{ admin[1] }}</td>
+                        <td>{{ admin[2] }}</td>
+                        <td>{{ admin[3] }}</td>
+                        <td>{{ admin[4] }}</td>
+                        <td>{{ admin[5] }}</td>
+                        <td>{{ admin[6] }}</td>
+                        <td>{{ admin[7] }}</td>
+                        <td>{{ admin[8] }}</td>
+                        <td>{{ admin[9] }}</td>
                         <td>
-                            <a href="{{ url_for('update_mahasiswa', id=mahasiswa[0]) }}">
+                            <a href="{{ url_for('update_admin', id=admin[0]) }}">
                                 <button type="button" class="btn btn-warning">
                                 <i class="fa-solid fa-pencil"></i>
                                 </button>
                             </a>
-                            <a href="{{ url_for('delete_mahasiswa', id=mahasiswa[0]) }}">
+                            <a href="{{ url_for('delete_admin', id=admin[0]) }}">
                                 <button type="button" class="btn btn-danger">
                                 <i class="fa-solid fa-trash-can"></i>
                                 </button>
