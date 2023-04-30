@@ -39,7 +39,7 @@ def autentifikasi():
         if user_data and check_password_hash(user_data[1], password):
             session['role_id'] = user_data[0]
             session['nama'] = user_data[2]
-            session['username'] = user_data[3]
+            session['*'] = user_data[3]
             if user_data[0] == 1:
                 session['role'] = 'admin'
                 flash(f'Anda masuk sesi sebagai admin!', 'success')

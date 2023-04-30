@@ -21,9 +21,11 @@
             <h4 class="user-name mb-0">{{ session['nama'] }}</h4>
             {% endif %}
             <h6 class="text-muted">admin</h6>
+            {% for admin in profil_admin %}
             <div class="user-Location">
-              <i class="fas fa-map-marker-alt"></i>SUSAH PAK!!
+              <i class="fas fa-map-marker-alt"></i>{{ admin[8] }}
             </div>
+            {% endfor%}
           </div>
           <div class="col-auto profile-btn">
             <a href="" class="btn btn-primary"> Edit </a>
