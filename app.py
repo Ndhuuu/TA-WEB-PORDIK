@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, abort
+from flask import Flask, render_template, request, redirect, url_for, session, abort, jsonify
 from flask import flash
 from flask_mysqldb import MySQL
 from functools import wraps
@@ -33,13 +33,13 @@ def autentifikasi():
         username = request.form['username']
         password = request.form['password']
         cur = mysql.connection.cursor()
-        cur.execute("SELECT role_id, password, nama, username FROM tb_dataadmin WHERE username=%s UNION SELECT role_id, password, nama, username FROM tb_datamahasiswa WHERE username=%s", (username, username))
+        cur.execute("SELECT role_id, password, nama, id FROM tb_dataadmin WHERE username=%s UNION SELECT role_id, password, nama, id FROM tb_datamahasiswa WHERE username=%s", (username, username))
         user_data = cur.fetchone()
         cur.close()
         if user_data and check_password_hash(user_data[1], password):
             session['role_id'] = user_data[0]
             session['nama'] = user_data[2]
-            session['*'] = user_data[3]
+            session['id'] = user_data[3]
             if user_data[0] == 1:
                 session['role'] = 'admin'
                 flash(f'Anda masuk sesi sebagai admin!', 'success')
@@ -121,7 +121,7 @@ def read_mahasiswa():
 
 
 # TAMBAH DATA MAHASISWA
-@application.route('/tambah-data-mahasiswa', methods=['GET', 'POST'])
+@application.route('/data-mahasiswa/tambah-data-mahasiswa', methods=['GET', 'POST'])
 @login_required(1)
 def create_mahasiswa():
     if request.method == 'POST':
@@ -150,7 +150,7 @@ def create_mahasiswa():
 
 
 # EDIT DATA MAHASISWA
-@application.route('/edit-data-mahasiswa/<int:id>')
+@application.route('/data-mahasiswa/edit-data-mahasiswa/<int:id>')
 @login_required(1)
 def update_mahasiswa(id):
     cur = mysql.connection.cursor()
@@ -159,7 +159,7 @@ def update_mahasiswa(id):
     return render_template('after login admin/data_master/update_datamahasiswa.html', data_user=data_user)
 
 
-@application.route('/update-process-mahasiswa', methods=['GET', 'POST'])
+@application.route('/data-mahasiswa/update-process-mahasiswa', methods=['GET', 'POST'])
 @login_required(1)
 def update_process_mahasiswa():
     id = request.form['id']
@@ -186,7 +186,7 @@ def update_process_mahasiswa():
 
 
 # HAPUS DATA MAHASISWA
-@application.route('/hapus-data-mahasiswa/<int:id>')
+@application.route('/data-mahasiswa/hapus-data-mahasiswa/<int:id>')
 @login_required(1)
 def delete_mahasiswa(id):
     cur = mysql.connection.cursor()
@@ -208,7 +208,7 @@ def read_admin():
 
 
 # TAMBAH DATA ADMIN
-@application.route('/tambah-data-admin', methods=['GET', 'POST'])
+@application.route('/data-admin/tambah-data-admin', methods=['GET', 'POST'])
 @login_required(1)
 def create_admin():
     if request.method == 'POST':
@@ -237,7 +237,7 @@ def create_admin():
 
 
 # EDIT DATA ADMIN
-@application.route('/edit-data-admin/<int:id>')
+@application.route('/data-admin/edit-data-admin/<int:id>')
 @login_required(1)
 def update_admin(id):
     cur = mysql.connection.cursor()
@@ -246,7 +246,7 @@ def update_admin(id):
     return render_template('after login admin/data_master/update_dataadmin.html', data_user=data_user)
 
 
-@application.route('/update-process-admin', methods=['GET', 'POST'])
+@application.route('/data-admin/update-process-admin', methods=['GET', 'POST'])
 @login_required(1)
 def update_process_admin():
     id = request.form['id']
@@ -273,7 +273,7 @@ def update_process_admin():
 
 
 # HAPUS DATA ADMIN
-@application.route('/hapus-data-admin/<int:id>')
+@application.route('/data-admin/hapus-data-admin/<int:id>')
 @login_required(1)
 def delete_admin(id):
     cur = mysql.connection.cursor()
@@ -288,11 +288,35 @@ def delete_admin(id):
 @login_required(1)
 def profil_admin():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM tb_dataadmin WHERE username=%s", (session['username'],))
+    cur.execute("SELECT * FROM tb_dataadmin WHERE id=%s", (session['id'],))
     profil_admin = cur.fetchone()
     cur.close()
     return render_template('after login admin/profil_admin/data_profiladmin.html', profil_admin=profil_admin)
 
+
+# EDIT DATA DIRI ADMIN
+@application.route('/edit-data-diri-admin', methods=['POST'])
+@login_required(1)
+def edit_data_diri_admin():
+    data = request.get_json()
+    agama = data['agama']
+    no_telepon = data['no_telepon']
+    email = data['email']
+    alamat = data['alamat']
+    data_diri = (agama, no_telepon, email, alamat)
+    cur = mysql.connection.cursor()
+    cur.execute("UPDATE tb_dataadmin SET agama=%s, no_telepon=%s, email=%s, alamat=%s WHERE id=%s", (data_diri, session['id']))
+    mysql.connection.commit()
+    cur.close()
+    return (data)
+    # result = {'processed': 'true'}
+    # return jsonify(result)
+
+
+# DATA TRANSAKSI <- MASIH PENGEMBANGAN
+@application.route('/tagihan-mahasiswa')
+def tagihan_mahasiswa():
+    return render_template('after login admin/data_transaksi/data_tagihanmahasiswa.html')
 
 # MAHASISWA AREA
 @application.route('/mahasiswa')

@@ -8,34 +8,30 @@
 {% endblock %}
 {% block content %}
 <div class="row">
-    <div class="col-md-11">
+    <div class="col-md-12">
       <div class="profile-header">
         <div class="row align-items-center">
           <div class="col-auto profile-image">
             <a href="#">
-              <img class="rounded-circle" alt="User Image" src="../static/img/logounjaya.png">
+              <img class="rounded-circle" alt="User Image" src="/static/img/logounjaya.png">
             </a>
           </div>
           <div class="col ms-md-n2 profile-user-info">
-            {% if 'nama' in session %}
-            <h4 class="user-name mb-0">{{ session['nama'] }}</h4>
-            {% endif %}
-            <h6 class="text-muted">admin</h6>
-            {% for admin in profil_admin %}
+            <h4 class="user-name mb-0">{{ profil_admin[3] }}</h4>
+            <h6 class="text-muted">administrator</h6>
             <div class="user-Location">
-              <i class="fas fa-map-marker-alt"></i>{{ admin[8] }}
+              <i class="fas fa-map-marker-alt"></i>{{ profil_admin[8] }}
             </div>
-            {% endfor%}
           </div>
           <div class="col-auto profile-btn">
-            <a href="" class="btn btn-primary"> Edit </a>
+            <a href="" class="btn btn-primary"> Edit foto profil </a>
           </div>
         </div>
       </div>
       <div class="profile-menu">
         <ul class="nav nav-tabs nav-tabs-solid">
           <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" href="#per_details_tab">About</a>
+            <a class="nav-link active" data-bs-toggle="tab" href="#per_details_tab">Tentang</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" href="#password_tab">Password</a>
@@ -49,29 +45,45 @@
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title d-flex justify-content-between">
-                    <span>Personal Details</span>
-                    <a class="edit-link" data-bs-toggle="modal" href="#edit_personal_details">
-                      <i class="far fa-edit me-1"></i>Edit </a>
+                    <span>Data Diri</span>
+                    <a class="edit-link" data-bs-toggle="modal" href="#data-diri-modal">
+                      <i class="far fa-edit me-1"></i>Edit data diri</a>
                   </h5>
                   <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Nama</p>
-                    <p class="col-sm-9">John Doe</p>
+                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Username :</p>
+                    <p class="col-sm-9">{{ profil_admin[1] }}</p>
                   </div>
                   <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Date of Birth</p>
-                    <p class="col-sm-9">24 Jul 1983</p>
+                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Nama :</p>
+                    <p class="col-sm-9">{{ profil_admin[3] }}</p>
                   </div>
                   <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Email ID</p>
-                    <p class="col-sm-9"></p>
+                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Tempat Lahir :</p>
+                    <p class="col-sm-9">{{ profil_admin[4] }}</p>
                   </div>
                   <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Mobile</p>
-                    <p class="col-sm-9">305-310-5857</p>
+                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Tanggal Lahir :</p>
+                    <p class="col-sm-9">{{ profil_admin[5] }}</p>
                   </div>
                   <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Address</p>
-                    <p class="col-sm-9 mb-0">4663 Agriculture Lane, <br> Miami, <br> Florida - 33165, <br> United States. </p>
+                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Jenis Kelamin :</p>
+                    <p class="col-sm-9">{{ profil_admin[6] }}</p>
+                  </div>
+                  <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Agama :</p>
+                    <p class="col-sm-9">{{ profil_admin[7] }}</p>
+                  </div>
+                  <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-end mb-0">Alamat :</p>
+                    <p class="col-sm-9">{{ profil_admin[8] }}</p>
+                  </div>
+                  <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Nomor Telepon :</p>
+                    <p class="col-sm-9">{{ profil_admin[9] }}</p>
+                  </div>
+                  <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Email :</p>
+                    <p class="col-sm-9">{{ profil_admin[10] }}</p>
                   </div>
                 </div>
               </div>
@@ -81,23 +93,23 @@
         <div id="password_tab" class="tab-pane fade">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Change Password</h5>
+              <h5 class="card-title">Ganti password</h5>
               <div class="row">
                 <div class="col-md-10 col-lg-6">
                   <form>
                     <div class="form-group">
-                      <label>Old Password</label>
+                      <label>Password Lama</label>
                       <input type="password" class="form-control">
                     </div>
                     <div class="form-group">
-                      <label>New Password</label>
+                      <label>Password Baru</label>
                       <input type="password" class="form-control">
                     </div>
                     <div class="form-group">
-                      <label>Confirm Password</label>
+                      <label>Ulangi Password Baru</label>
                       <input type="password" class="form-control">
                     </div>
-                    <button class="btn btn-primary" type="submit">Save Changes</button>
+                    <a href="/profil-admin"><button type="submit" class="btn btn-primary">Simpan</button></a>
                   </form>
                 </div>
               </div>
@@ -106,5 +118,91 @@
         </div>
       </div>
     </div>
+</div>
+
+<div id="data-diri-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Data Diri</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="mb-3">
+              <label for="field-1" class="form-label">Agama</label>
+              <select name="agama" class="form-control form-select" id="field-1">
+                <option hidden>-- Pilih Agama --</option>
+                <option value="Islam" {% if profil_admin[7] == 'Islam' %} selected {% endif %}>Islam</option>
+                <option value="Kristen" {% if profil_admin[7] == 'Kristen' %} selected {% endif %}>Kristen</option>
+                <option value="Katholik" {% if profil_admin[7] == 'Katholik' %} selected {% endif %}>Katholik</option>
+                <option value="Hindu" {% if profil_admin[7] == 'Hindu' %} selected {% endif %}>Hindu</option>
+                <option value="Budha" {% if profil_admin[7] == 'Budha' %} selected {% endif %}>Budha</option>
+                <option value="Konghucu" {% if profil_admin[7] == 'Konghucu' %} selected {% endif %}>Konghucu</option>
+            </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="mb-3">
+              <label for="field-2" class="form-label">Nomor telepon</label>
+              <input type="tel" class="form-control" id="field-2" placeholder="Masukkan nomor telepon" value="{{ profil_admin[9] }}" maxlength="15">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="mb-3">
+              <label for="field-3" class="form-label">Email</label>
+              <input type="email" class="form-control" id="field-3" placeholder="Masukkan alamat email" value="{{ profil_admin[10] }}" maxlength="20">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="">
+              <label for="field-4" class="form-label">Alamat</label>
+              <textarea class="form-control" id="field-4" placeholder="Masukkan alamat tempat tinggal" maxlength="255">{{ profil_admin[8] }}</textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+          <button type="button" id="simpan" class="btn btn-primary">Simpan</button>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+<script>
+$('#data-diri-modal').on('click', '#simpan', function(e) {
+    e.preventDefault();
+    var agama = $('#field-1').val();
+    var no_telepon = $('#field-2').val();
+    var email = $('#field-3').val();
+    var alamat = $('#field-4').val();
+    $.ajax({
+      url: '/edit-data-diri-admin',
+      method: 'POST',
+      data: JSON.stringify({
+        agama: agama,
+        no_telepon: no_telepon,
+        email: email,
+        alamat: alamat
+      }),
+      success: function(response) {
+        // Tambahkan kode untuk menangani respon setelah permintaan berhasil dikirim
+        console.log('success');
+        console.log(response);
+      },
+      error: function(error) {
+        // Tambahkan kode untuk menangani kesalahan jika permintaan gagal dikirim
+        console.log('error');
+        console.log(error);
+      }
+    });
+  });
+</script>
 {% endblock %}

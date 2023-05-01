@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<title>Preskool - Profile</title>
+<title>Preskool - Books</title>
 
 <link rel="shortcut icon" href="assets/img/favicon.png">
 
@@ -15,8 +15,16 @@
 
 <link rel="stylesheet" href="assets/plugins/icons/flags/flags.css">
 
+<link rel="stylesheet" href="assets/css/feather.css">
+
 <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+<link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
+
+<link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
+
+<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
 
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -223,10 +231,10 @@
 <li><a href="edit-subject.html">Subject Edit</a></li>
 </ul>
 </li>
-<li class="submenu">
+<li class="submenu active">
 <a href="#"><i class="fas fa-clipboard"></i> <span> Invoices</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="invoices.html">Invoices List</a></li>
+<li><a href="invoices.html" class="active">Invoices List</a></li>
 <li><a href="invoice-grid.html">Invoices Grid</a></li>
 <li><a href="add-invoice.html">Add Invoices</a></li>
 <li><a href="edit-invoice.html">Edit Invoices</a></li>
@@ -263,8 +271,8 @@
 <li>
 <a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
 </li>
-<li>
-<a href="library.html"><i class="fas fa-book"></i> <span>Library</span></a>
+<li class="active">
+ <a href="library.html"><i class="fas fa-book"></i> <span>Library</span></a>
 </li>
 <li class="submenu">
 <a href="#"><i class="fa fa-newspaper"></i> <span> Blogs</span>
@@ -338,7 +346,7 @@
 <li><a href="tab.html">Tabs</a></li>
 <li><a href="toastr.html">Toasts</a></li>
 <li><a href="tooltip.html">Tooltip</a></li>
- <li><a href="typography.html">Typography</a></li>
+<li><a href="typography.html">Typography</a></li>
 <li><a href="video.html">Video</a></li>
 </ul>
 </li>
@@ -435,168 +443,488 @@
 <div class="content container-fluid">
 
 <div class="page-header">
-<div class="row">
+<div class="row align-items-center">
 <div class="col">
-<h3 class="page-title">Profile</h3>
+<h3 class="page-title">Invoices</h3>
 <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-<li class="breadcrumb-item active">Profile</li>
+<li class="breadcrumb-item"><a href="invoices.html">Invoice</a></li>
+<li class="breadcrumb-item active">Invoices Paid</li>
 </ul>
+</div>
+<div class="col-auto">
+<a href="invoices.html" class="invoices-links active">
+<i class="feather feather-list"></i>
+</a>
+<a href="invoice-grid.html" class="invoices-links">
+<i class="feather feather-grid"></i>
+</a>
 </div>
 </div>
 </div>
 
+
+<div class="card report-card">
+<div class="card-body pb-0">
 <div class="row">
 <div class="col-md-12">
-<div class="profile-header">
-<div class="row align-items-center">
-<div class="col-auto profile-image">
-<a href="#">
-<img class="rounded-circle" alt="User Image" src="assets/img/profiles/avatar-02.jpg">
-</a>
+<ul class="app-listing">
+<li>
+<div class="multipleSelection">
+<div class="selectBox">
+<p class="mb-0"><i class="fas fa-user-plus me-1 select-icon"></i> Select User</p>
+<span class="down-icon"><i class="fas fa-chevron-down"></i></span>
 </div>
-<div class="col ms-md-n2 profile-user-info">
-<h4 class="user-name mb-0">John Doe</h4>
-<h6 class="text-muted">UI/UX Design Team</h6>
-<div class="user-Location"><i class="fas fa-map-marker-alt"></i> Florida, United States</div>
-<div class="about-text">Lorem ipsum dolor sit amet.</div>
+<div id="checkBoxes">
+<form action="#">
+<p class="checkbox-title">Customer Search</p>
+<div class="form-custom">
+<input type="text" class="form-control bg-grey" placeholder="Enter Customer Name">
 </div>
-<div class="col-auto profile-btn">
-<a href="" class="btn btn-primary">
-Edit
-</a>
+<div class="selectBox-cont">
+<label class="custom_check w-100">
+<input type="checkbox" name="username">
+<span class="checkmark"></span> Brian Johnson
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="username">
+<span class="checkmark"></span> Russell Copeland
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="username">
+<span class="checkmark"></span> Greg Lynch
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="username">
+<span class="checkmark"></span> John Blair
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="username">
+<span class="checkmark"></span> Barbara Moore
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="username">
+ <span class="checkmark"></span> Hendry Evan
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="username">
+<span class="checkmark"></span> Richard Miles
+</label>
 </div>
-</div>
-</div>
-<div class="profile-menu">
-<ul class="nav nav-tabs nav-tabs-solid">
-<li class="nav-item">
-<a class="nav-link active" data-bs-toggle="tab" href="#per_details_tab">About</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" data-bs-toggle="tab" href="#password_tab">Password</a>
-</li>
-</ul>
-</div>
-<div class="tab-content profile-tab-cont">
-
-<div class="tab-pane fade show active" id="per_details_tab">
-
-<div class="row">
-<div class="col-lg-9">
-<div class="card">
-<div class="card-body">
-<h5 class="card-title d-flex justify-content-between">
-<span>Personal Details</span>
-<a class="edit-link" data-bs-toggle="modal" href="#edit_personal_details"><i class="far fa-edit me-1"></i>Edit</a>
-</h5>
-<div class="row">
-<p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Name</p>
-<p class="col-sm-9">John Doe</p>
-</div>
-<div class="row">
-<p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Date of Birth</p>
-<p class="col-sm-9">24 Jul 1983</p>
-</div>
-<div class="row">
-<p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Email ID</p>
-<p class="col-sm-9"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a1cbcec9cfc5cec4e1c4d9c0ccd1cdc48fc2cecc">[email&#160;protected]</a></p>
-</div>
-<div class="row">
-<p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Mobile</p>
-<p class="col-sm-9">305-310-5857</p>
-</div>
-<div class="row">
-<p class="col-sm-3 text-muted text-sm-end mb-0">Address</p>
- <p class="col-sm-9 mb-0">4663 Agriculture Lane,<br>
-Miami,<br>
-Florida - 33165,<br>
-United States.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="col-lg-3">
-
-<div class="card">
-<div class="card-body">
-<h5 class="card-title d-flex justify-content-between">
-<span>Account Status</span>
-<a class="edit-link" href="#"><i class="far fa-edit me-1"></i> Edit</a>
-</h5>
-<button class="btn btn-success" type="button"><i class="fe fe-check-verified"></i> Active</button>
-</div>
-</div>
-
-
-<div class="card">
-<div class="card-body">
-<h5 class="card-title d-flex justify-content-between">
-<span>Skills </span>
-<a class="edit-link" href="#"><i class="far fa-edit me-1"></i> Edit</a>
-</h5>
-<div class="skill-tags">
-<span>Html5</span>
-<span>CSS3</span>
-<span>WordPress</span>
-<span>Javascript</span>
-<span>Android</span>
-<span>iOS</span>
-<span>Angular</span>
-<span>PHP</span>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-
-
-<div id="password_tab" class="tab-pane fade">
-<div class="card">
-<div class="card-body">
-<h5 class="card-title">Change Password</h5>
-<div class="row">
-<div class="col-md-10 col-lg-6">
-<form>
-<div class="form-group">
-<label>Old Password</label>
-<input type="password" class="form-control">
-</div>
-<div class="form-group">
-<label>New Password</label>
-<input type="password" class="form-control">
-</div>
-<div class="form-group">
-<label>Confirm Password</label>
-<input type="password" class="form-control">
-</div>
-<button class="btn btn-primary" type="submit">Save Changes</button>
+<button type="submit" class="btn w-100 btn-primary">Apply</button>
+<button type="reset" class="btn w-100 btn-grey">Reset</button>
 </form>
 </div>
 </div>
+</li>
+<li>
+<div class="multipleSelection">
+<div class="selectBox">
+<p class="mb-0"><i class="fas fa-calendar me-1 select-icon"></i> Select Date</p>
+<span class="down-icon"><i class="fas fa-chevron-down"></i></span>
+</div>
+<div id="checkBoxes">
+<form action="#">
+<p class="checkbox-title">Date Filter</p>
+<div class="selectBox-cont selectBox-cont-one h-auto">
+<div class="date-picker">
+<div class="form-custom cal-icon">
+<input class="form-control datetimepicker" type="text" placeholder="Form">
+</div>
+</div>
+<div class="date-picker pe-0">
+<div class="form-custom cal-icon">
+<input class="form-control datetimepicker" type="text" placeholder="To">
+</div>
+</div>
+<div class="date-list">
+<ul>
+<li><a href="#" class="btn date-btn">Today</a></li>
+<li><a href="#" class="btn date-btn">Yesterday</a></li>
+<li><a href="#" class="btn date-btn">Last 7 days</a></li>
+<li><a href="#" class="btn date-btn">This month</a></li>
+<li><a href="#" class="btn date-btn">Last month</a></li>
+</ul>
+</div>
+</div>
+</form>
+</div>
+</div>
+</li>
+<li>
+<div class="multipleSelection">
+<div class="selectBox">
+<p class="mb-0"><i class="fas fa-book-open me-1 select-icon"></i> Select Status</p>
+<span class="down-icon"><i class="fas fa-chevron-down"></i></span>
+</div>
+<div id="checkBoxes">
+<form action="#">
+<p class="checkbox-title">By Status</p>
+<div class="selectBox-cont">
+<label class="custom_check w-100">
+<input type="checkbox" name="name">
+<span class="checkmark"></span> All Invoices
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="name" checked>
+<span class="checkmark"></span> Paid
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="name">
+<span class="checkmark"></span> Overdue
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="name">
+<span class="checkmark"></span> Draft
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="name">
+<span class="checkmark"></span> Recurring
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="name">
+<span class="checkmark"></span> Cancelled
+</label>
+</div>
+<button type="submit" class="btn w-100 btn-primary">Apply</button>
+<button type="reset" class="btn w-100 btn-grey">Reset</button>
+</form>
+</div>
+</div>
+</li>
+<li>
+<div class="multipleSelection">
+<div class="selectBox">
+<p class="mb-0"><i class="fas fa-bookmark me-1 select-icon"></i> By Category</p>
+<span class="down-icon"><i class="fas fa-chevron-down"></i></span>
+</div>
+<div id="checkBoxes">
+<form action="#">
+<p class="checkbox-title">Category</p>
+<div class="form-custom">
+<input type="text" class="form-control bg-grey" placeholder="Enter Category Name">
+</div>
+<div class="selectBox-cont">
+<label class="custom_check w-100">
+<input type="checkbox" name="category">
+<span class="checkmark"></span> Advertising
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="category">
+<span class="checkmark"></span> Food
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="category">
+<span class="checkmark"></span> Marketing
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="category">
+<span class="checkmark"></span> Repairs
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="category">
+<span class="checkmark"></span> Software
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="category">
+<span class="checkmark"></span> Stationary
+</label>
+<label class="custom_check w-100">
+<input type="checkbox" name="category">
+<span class="checkmark"></span> Travel
+</label>
+</div>
+<button type="submit" class="btn w-100 btn-primary">Apply</button>
+<button type="reset" class="btn w-100 btn-grey">Reset</button>
+</form>
+</div>
+</div>
+</li>
+<li>
+<div class="report-btn">
+<a href="#" class="btn">
+<img src="assets/img/icons/invoices-icon5.png" alt="" class="me-2"> Generate report
+</a>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="card invoices-tabs-card border-0">
+<div class="card-body card-body pt-0 pb-0">
+<div class="invoices-main-tabs">
+<div class="row align-items-center">
+<div class="col-lg-8 col-md-8">
+<div class="invoices-tabs">
+<ul>
+<li><a href="invoices.html">All Invoice</a></li>
+<li><a href="invoices-paid.html" class="active">Paid</a></li>
+<li><a href="invoices-overdue.html">Overdue</a></li>
+<li><a href="invoices-draft.html">Draft</a></li>
+<li><a href="invoices-recurring.html">Recurring</a></li>
+<li><a href="invoices-cancelled.html">Cancelled</a></li>
+</ul>
+</div>
+</div>
+<div class="col-lg-4 col-md-4">
+<div class="invoices-settings-btn">
+<a href="invoices-settings.html" class="invoices-settings-icon">
+<i class="feather feather-settings"></i>
+</a>
+<a href="add-invoice.html" class="btn">
+<i class="feather feather-plus-circle"></i> New Invoice
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xl-3 col-sm-6 col-12">
+<div class="card inovices-card">
+<div class="card-body">
+<div class="inovices-widget-header">
+<span class="inovices-widget-icon">
+<img src="assets/img/icons/invoices-icon1.svg" alt="">
+</span>
+<div class="inovices-dash-count">
+<div class="inovices-amount">$8,78,797</div>
+</div>
+</div>
+<p class="inovices-all">All Invoices <span>50</span></p>
+</div>
+</div>
+</div>
+<div class="col-xl-3 col-sm-6 col-12">
+<div class="card inovices-card">
+<div class="card-body">
+<div class="inovices-widget-header">
+<span class="inovices-widget-icon">
+<img src="assets/img/icons/invoices-icon2.svg" alt="">
+</span>
+<div class="inovices-dash-count">
+<div class="inovices-amount">$4,5884</div>
+</div>
+</div>
+<p class="inovices-all">Paid Invoices <span>60</span></p>
+</div>
+</div>
+</div>
+<div class="col-xl-3 col-sm-6 col-12">
+<div class="card inovices-card">
+<div class="card-body">
+<div class="inovices-widget-header">
+<span class="inovices-widget-icon">
+<img src="assets/img/icons/invoices-icon3.svg" alt="">
+</span>
+<div class="inovices-dash-count">
+<div class="inovices-amount">$2,05,545</div>
+</div>
+</div>
+<p class="inovices-all">Unpaid Invoices <span>70</span></p>
+</div>
+</div>
+</div>
+<div class="col-xl-3 col-sm-6 col-12">
+<div class="card inovices-card">
+<div class="card-body">
+<div class="inovices-widget-header">
+<span class="inovices-widget-icon">
+<img src="assets/img/icons/invoices-icon4.svg" alt="">
+</span>
+<div class="inovices-dash-count">
+<div class="inovices-amount">$8,8,797</div>
+</div>
+</div>
+<p class="inovices-all">Cancelled Invoices <span>80</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="card card-table">
+<div class="card-body">
+<div class="table-responsive">
+<table class="table table-stripped table-hover datatable">
+<thead class="thead-light">
+<tr>
+<th>Invoice number</th>
+<th>Created on</th>
+<th>Invoice to</th>
+<th>Amount</th>
+<th>Paid on</th>
+<th>Status</th>
+<th class="text-end">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<label class="custom_check">
+<input type="checkbox" name="invoice">
+<span class="checkmark"></span>
+</label>
+<a href="view-invoice.html" class="invoice-link">IN093439#@09</a>
+</td>
+<td>16 Mar 2022</td>
+<td>
+<h2 class="table-avatar">
+<a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="assets/img/profiles/avatar-04.jpg" alt="User Image"> Barbara Moore</a>
+</h2>
+</td>
+<td class="text-primary">$1,54,220</td>
+<td>23 Mar 2022</td>
+<td><span class="badge bg-success-light">Paid</span></td>
+<td class="text-end">
+<a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
+<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>Delete</a>
+</td>
+</tr>
+<tr>
+<td>
+<label class="custom_check">
+<input type="checkbox" name="invoice">
+<span class="checkmark"></span>
+</label>
+<a href="view-invoice.html" class="invoice-link">IN093439#@10</a>
+</td>
+<td>14 Mar 2022</td>
+<td>
+<h2 class="table-avatar">
+<a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="assets/img/profiles/avatar-06.jpg" alt="User Image"> Karlene Chaidez</a>
+</h2>
+</td>
+<td class="text-primary">$1,222</td>
+<td>18 Mar 2022</td>
+<td><span class="badge bg-success-light">Paid</span></td>
+<td class="text-end">
+<a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
+<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>Delete</a>
+</td>
+</tr>
+<tr>
+<td>
+<label class="custom_check">
+<input type="checkbox" name="invoice">
+<span class="checkmark"></span>
+</label>
+<a href="view-invoice.html" class="invoice-link">IN093439#@11</a>
+</td>
+<td>7 Mar 2022</td>
+<td>
+<h2 class="table-avatar">
+<a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="assets/img/profiles/avatar-08.jpg" alt="User Image"> Russell Copeland</a>
+</h2>
+</td>
+<td class="text-primary">$3,470</td>
+<td>10 Mar 2022</td>
+<td><span class="badge bg-success-light">Paid</span></td>
+<td class="text-end">
+<a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
+<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>Delete</a>
+</td>
+</tr>
+<tr>
+<td>
+<label class="custom_check">
+<input type="checkbox" name="invoice">
+<span class="checkmark"></span>
+</label>
+<a href="view-invoice.html" class="invoice-link">IN093439#@12</a>
+</td>
+<td>24 Mar 2022</td>
+<td>
+<h2 class="table-avatar">
+<a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="assets/img/profiles/avatar-10.jpg" alt="User Image"> Joseph Collins</a>
+</h2>
+</td>
+<td class="text-primary">$8,265</td>
+<td>30 Mar 2022</td>
+<td><span class="badge bg-success-light">Paid</span></td>
+<td class="text-end">
+<a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
+<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>Delete</a>
+</td>
+</tr>
+<tr>
+<td>
+<label class="custom_check">
+<input type="checkbox" name="invoice">
+<span class="checkmark"></span>
+</label>
+<a href="view-invoice.html" class="invoice-link">IN093439#@13</a>
+</td>
+<td>17 Mar 2022</td>
+<td>
+<h2 class="table-avatar">
+<a href="profile.html"><img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="assets/img/profiles/avatar-11.jpg" alt="User Image"> Jennifer Floyd</a>
+</h2>
+</td>
+<td class="text-primary">$5,200</td>
+<td>20 Mar 2022</td>
+<td><span class="badge bg-success-light">Paid</span></td>
+<td class="text-end">
+<a href="edit-invoice.html" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
+<a class="btn btn-sm btn-white text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_paid"><i class="far fa-trash-alt me-1"></i>Delete</a>
+</td>
+</tr>
+ </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal custom-modal fade" id="delete_paid" role="dialog">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-body">
+<div class="form-header">
+<h3>Delete Invoice Paid</h3>
+<p>Are you sure want to delete?</p>
+</div>
+<div class="modal-btn delete-action">
+<div class="row">
+<div class="col-6">
+<a href="javascript:void(0);" class="btn btn-primary paid-continue-btn w-100">Delete</a>
+</div>
+<div class="col-6">
+<a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn w-100">Cancel</a>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 
 </div>
-</div>
-</div>
-</div>
-</div>
-
-</div>
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/jquery-3.6.0.min.js"></script>
 
 <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="assets/js/feather.min.js"></script>
 
 <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<script src="assets/plugins/select2/js/select2.min.js"></script>
+
+<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/plugins/datatables/datatables.min.js"></script>
+
+<script src="assets/plugins/moment/moment.min.js"></script>
+<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 
 <script src="assets/js/script.js"></script>
 </body>
