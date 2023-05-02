@@ -295,22 +295,19 @@ def profil_admin():
 
 
 # EDIT DATA DIRI ADMIN
-@application.route('/edit-data-diri-admin', methods=['POST'])
+@application.route('/edit-data-diri-admin', methods=['POST','GET'])
 @login_required(1)
 def edit_data_diri_admin():
-    data = request.get_json()
-    agama = data['agama']
-    no_telepon = data['no_telepon']
-    email = data['email']
-    alamat = data['alamat']
-    data_diri = (agama, no_telepon, email, alamat)
-    cur = mysql.connection.cursor()
-    cur.execute("UPDATE tb_dataadmin SET agama=%s, no_telepon=%s, email=%s, alamat=%s WHERE id=%s", (data_diri, session['id']))
-    mysql.connection.commit()
-    cur.close()
-    return (data)
-    # result = {'processed': 'true'}
-    # return jsonify(result)
+    if request.method=='POST':
+        agama = request.form['agama']
+        no_telepon = request.form['no_telepon']
+        email = request.form['email']
+        alamat = request.form['alamat']
+        data_diri = (agama, no_telepon, email, alamat,session['id'])
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE tb_dataadmin SET agama=%s, no_telepon=%s, email=%s, alamat=%s WHERE id=%s", (data_diri))
+        mysql.connection.commit()
+        cur.close()
 
 
 # DATA TRANSAKSI <- MASIH PENGEMBANGAN
