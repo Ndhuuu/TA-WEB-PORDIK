@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, abort, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, abort
 from flask import flash
 from flask_mysqldb import MySQL
 from functools import wraps
@@ -308,6 +308,7 @@ def edit_data_diri_admin():
         cur.execute("UPDATE tb_dataadmin SET agama=%s, no_telepon=%s, email=%s, alamat=%s WHERE id=%s", (data_diri))
         mysql.connection.commit()
         cur.close()
+        return redirect(url_for('profil_admin'))
 
 
 # DATA TRANSAKSI <- MASIH PENGEMBANGAN

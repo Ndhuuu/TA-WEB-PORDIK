@@ -18,7 +18,7 @@
           </div>
           <div class="col ms-md-n2 profile-user-info">
             <h4 class="user-name mb-0">{{ profil_admin[3] }}</h4>
-            <h6 class="text-muted">administrator</h6>
+            <h6 class="text-muted">{{ session['role'] }}</h6>
             <div class="user-Location">
               <i class="fas fa-map-marker-alt"></i>{{ profil_admin[8] }}
             </div>
@@ -179,33 +179,4 @@
     </div>
   </div>
 </div>
-<script>
-$('#data-diri-modal').on('click', '#simpan', function(e) {
-    e.preventDefault();
-    var agama = $('#field-1').val();
-    var no_telepon = $('#field-2').val();
-    var email = $('#field-3').val();
-    var alamat = $('#field-4').val();
-    $.ajax({
-      url: '/edit-data-diri-admin',
-      method: 'POST',
-      data: JSON.stringify({
-        agama: agama,
-        no_telepon: no_telepon,
-        email: email,
-        alamat: alamat
-      }),
-      success: function(response) {
-        // Tambahkan kode untuk menangani respon setelah permintaan berhasil dikirim
-        console.log('success');
-        console.log(response);
-      },
-      error: function(error) {
-        // Tambahkan kode untuk menangani kesalahan jika permintaan gagal dikirim
-        console.log('error');
-        console.log(error);
-      }
-    });
-  });
-</script>
 {% endblock %}
