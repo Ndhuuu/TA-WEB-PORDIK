@@ -1,9 +1,7 @@
 {% extends 'after login admin/dashboard/base_admin.html' %}
 {% block title %} PORTAL AKADEMIK | DASHBOARD ADMIN {% endblock %}
 {% block bread %}
-{% if 'nama' in session %}
 <h1 class="page-title">Selamat Datang {{ session['nama'] }}!</h1>
-{% endif %}
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="admin">Home</a></li>
     <li class="breadcrumb-item active">Dashboard</li>

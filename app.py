@@ -295,7 +295,7 @@ def profil_admin():
 
 
 # EDIT DATA DIRI ADMIN
-@application.route('/edit-data-diri-admin', methods=['POST','GET'])
+@application.route('/edit-data-diri-admin', methods=['GET','POST'])
 @login_required(1)
 def edit_data_diri_admin():
     if request.method=='POST':
@@ -303,12 +303,53 @@ def edit_data_diri_admin():
         no_telepon = request.form['no_telepon']
         email = request.form['email']
         alamat = request.form['alamat']
-        data_diri = (agama, no_telepon, email, alamat,session['id'])
+        data_diri = (agama, no_telepon, email, alamat, session['id'])
         cur = mysql.connection.cursor()
-        cur.execute("UPDATE tb_dataadmin SET agama=%s, no_telepon=%s, email=%s, alamat=%s WHERE id=%s", (data_diri))
+        cur.execute("UPDATE tb_dataadmin SET agama='%s', no_telepon='%s', email='%s', alamat='%s' WHERE id=%s", (data_diri))
         mysql.connection.commit()
         cur.close()
         return redirect(url_for('profil_admin'))
+
+
+# EDIT PASSWORD ADMIN
+@application.route('/edit-password-admin', methods=['GET', 'POST'])
+def change_password():
+    if request.method == 'POST':
+        password_lama = request.form['password_lama']
+        password_baru = request.form['password_baru']
+        ulangi_password_baru = request.form['ulangi_password_baru']
+        
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT password FROM tb_dataadmin WHERE id=%s", (session['id'],))
+        user_password = cur.fetchone()[0]
+        cur.close()
+        
+        # Validasi password lama
+        if not check_password_hash(user_password, password_lama):
+            error = flash(f'Password lama tidak cocok', 'danger')
+            return redirect(url_for('profil_admin', _anchor='password_tab', error=error))
+        
+        # Validasi password baru dan ulangi password
+        if password_baru != ulangi_password_baru:
+            error = flash(f'Password baru dan ulangi password tidak cocok!', 'danger')
+            return redirect(url_for('profil_admin', _anchor='password_tab', error=error))
+        
+        # Validasi syarat password
+        if not (any(c.isupper() for c in password_baru) and any(c.isdigit() for c in password_baru) and any(not c.isalnum() for c in password_baru)):
+            error = flash(f'Password harus terdiri dari huruf kapital, angka, dan simbol!', 'warning')
+            return redirect(url_for('profil_admin', _anchor='password_tab', error=error))
+        
+        # Jika semua validasi berhasil, lakukan perubahan password
+        hashed_password_baru = generate_password_hash(password_baru, method='pbkdf2:sha256', salt_length=16)
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE tb_dataadmin SET password=%s WHERE id=%s", (hashed_password_baru, session['id']))
+        mysql.connection.commit()
+        cur.close()
+        flash(f'Password anda berhasil diganti!', 'success')
+        return redirect(url_for('profil_admin', _anchor='password_tab'))
+
+    else:
+        return redirect(url_for('profil_admin', _anchor='password_tab'))
 
 
 # DATA TRANSAKSI <- MASIH PENGEMBANGAN
