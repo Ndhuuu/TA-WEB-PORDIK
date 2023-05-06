@@ -346,10 +346,10 @@ def change_password():
         mysql.connection.commit()
         cur.close()
         flash(f'Password anda berhasil diganti!', 'success')
-        return redirect(url_for('profil_admin', _anchor='password_tab'))
+        return redirect(url_for('profil_admin'))
 
     else:
-        return redirect(url_for('profil_admin', _anchor='password_tab'))
+        return redirect(url_for('profil_admin'))
 
 
 # DATA TRANSAKSI <- MASIH PENGEMBANGAN

@@ -1,137 +1,130 @@
-{% extends 'after login admin/dashboard/base_admin.html' %}
-{% block title %} PORTAL AKADEMIK | PROFIL ADMIN {% endblock %}
-{% block bread %}
-<ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-    <li class="breadcrumb-item active">Profil Admin</li>
-</ul>
-{% endblock %}
-{% block content %}
-<div class="row">
-    <div class="col-md-12">
-      <div class="profile-header">
-        <div class="row align-items-center">
-          <div class="col-auto profile-image">
-            <a href="#">
-              <img class="rounded-circle" alt="User Image" src="/static/img/logounjaya.png">
-            </a>
-          </div>
-          <div class="col ms-md-n2 profile-user-info">
-            <h4 class="user-name mb-0">{{ profil_admin[3] }}</h4>
-            <h6 class="text-muted">{{ session['role'] }}</h6>
-            <div class="user-Location">
-              <i class="fas fa-map-marker-alt"></i>{{ profil_admin[8] }}
-            </div>
-          </div>
-          <div class="col-auto profile-btn">
-            <a href="" class="btn btn-primary"> Edit foto profil </a>
+{% extends 'after login admin/dashboard/base_admin.html' %} {% block title %} PORTAL AKADEMIK | PROFIL ADMIN {% endblock %} {% block bread %} <ul class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/admin">Home</a>
+  </li>
+  <li class="breadcrumb-item active">Profil Admin</li>
+</ul> {% endblock %} {% block content %} <div class="row">
+  <div class="col-md-12">
+    <div class="profile-header">
+      <div class="row align-items-center">
+        <div class="col-auto profile-image">
+          <a href="#">
+            <img class="rounded-circle" alt="User Image" src="/static/img/logounjaya.png">
+          </a>
+        </div>
+        <div class="col ms-md-n2 profile-user-info">
+          <h4 class="user-name mb-0">{{ profil_admin[3] }}</h4>
+          <h6 class="text-muted">{{ session['role'] }}</h6>
+          <div class="user-Location">
+            <i class="fas fa-map-marker-alt"></i>{{ profil_admin[8] }}
           </div>
         </div>
+        <div class="col-auto profile-btn">
+          <a href="#" class="btn btn-primary"><i class="fa-regular fa-image"></i> Edit foto profil </a>
+        </div>
       </div>
-      <div class="profile-menu">
-        <ul class="nav nav-tabs nav-tabs-solid">
-          <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" href="#per_details_tab">Tentang</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#password_tab">Password</a>
-          </li>
-        </ul>
-      </div>
-      <div class="tab-content profile-tab-cont">
-        <div class="tab-pane fade show active" id="per_details_tab">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title d-flex justify-content-between">
-                    <span>Data Diri</span>
-                    <a class="edit-link" data-bs-toggle="modal" href="#data-diri-modal">
-                      <i class="far fa-edit me-1"></i>Edit data diri</a>
-                  </h5>
-                  <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Username :</p>
-                    <p class="col-sm-9">{{ profil_admin[1] }}</p>
-                  </div>
-                  <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Nama :</p>
-                    <p class="col-sm-9">{{ profil_admin[3] }}</p>
-                  </div>
-                  <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Tempat Lahir :</p>
-                    <p class="col-sm-9">{{ profil_admin[4] }}</p>
-                  </div>
-                  <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Tanggal Lahir :</p>
-                    <p class="col-sm-9">{{ profil_admin[5] }}</p>
-                  </div>
-                  <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Jenis Kelamin :</p>
-                    <p class="col-sm-9">{{ profil_admin[6] }}</p>
-                  </div>
-                  <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Agama :</p>
-                    <p class="col-sm-9">{{ profil_admin[7] }}</p>
-                  </div>
-                  <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Alamat :</p>
-                    <p class="col-sm-9">{{ profil_admin[8] }}</p>
-                  </div>
-                  <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Nomor Telepon :</p>
-                    <p class="col-sm-9">{{ profil_admin[9] }}</p>
-                  </div>
-                  <div class="row">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Email :</p>
-                    <p class="col-sm-9">{{ profil_admin[10] }}</p>
-                  </div>
+    </div>
+    <div class="profile-menu">
+      <ul class="nav nav-tabs nav-tabs-solid">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="#per_details_tab">Tentang</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#password_tab">Password</a>
+        </li>
+      </ul>
+    </div> 
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+    {% if messages %} 
+    {% for category, message in messages %} 
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" style="text-align: center; margin-top: 2%; margin-bottom: 0;">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> 
+    {% endfor %} 
+    {% endif %} 
+    {% endwith %} 
+    <div class="tab-content profile-tab-cont">
+      <div class="tab-pane fade show active" id="per_details_tab">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title d-flex justify-content-between">
+                  <span>Data Diri</span>
+                  <a class="edit-link" data-bs-toggle="modal" href="#data-diri-modal">
+                    <i class="far fa-edit me-1"></i>Edit data diri </a>
+                </h5>
+                <div class="row">
+                  <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Username :</p>
+                  <p class="col-sm-9">{{ profil_admin[1] }}</p>
+                </div>
+                <div class="row">
+                  <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Nama :</p>
+                  <p class="col-sm-9">{{ profil_admin[3] }}</p>
+                </div>
+                <div class="row">
+                  <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Tempat Lahir :</p>
+                  <p class="col-sm-9">{{ profil_admin[4] }}</p>
+                </div>
+                <div class="row">
+                  <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Tanggal Lahir :</p>
+                  <p class="col-sm-9">{{ profil_admin[5] }}</p>
+                </div>
+                <div class="row">
+                  <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Jenis Kelamin :</p>
+                  <p class="col-sm-9">{{ profil_admin[6] }}</p>
+                </div>
+                <div class="row">
+                  <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Agama :</p>
+                  <p class="col-sm-9">{{ profil_admin[7] }}</p>
+                </div>
+                <div class="row">
+                  <p class="col-sm-3 text-muted text-sm-end mb-0">Alamat :</p>
+                  <p class="col-sm-9">{{ profil_admin[8] }}</p>
+                </div>
+                <div class="row">
+                  <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Nomor Telepon :</p>
+                  <p class="col-sm-9">{{ profil_admin[9] }}</p>
+                </div>
+                <div class="row">
+                  <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Email :</p>
+                  <p class="col-sm-9">{{ profil_admin[10] }}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div id="password_tab" class="tab-pane fade">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Ganti password</h5>
-              <div class="row">
-                <div class="col-md-10 col-lg-6">
-                  <form method="post" action="/edit-password-admin">
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                    {% for category, message in messages %}
-                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert"
-                    style="text-align: center;">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
-                    <div class="form-group">
-                      <label>Password Lama</label>
-                      <input type="password" name="password_lama" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Password Baru</label>
-                      <input type="password" name="password_baru" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Ulangi Password Baru</label>
-                      <input type="password" name="ulangi_password_baru" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                  </form>
-                </div>
+      </div>
+      <div id="password_tab" class="tab-pane fade">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Ganti password</h5>
+            <div class="row">
+              <div class="col-md-10 col-lg-6">
+                <form method="post" action="/edit-password-admin">
+                  <div class="form-group">
+                    <label>Password Lama</label>
+                    <input type="password" name="password_lama" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Password Baru</label>
+                    <input type="password" name="password_baru" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Ulangi Password Baru</label>
+                    <input type="password" name="ulangi_password_baru" class="form-control" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </div>
-
-
 <div id="data-diri-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -140,54 +133,71 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form method="POST" action="/edit-data-diri-admin">
-      <div class="modal-body p-4">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="mb-3">
-              <label for="field-1" class="form-label">Agama</label>
-              <select name="agama" class="form-control form-select" id="field-1">
-                <option hidden>-- Pilih Agama --</option>
-                <option value="Islam" {% if profil_admin[7] == 'Islam' %} selected {% endif %}>Islam</option>
-                <option value="Kristen" {% if profil_admin[7] == 'Kristen' %} selected {% endif %}>Kristen</option>
-                <option value="Katholik" {% if profil_admin[7] == 'Katholik' %} selected {% endif %}>Katholik</option>
-                <option value="Hindu" {% if profil_admin[7] == 'Hindu' %} selected {% endif %}>Hindu</option>
-                <option value="Budha" {% if profil_admin[7] == 'Budha' %} selected {% endif %}>Budha</option>
-                <option value="Konghucu" {% if profil_admin[7] == 'Konghucu' %} selected {% endif %}>Konghucu</option>
-            </select>
+        <div class="modal-body p-4">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="field-1" class="form-label">Agama</label>
+                <select name="agama" class="form-control form-select" id="field-1">
+                  <option hidden>-- Pilih Agama --</option>
+                  <option value="Islam" {% if profil_admin[7] == 'Islam' %} selected {% endif %}>Islam</option>
+                  <option value="Kristen" {% if profil_admin[7] == 'Kristen' %} selected {% endif %}>Kristen</option>
+                  <option value="Katholik" {% if profil_admin[7] == 'Katholik' %} selected {% endif %}>Katholik</option>
+                  <option value="Hindu" {% if profil_admin[7] == 'Hindu' %} selected {% endif %}>Hindu</option>
+                  <option value="Budha" {% if profil_admin[7] == 'Budha' %} selected {% endif %}>Budha</option>
+                  <option value="Konghucu" {% if profil_admin[7] == 'Konghucu' %} selected {% endif %}>Konghucu</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="mb-3">
-              <label for="field-2" class="form-label">Nomor telepon</label>
-              <input type="tel" name="no_telepon" class="form-control" id="field-2" placeholder="Masukkan nomor telepon" value="{{ profil_admin[9] }}" maxlength="15">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="field-2" class="form-label">Nomor telepon</label>
+                <input type="tel" name="no_telepon" class="form-control" id="field-2" placeholder="Masukkan nomor telepon" value="{{ profil_admin[9] }}" maxlength="15">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="mb-3">
-              <label for="field-3" class="form-label">Email</label>
-              <input type="email" name="email" class="form-control" id="field-3" placeholder="Masukkan alamat email" value="{{ profil_admin[10] }}" maxlength="20">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="field-3" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="field-3" placeholder="Masukkan alamat email" value="{{ profil_admin[10] }}" maxlength="20">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="">
-              <label for="field-4" class="form-label">Alamat</label>
-              <textarea name="alamat" class="form-control" id="field-4" placeholder="Masukkan alamat tempat tinggal" maxlength="255">{{ profil_admin[8] }}</textarea>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="">
+                <label for="field-4" class="form-label">Alamat</label>
+                <textarea name="alamat" class="form-control" id="field-4" placeholder="Masukkan alamat tempat tinggal" maxlength="255">{{ profil_admin[8] }}</textarea>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" id="simpan" class="btn btn-primary">Simpan</button>
-        </form>
-        </div>
-      </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" id="simpan" class="btn btn-primary">Simpan</button>
+      </form>
     </div>
   </div>
 </div>
-{% endblock %}
+</div>
+</div>
+<script>
+  // Mencegah intervensi jQuery ke script javascript
+  document.addEventListener("DOMContentLoaded", function() {
+    var hash = window.location.hash;
+    if (hash) {
+      var tab = document.querySelector('.nav-tabs a[href="' + hash + '"]');
+      console.log(tab);
+      var bsTab = new bootstrap.Tab(tab);
+      bsTab.show();
+    }
+  });
+  // Hapus bagian anchor dari URL setelah halaman dimuat
+  window.onload = function() {
+  if (window.location.hash) {
+    history.replaceState(null, null, ' ');
+  }
+};
+</script> {% endblock %}
