@@ -352,10 +352,17 @@ def change_password():
         return redirect(url_for('profil_admin'))
 
 
-# DATA TRANSAKSI <- MASIH PENGEMBANGAN
+# DATA TAGIHAN DAN TRANSAKSI <- MASIH PENGEMBANGAN
 @application.route('/tagihan-mahasiswa')
 def tagihan_mahasiswa():
     return render_template('after login admin/data_transaksi/data_tagihanmahasiswa.html')
+
+
+# TAMBAH TAGIHAN MAHASISWA
+@application.route('/tambah-tagihan-mahasiswa')
+def create_tagihanmahasiswa():
+    return render_template('after login admin/data_transaksi/create_datatagihanmahasiswa.html')
+
 
 # MAHASISWA AREA
 @application.route('/mahasiswa')
