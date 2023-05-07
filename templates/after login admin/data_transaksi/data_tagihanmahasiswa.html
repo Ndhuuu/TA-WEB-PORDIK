@@ -3,11 +3,11 @@
 {% block bread %}
 <h3 class="page-title">Tagihan dan Transaksi</h3>
 <ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-    <li class="breadcrumb-item active">Tagihan dan Transaksi</li>
+  <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+  <li class="breadcrumb-item active">Tagihan dan Transaksi</li>
 </ul>
 {% endblock %}
-{% block content %} 
+{% block content %}
 <div class="card invoices-tabs-card border-0">
   <div class="card-body card-body pt-0 pb-0">
     <div class="invoices-main-tabs">
@@ -19,13 +19,13 @@
                 <a href="/tagihan-mahasiswa" class="active">Semua Tagihan</a>
               </li>
               <li>
-                <a href="invoices-paid.html">Lunas</a>
+                <a href="/tagihan-mahasiswa-lunas">Lunas</a>
               </li>
               <li>
-                <a href="invoices-overdue.html">Menunggak</a>
+                <a href="/tagihan-mahasiswa-nunggak">Menunggak</a>
               </li>
               <li>
-                <a href="invoices-cancelled.html">Dibatalkan</a>
+                <a href="/tagihan-mahasiswa-batal">Dibatalkan</a>
               </li>
             </ul>
           </div>
@@ -54,7 +54,7 @@
             <img src="static/img/icon/invoices-icon1.svg" alt="">
           </span>
           <div class="inovices-dash-count">
-            <div class="inovices-amount">$8,78,797</div>
+            <div class="inovices-amount">Rp 8,78,797</div>
           </div>
         </div>
         <p class="inovices-all">Semua Tagihan <span>50</span>
@@ -70,7 +70,7 @@
             <img src="static/img/icon/invoices-icon2.svg" alt="">
           </span>
           <div class="inovices-dash-count">
-            <div class="inovices-amount">$4,5884</div>
+            <div class="inovices-amount">Rp 4,5884</div>
           </div>
         </div>
         <p class="inovices-all">Tagihan Dibayar <span>60</span>
@@ -86,7 +86,7 @@
             <img src="static/img/icon/invoices-icon3.svg" alt="">
           </span>
           <div class="inovices-dash-count">
-            <div class="inovices-amount">$2,05,545</div>
+            <div class="inovices-amount">Rp 2,05,545</div>
           </div>
         </div>
         <p class="inovices-all">Tagihan Belum Dibayar <span>70</span>
@@ -102,7 +102,7 @@
             <img src="static/img/icon/invoices-icon4.svg" alt="">
           </span>
           <div class="inovices-dash-count">
-            <div class="inovices-amount">$8,8,797</div>
+            <div class="inovices-amount">Rp 8,8,797</div>
           </div>
         </div>
         <p class="inovices-all">Tagihan Dibatalkan <span>80</span>
@@ -116,204 +116,198 @@
     <div class="card card-table">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-stripped table-hover datatable">
+          <table class="datatable table table-stripped" id="myTable">
             <thead class="thead-light">
               <tr>
-                <th>ID tagihan</th>
-                <th>Kategori</th>
-                <th>Dibuat pada</th>
-                <th>Ditagihan kepada</th>
-                <th>Jumlah</th>
-                <th>Tanggal jatuh tempo</th>
+                <th>ID</th>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>Tunggakan</th>
                 <th>Status</th>
-                <th class="text-end">Aksi</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>
-                  <label class="custom_check">
-                    <input type="checkbox" name="invoice">
-                    <span class="checkmark"></span>
-                  </label>
-                  <a href="view-invoice.html" class="invoice-link">IN093439#@09</a>
-                </td>
-                <td>Advertising</td>
-                <td>16 Mar 2022</td>
-                <td>
-                  <h2 class="table-avatar">
-                    <a href="profile.html">
-                      <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="static/img/logounjaya.png" alt="User Image"> Barbara Moore </a>
-                  </h2>
-                </td>
-                <td class="text-primary">$1,54,220</td>
-                <td>23 Mar 2022</td>
-                <td>
-                  <span class="badge bg-success-light">Lunas</span>
-                </td>
-                <td class="text-end">
-                  <div class="dropdown dropdown-action">
-                    <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a class="dropdown-item" href="edit-invoice.html">
-                        <i class="far fa-edit me-2"></i>Edit </a>
-                      <a class="dropdown-item" href="view-invoice.html">
-                        <i class="far fa-eye me-2"></i>View </a>
-                      <a class="dropdown-item" href="javascript:void(0);">
-                        <i class="far fa-trash-alt me-2"></i>Delete </a>
-                    </div>
-                  </div>
-                </td>
+                <th>1</th>
+                <th>74734182</th>
+                <th>Randi</th>
+                <th>Rp 0</th>
+                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
               </tr>
               <tr>
-                <td>
-                  <label class="custom_check">
-                    <input type="checkbox" name="invoice">
-                    <span class="checkmark"></span>
-                  </label>
-                  <a href="view-invoice.html" class="invoice-link">IN093439#@10</a>
-                </td>
-                <td>Food</td>
-                <td>14 Mar 2022</td>
-                <td>
-                  <h2 class="table-avatar">
-                    <a href="profile.html">
-                      <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="static/img/logounjaya.png" alt="User Image"> Karlene Chaidez </a>
-                  </h2>
-                </td>
-                <td class="text-primary">$1,222</td>
-                <td>18 Mar 2022</td>
-                <td>
-                  <span class="badge bg-danger-light">Menunggak</span>
-                </td>
-                <td class="text-end">
-                  <div class="dropdown dropdown-action">
-                    <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a class="dropdown-item" href="edit-invoice.html">
-                        <i class="far fa-edit me-2"></i>Edit </a>
-                      <a class="dropdown-item" href="view-invoice.html">
-                        <i class="far fa-eye me-2"></i>View </a>
-                      <a class="dropdown-item" href="javascript:void(0);">
-                        <i class="far fa-trash-alt me-2"></i>Delete </a>
-                    </div>
-                  </div>
-                </td>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
               </tr>
               <tr>
-                <td>
-                  <label class="custom_check">
-                    <input type="checkbox" name="invoice">
-                    <span class="checkmark"></span>
-                  </label>
-                  <a href="view-invoice.html" class="invoice-link">IN093439#@11</a>
-                </td>
-                <td>Marketing</td>
-                <td>7 Mar 2022</td>
-                <td>
-                  <h2 class="table-avatar">
-                    <a href="profile.html">
-                      <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="static/img/logounjaya.png" alt="User Image"> Russell Copeland </a>
-                  </h2>
-                </td>
-                <td class="text-primary">$3,470</td>
-                <td>10 Mar 2022</td>
-                <td>
-                  <span class="badge bg-warning-light">Dibatalkan</span>
-                </td>
-                <td class="text-end">
-                  <div class="dropdown dropdown-action">
-                    <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a class="dropdown-item" href="edit-invoice.html">
-                        <i class="far fa-edit me-2"></i>Edit </a>
-                      <a class="dropdown-item" href="view-invoice.html">
-                        <i class="far fa-eye me-2"></i>View </a>
-                      <a class="dropdown-item" href="javascript:void(0);">
-                        <i class="far fa-trash-alt me-2"></i>Delete </a>
-                    </div>
-                  </div>
-                </td>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
               </tr>
               <tr>
-                <td>
-                  <label class="custom_check">
-                    <input type="checkbox" name="invoice">
-                    <span class="checkmark"></span>
-                  </label>
-                  <a href="view-invoice.html" class="invoice-link">IN093439#@12</a>
-                </td>
-                <td>Repairs</td>
-                <td>24 Mar 2022</td>
-                <td>
-                  <h2 class="table-avatar">
-                    <a href="profile.html">
-                      <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="static/img/logounjaya.png" alt="User Image"> Joseph Collins </a>
-                  </h2>
-                </td>
-                <td class="text-primary">$8,265</td>
-                <td>30 Mar 2022</td>
-                <td>
-                  <span class="badge bg-success-light">Lunas</span>
-                </td>
-                <td class="text-end">
-                  <div class="dropdown dropdown-action">
-                    <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a class="dropdown-item" href="edit-invoice.html">
-                        <i class="far fa-edit me-2"></i>Edit </a>
-                      <a class="dropdown-item" href="view-invoice.html">
-                        <i class="far fa-eye me-2"></i>View </a>
-                      <a class="dropdown-item" href="javascript:void(0);">
-                        <i class="far fa-trash-alt me-2"></i>Delete </a>
-                    </div>
-                  </div>
-                </td>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
               </tr>
               <tr>
-                <td>
-                  <label class="custom_check">
-                    <input type="checkbox" name="invoice">
-                    <span class="checkmark"></span>
-                  </label>
-                  <a href="view-invoice.html" class="invoice-link">IN093439#@13</a>
-                </td>
-                <td>Software</td>
-                <td>17 Mar 2022</td>
-                <td>
-                  <h2 class="table-avatar">
-                    <a href="profile.html">
-                      <img class="avatar avatar-sm me-2 avatar-img rounded-circle" src="static/img/logounjaya.png" alt="User Image"> Jennifer Floyd </a>
-                  </h2>
-                </td>
-                <td class="text-primary">$5,200</td>
-                <td>20 Mar 2022</td>
-                <td>
-                  <span class="badge bg-danger-light">Menunggak</span>
-                </td>
-                <td class="text-end">
-                  <div class="dropdown dropdown-action">
-                    <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a class="dropdown-item" href="edit-invoice.html">
-                        <i class="far fa-edit me-2"></i>Edit </a>
-                      <a class="dropdown-item" href="view-invoice.html">
-                        <i class="far fa-eye me-2"></i>View </a>
-                      <a class="dropdown-item" href="javascript:void(0);">
-                        <i class="far fa-trash-alt me-2"></i>Delete </a>
-                    </div>
-                  </div>
-                </td>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+              </tr>
+              <tr>
+                <th>2</th>
+                <th>74734182</th>
+                <th>Jokowi</th>
+                <th>Rp 3.000.000.000.000</th>
+                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
               </tr>
             </tbody>
           </table>
@@ -322,4 +316,11 @@
     </div>
   </div>
 </div>
-</body> {% endblock %}
+{% endblock %}
+{% block script %}
+<script>
+  $('#myTable').DataTable({
+    pagingType: 'full_numbers',
+  });
+</script>
+{% endblock %}

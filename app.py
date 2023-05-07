@@ -126,7 +126,8 @@ def read_mahasiswa():
 def create_mahasiswa():
     if request.method == 'POST':
         username = request.form['username']
-        password = generate_password_hash(request.form['password'], method='pbkdf2:sha256', salt_length=16)
+        password = generate_password_hash(
+            request.form['password'], method='pbkdf2:sha256', salt_length=16)
         nama = request.form['nama']
         tempat_lahir = request.form['tempat_lahir']
         tanggal_lahir = request.form['tanggal_lahir']
@@ -139,7 +140,8 @@ def create_mahasiswa():
         role_id = request.form['role_id']
         if role_id == 'mahasiswa':
             role_id = 2
-        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
+        data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
+                     jenis_kelamin, agama, alamat, no_telepon, email, role_id)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO tb_datamahasiswa (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
         mysql.connection.commit()
@@ -164,7 +166,8 @@ def update_mahasiswa(id):
 def update_process_mahasiswa():
     id = request.form['id']
     username = request.form['username']
-    password = generate_password_hash(request.form['password'], method='pbkdf2:sha256', salt_length=16)
+    password = generate_password_hash(
+        request.form['password'], method='pbkdf2:sha256', salt_length=16)
     nama = request.form['nama']
     tempat_lahir = request.form['tempat_lahir']
     tanggal_lahir = request.form['tanggal_lahir']
@@ -177,7 +180,8 @@ def update_process_mahasiswa():
     role_id = request.form['role_id']
     if role_id == 'mahasiswa':
         role_id = 2
-    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
+    data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
+                 jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
     cur = mysql.connection.cursor()
     cur.execute("UPDATE tb_datamahasiswa SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', role_id='%s' WHERE id=%s" % data_user)
     mysql.connection.commit()
@@ -213,7 +217,8 @@ def read_admin():
 def create_admin():
     if request.method == 'POST':
         username = request.form['username']
-        password = generate_password_hash(request.form['password'], method='pbkdf2:sha256', salt_length=16)
+        password = generate_password_hash(
+            request.form['password'], method='pbkdf2:sha256', salt_length=16)
         nama = request.form['nama']
         tempat_lahir = request.form['tempat_lahir']
         tanggal_lahir = request.form['tanggal_lahir']
@@ -226,7 +231,8 @@ def create_admin():
         role_id = request.form['role_id']
         if role_id == 'admin':
             role_id = 1
-        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
+        data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
+                     jenis_kelamin, agama, alamat, no_telepon, email, role_id)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
         mysql.connection.commit()
@@ -251,7 +257,8 @@ def update_admin(id):
 def update_process_admin():
     id = request.form['id']
     username = request.form['username']
-    password = generate_password_hash(request.form['password'], method='pbkdf2:sha256', salt_length=16)
+    password = generate_password_hash(
+        request.form['password'], method='pbkdf2:sha256', salt_length=16)
     nama = request.form['nama']
     tempat_lahir = request.form['tempat_lahir']
     tanggal_lahir = request.form['tanggal_lahir']
@@ -264,7 +271,8 @@ def update_process_admin():
     role_id = request.form['role_id']
     if role_id == 'admin':
         role_id = 1
-    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
+    data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
+                 jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
     cur = mysql.connection.cursor()
     cur.execute("UPDATE tb_dataadmin SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', role_id='%s' WHERE id=%s" % data_user)
     mysql.connection.commit()
@@ -295,17 +303,18 @@ def profil_admin():
 
 
 # EDIT DATA DIRI ADMIN
-@application.route('/edit-data-diri-admin', methods=['GET','POST'])
+@application.route('/edit-data-diri-admin', methods=['GET', 'POST'])
 @login_required(1)
 def edit_data_diri_admin():
-    if request.method=='POST':
+    if request.method == 'POST':
         agama = request.form['agama']
         no_telepon = request.form['no_telepon']
         email = request.form['email']
         alamat = request.form['alamat']
         data_diri = (agama, no_telepon, email, alamat, session['id'])
         cur = mysql.connection.cursor()
-        cur.execute("UPDATE tb_dataadmin SET agama='%s', no_telepon='%s', email='%s', alamat='%s' WHERE id=%s", (data_diri))
+        cur.execute(
+            "UPDATE tb_dataadmin SET agama='%s', no_telepon='%s', email='%s', alamat='%s' WHERE id=%s", (data_diri))
         mysql.connection.commit()
         cur.close()
         return redirect(url_for('profil_admin'))
@@ -319,31 +328,36 @@ def change_password():
         password_lama = request.form['password_lama']
         password_baru = request.form['password_baru']
         ulangi_password_baru = request.form['ulangi_password_baru']
-        
+
         cur = mysql.connection.cursor()
-        cur.execute("SELECT password FROM tb_dataadmin WHERE id=%s", (session['id'],))
+        cur.execute("SELECT password FROM tb_dataadmin WHERE id=%s",
+                    (session['id'],))
         user_password = cur.fetchone()[0]
         cur.close()
-        
+
         # Validasi password lama
         if not check_password_hash(user_password, password_lama):
             error = flash(f'Password lama tidak cocok', 'danger')
             return redirect(url_for('profil_admin', _anchor='password_tab', error=error))
-        
+
         # Validasi password baru dan ulangi password
         if password_baru != ulangi_password_baru:
-            error = flash(f'Password baru dan ulangi password tidak cocok!', 'danger')
+            error = flash(
+                f'Password baru dan ulangi password tidak cocok!', 'danger')
             return redirect(url_for('profil_admin', _anchor='password_tab', error=error))
-        
+
         # Validasi syarat password
         if not (any(c.isupper() for c in password_baru) and any(c.isdigit() for c in password_baru) and any(not c.isalnum() for c in password_baru)):
-            error = flash(f'Password harus terdiri dari huruf kapital, angka, dan simbol!', 'warning')
+            error = flash(
+                f'Password harus terdiri dari huruf kapital, angka, dan simbol!', 'warning')
             return redirect(url_for('profil_admin', _anchor='password_tab', error=error))
-        
+
         # Jika semua validasi berhasil, lakukan perubahan password
-        hashed_password_baru = generate_password_hash(password_baru, method='pbkdf2:sha256', salt_length=16)
+        hashed_password_baru = generate_password_hash(
+            password_baru, method='pbkdf2:sha256', salt_length=16)
         cur = mysql.connection.cursor()
-        cur.execute("UPDATE tb_dataadmin SET password=%s WHERE id=%s", (hashed_password_baru, session['id']))
+        cur.execute("UPDATE tb_dataadmin SET password=%s WHERE id=%s",
+                    (hashed_password_baru, session['id']))
         mysql.connection.commit()
         cur.close()
         flash(f'Password anda berhasil diganti!', 'success')
