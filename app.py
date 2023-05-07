@@ -313,6 +313,7 @@ def edit_data_diri_admin():
 
 # EDIT PASSWORD ADMIN
 @application.route('/edit-password-admin', methods=['GET', 'POST'])
+@login_required(1)
 def change_password():
     if request.method == 'POST':
         password_lama = request.form['password_lama']
@@ -352,16 +353,53 @@ def change_password():
         return redirect(url_for('profil_admin'))
 
 
-# DATA TAGIHAN DAN TRANSAKSI <- MASIH PENGEMBANGAN
+# MASIH PENGEMBANGAN AKSES TANPA AKUN
+# DATA TAGIHAN DAN TRANSAKSI
 @application.route('/tagihan-mahasiswa')
 def tagihan_mahasiswa():
     return render_template('after login admin/data_transaksi/data_tagihanmahasiswa.html')
+
+
+# DATA TAGIHAN DAN TRANSAKSI LUNAS
+@application.route('/tagihan-mahasiswa-lunas')
+def tagihan_mahasiswalunas():
+    return render_template('after login admin/data_transaksi/data_tagihanmahasiswalunas.html')
+
+
+# DATA TAGIHAN DAN TRANSAKSI MENUNGGAK
+@application.route('/tagihan-mahasiswa-menunggak')
+def tagihan_mahasiswamenunggak():
+    return render_template('after login admin/data_transaksi/data_tagihanmahasiswamenunggak.html')
+
+
+# DATA TAGIHAN DAN TRANSAKSI BATAL
+@application.route('/tagihan-mahasiswa-batal')
+def tagihan_mahasiswabatal():
+    return render_template('after login admin/data_transaksi/data_tagihanmahasiswabatal.html')
+
+
+# LIHAT TAGIHAN MAHASISWA
+@application.route('/lihat-tagihan-mahasiswa')
+def read_tagihanmahasiswa():
+    return render_template('after login admin/data_transaksi/read_datatagihanmahasiswa.html')
 
 
 # TAMBAH TAGIHAN MAHASISWA
 @application.route('/tambah-tagihan-mahasiswa')
 def create_tagihanmahasiswa():
     return render_template('after login admin/data_transaksi/create_datatagihanmahasiswa.html')
+
+
+# EDIT TAGIHAN MAHASISWA
+@application.route('/edit-tagihan-mahasiswa')
+def update_tagihanmahasiswa():
+    return render_template('after login admin/data_transaksi/update_datatagihanmahasiswa.html')
+
+
+# HAPUS TAGIHAN MAHASISWA
+@application.route('/hapus-tagihan-mahasiswa')
+def delete_tagihanmahasiswa():
+    return redirect(url_for('tagihan_mahasiswa'))
 
 
 # MAHASISWA AREA
