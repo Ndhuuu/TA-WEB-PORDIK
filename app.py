@@ -423,5 +423,10 @@ def home_mahasiswa():
     return render_template('after login mahasiswa/dashboard/home_mahasiswa.html')
 
 
+@application.route('/test')
+def validasi_tagihan():
+    return render_template('after login admin/data_transaksi/validasi.html')
+
+
 if __name__ == '__main__':
     application.run(debug=True)

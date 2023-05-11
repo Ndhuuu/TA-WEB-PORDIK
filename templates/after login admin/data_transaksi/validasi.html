@@ -1,0 +1,52 @@
+{% extends 'after login admin/dashboard/base_admin.html' %}
+{% block title %} PORTAL AKADEMIK | TAGIHAN MAHASISWA {% endblock %}
+{% block bread %}
+<h3 class="page-title">Tagihan dan Transaksi</h3>
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+    <li class="breadcrumb-item active">Tagihan dan Transaksi</li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="datatable table table-stripped" id="myTable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>No. Transaksi</th>
+                                <th>Nama</th>
+                                <th>Jumlah</th>
+                                <th>File</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <!-- Data transaksi -->
+                        <tbody>
+                            <tr>
+                                <th>1</th>
+                                <th>Randi</th>
+                                <th>Rp 300.000</th>
+                                <th><a href="/" target="_blank">File</a></th>
+                                <th class="d-flex gap-1">
+                                    <i class="fa-solid fa-check btn btn-success"></i>
+                                    <i class="btn btn-danger fa-solid fa-trash"></i>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    $('#myTable').DataTable({
+        pagingType: 'full_numbers',
+    });
+</script>
+{% endblock %}
