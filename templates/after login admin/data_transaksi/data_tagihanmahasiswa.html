@@ -15,7 +15,9 @@
           <div class="invoices-tabs">
             <ul>
               <li>
-                <a href="/tagihan-mahasiswa" class="active"><h4>Rekap Keuangan</h4></a>
+                <a href="/tagihan-mahasiswa" class="active">
+                  <h4>Rekap Keuangan</h4>
+                </a>
               </li>
             </ul>
           </div>
@@ -25,7 +27,7 @@
             <a href="invoices-settings.html" class="invoices-settings-icon">
               <i class="fa-solid fa-gear fa-2xl"></i>
             </a>
-            <a href="/tambah-tagihan-mahasiswa" class="btn">
+            <a href="/tambah-tagihan-mahasiswa" class="btn gap-2">
               <i class="fa-solid fa-circle-plus fa-lg"></i>
               <span>Tagihan Baru</span>
             </a>
@@ -69,7 +71,7 @@
   </div>
   <div class="col-xl-3 col-sm-6 col-12">
     <div class="card inovices-card">
-      <div class="card-body py-1">
+      <div class="card-body py-0">
         <p class="inovices-all">Tagihan Belum Dibayar
         </p>
         <div class="inovices-widget-header">
@@ -118,12 +120,29 @@
             </thead>
             <!-- Data transaksi -->
             <tbody>
-              <tr>
+              <tr class="align-items-center">
                 <th>1</th>
                 <th>74734182</th>
                 <th>Randi</th>
                 <th>Rp 0</th>
                 <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                <th>
+                  <a href="#">
+                    <button type="button" class="btn btn-primary">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                  </a>
+                  <a href="#">
+                    <button type="button" class="btn btn-warning">
+                      <i class="fa-solid fa-pencil"></i>
+                    </button>
+                  </a>
+                  <a href="#">
+                    <button type="button" class="btn btn-danger">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                  </a>
+                </th>
               </tr>
               <tr>
                 <th>2</th>
@@ -131,6 +150,23 @@
                 <th>Jokowi</th>
                 <th>Rp 3.000.000.000.000</th>
                 <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+                <th>
+                  <a href="#">
+                    <button type="button" class="btn btn-primary">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                  </a>
+                  <a href="#">
+                    <button type="button" class="btn btn-warning">
+                      <i class="fa-solid fa-pencil"></i>
+                    </button>
+                  </a>
+                  <a href="#">
+                    <button type="button" class="btn btn-danger">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                  </a>
+                </th>
               </tr>
               <tr>
                 <th>2</th>
@@ -138,24 +174,24 @@
                 <th>Jokowi</th>
                 <th>Rp 3.000.000.000.000</th>
                 <th><span class="badge rounded-pill bg-warning">Dibatalkan</span></th>
-              </tr>
-              <td>
-                <a href="#">
-                  <button type="button" class="btn btn-primary">
-                    <i class="fa-solid fa-eye"></i>
-                  </button>
-                </a>
-                <a href="#">
+                <th>
+                  <a href="#">
+                    <button type="button" class="btn btn-primary">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                  </a>
+                  <a href="#">
                     <button type="button" class="btn btn-warning">
                       <i class="fa-solid fa-pencil"></i>
                     </button>
-                </a>
-                <a href="#">
+                  </a>
+                  <a href="#">
                     <button type="button" class="btn btn-danger">
-                    <i class="fa-solid fa-trash-can"></i>
+                      <i class="fa-solid fa-trash-can"></i>
                     </button>
-                </a>
-            </td>
+                  </a>
+                </th>
+              </tr>
             </tbody>
           </table>
         </div>
