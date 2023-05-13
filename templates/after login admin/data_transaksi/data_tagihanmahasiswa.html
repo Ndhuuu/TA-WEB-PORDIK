@@ -1,7 +1,6 @@
 {% extends 'after login admin/dashboard/base_admin.html' %}
 {% block title %} PORTAL AKADEMIK | TAGIHAN MAHASISWA {% endblock %}
 {% block bread %}
-<h3 class="page-title">Tagihan dan Transaksi</h3>
 <ul class="breadcrumb">
   <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
   <li class="breadcrumb-item active">Tagihan dan Transaksi</li>
@@ -16,7 +15,7 @@
           <div class="invoices-tabs">
             <ul>
               <li>
-                <a href="/tagihan-mahasiswa" class="active">Semua Tagihan</a>
+                <a href="/tagihan-mahasiswa" class="active"><h4>Rekap Keuangan</h4></a>
               </li>
             </ul>
           </div>
@@ -40,8 +39,7 @@
   <div class="col-xl-3 col-sm-6 col-12">
     <div class="card inovices-card">
       <div class="card-body py-0">
-        <p class="inovices-all">Semua Tagihan
-        </p>
+        <p class="inovices-all">Semua Tagihan</p>
         <div class="inovices-widget-header">
           <span class="inovices-widget-icon">
             <img src="static/img/icon/invoices-icon1.svg" alt="">
@@ -82,7 +80,6 @@
             <div class="inovices-amount fs-1">30</div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -99,7 +96,6 @@
             <div class="inovices-amount fs-1">30</div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -113,10 +109,11 @@
             <thead class="thead-light">
               <tr>
                 <th>No. Transaksi</th>
-                <th>NIM</th>
+                <th>Username</th>
                 <th>Nama</th>
                 <th>Tunggakan</th>
                 <th>Status</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <!-- Data transaksi -->
@@ -140,169 +137,25 @@
                 <th>74734182</th>
                 <th>Jokowi</th>
                 <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
+                <th><span class="badge rounded-pill bg-warning">Dibatalkan</span></th>
               </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
-              <tr>
-                <th>2</th>
-                <th>74734182</th>
-                <th>Jokowi</th>
-                <th>Rp 3.000.000.000.000</th>
-                <th><span class="badge rounded-pill bg-danger">Nunggak</span></th>
-              </tr>
+              <td>
+                <a href="#">
+                  <button type="button" class="btn btn-primary">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-warning">
+                      <i class="fa-solid fa-pencil"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-danger">
+                    <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </a>
+            </td>
             </tbody>
           </table>
         </div>

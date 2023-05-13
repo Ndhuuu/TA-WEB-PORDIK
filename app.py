@@ -374,24 +374,6 @@ def tagihan_mahasiswa():
     return render_template('after login admin/data_transaksi/data_tagihanmahasiswa.html')
 
 
-# DATA TAGIHAN DAN TRANSAKSI LUNAS
-@application.route('/tagihan-mahasiswa-lunas')
-def tagihan_mahasiswalunas():
-    return render_template('after login admin/data_transaksi/data_tagihanmahasiswalunas.html')
-
-
-# DATA TAGIHAN DAN TRANSAKSI MENUNGGAK
-@application.route('/tagihan-mahasiswa-menunggak')
-def tagihan_mahasiswamenunggak():
-    return render_template('after login admin/data_transaksi/data_tagihanmahasiswamenunggak.html')
-
-
-# DATA TAGIHAN DAN TRANSAKSI BATAL
-@application.route('/tagihan-mahasiswa-batal')
-def tagihan_mahasiswabatal():
-    return render_template('after login admin/data_transaksi/data_tagihanmahasiswabatal.html')
-
-
 # LIHAT TAGIHAN MAHASISWA
 @application.route('/lihat-tagihan-mahasiswa')
 def read_tagihanmahasiswa():
@@ -416,16 +398,16 @@ def delete_tagihanmahasiswa():
     return redirect(url_for('tagihan_mahasiswa'))
 
 
+@application.route('/validasi-bukti-bayar')
+def validasi_tagihan():
+    return render_template('after login admin/data_transaksi/validasi.html')
+
+
 # MAHASISWA AREA
 @application.route('/mahasiswa')
 @login_required(2)
 def home_mahasiswa():
     return render_template('after login mahasiswa/dashboard/home_mahasiswa.html')
-
-
-@application.route('/test')
-def validasi_tagihan():
-    return render_template('after login admin/data_transaksi/validasi.html')
 
 
 if __name__ == '__main__':
