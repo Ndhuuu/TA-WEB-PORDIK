@@ -8,7 +8,7 @@
 </ul>
 {% endblock %}
 {% block content %}
-<form action="{{ url_for('update_process_mahasiswa') }}" method="post">
+<form action="{{ url_for('update_process_mahasiswa') }}" method="post" enctype="multipart/form-data">
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Edit Data Mahasiswa</h5>
@@ -100,13 +100,13 @@
                 </div>
             </div>
             <!-- Foto -->
-            <!-- <div class="form-group row">
+            <div class="form-group row">
                 <label class="col-form-label col-md-2">Foto</label>
                 <div class="col-md-10">
-                    <input type="file" name="foto" class="form-control-file">
+                    <input type="file" name="foto" accept=".jpg, .jpeg, .png" class="form-control-file">
                     <small class="form-text text-muted">Format file harus .jpg, .jpeg, atau .png</small>
                 </div>
-            </div> -->
+            </div>
             <!-- Role -->
             <div class="form-group row">
                 <label class="col-form-label col-md-2">Role</label>

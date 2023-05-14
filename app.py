@@ -136,14 +136,13 @@ def create_mahasiswa():
         alamat = request.form['alamat']
         no_telepon = request.form['no_telepon']
         email = request.form['email']
-        # foto = request.form['foto']
+        foto = request.form['foto']
         role_id = request.form['role_id']
         if role_id == 'mahasiswa':
             role_id = 2
-        data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
-                     jenis_kelamin, agama, alamat, no_telepon, email, role_id)
+        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id)
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO tb_datamahasiswa (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
+        cur.execute("INSERT INTO tb_datamahasiswa (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
         mysql.connection.commit()
         cur.close()
         return redirect(url_for('read_mahasiswa'))
@@ -156,7 +155,7 @@ def create_mahasiswa():
 @login_required(1)
 def update_mahasiswa(id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id FROM tb_datamahasiswa WHERE id='%s'" % id)
+    cur.execute("SELECT id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id FROM tb_datamahasiswa WHERE id='%s'" % id)
     data_user = cur.fetchone()
     return render_template('after login admin/data_master/update_datamahasiswa.html', data_user=data_user)
 
@@ -176,14 +175,13 @@ def update_process_mahasiswa():
     alamat = request.form['alamat']
     no_telepon = request.form['no_telepon']
     email = request.form['email']
-    # foto = request.form['foto']
+    foto = request.form['foto']
     role_id = request.form['role_id']
     if role_id == 'mahasiswa':
         role_id = 2
-    data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
-                 jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
+    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id, id)
     cur = mysql.connection.cursor()
-    cur.execute("UPDATE tb_datamahasiswa SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', role_id='%s' WHERE id=%s" % data_user)
+    cur.execute("UPDATE tb_datamahasiswa SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', foto='%s', role_id='%s' WHERE id=%s" % data_user)
     mysql.connection.commit()
     cur.close()
     return redirect(url_for('read_mahasiswa'))
@@ -231,8 +229,7 @@ def create_admin():
         role_id = request.form['role_id']
         if role_id == 'admin':
             role_id = 1
-        data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
-                     jenis_kelamin, agama, alamat, no_telepon, email, role_id)
+        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
         mysql.connection.commit()
@@ -271,8 +268,7 @@ def update_process_admin():
     role_id = request.form['role_id']
     if role_id == 'admin':
         role_id = 1
-    data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
-                 jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
+    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
     cur = mysql.connection.cursor()
     cur.execute("UPDATE tb_dataadmin SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', role_id='%s' WHERE id=%s" % data_user)
     mysql.connection.commit()
@@ -323,7 +319,7 @@ def edit_data_diri_admin():
 # EDIT PASSWORD ADMIN
 @application.route('/edit-password-admin', methods=['GET', 'POST'])
 @login_required(1)
-def change_password():
+def edit_password_admin():
     if request.method == 'POST':
         password_lama = request.form['password_lama']
         password_baru = request.form['password_baru']
@@ -408,6 +404,82 @@ def validasi_tagihan():
 @login_required(2)
 def home_mahasiswa():
     return render_template('after login mahasiswa/dashboard/home_mahasiswa.html')
+
+
+# DATA PROFIL MAHASISWA
+@application.route('/profil-mahasiswa')
+@login_required(2)
+def profil_mahasiswa():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM tb_datamahasiswa WHERE id=%s", (session['id'],))
+    profil_mahasiswa = cur.fetchone()
+    cur.close()
+    return render_template('after login mahasiswa/profil_mahasiswa/data_profilmahasiswa.html', profil_mahasiswa=profil_mahasiswa)
+
+
+# EDIT DATA DIRI MAHASISWA
+@application.route('/edit-data-diri-mahasiswa', methods=['GET', 'POST'])
+@login_required(2)
+def edit_data_diri_mahasiswa():
+    if request.method == 'POST':
+        agama = request.form['agama']
+        no_telepon = request.form['no_telepon']
+        email = request.form['email']
+        alamat = request.form['alamat']
+        data_diri = (agama, no_telepon, email, alamat, session['id'])
+        cur = mysql.connection.cursor()
+        cur.execute(
+            "UPDATE tb_datamahasiswa SET agama='%s', no_telepon='%s', email='%s', alamat='%s' WHERE id=%s", (data_diri))
+        mysql.connection.commit()
+        cur.close()
+        return redirect(url_for('profil_mahasiswa'))
+
+
+# EDIT PASSWORD ADMIN
+@application.route('/edit-password-mahasiswa', methods=['GET', 'POST'])
+@login_required(2)
+def edit_password_mahasiswa():
+    if request.method == 'POST':
+        password_lama = request.form['password_lama']
+        password_baru = request.form['password_baru']
+        ulangi_password_baru = request.form['ulangi_password_baru']
+
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT password FROM tb_datamahasiswa WHERE id=%s",
+                    (session['id'],))
+        user_password = cur.fetchone()[0]
+        cur.close()
+
+        # Validasi password lama
+        if not check_password_hash(user_password, password_lama):
+            error = flash(f'Password lama tidak cocok', 'danger')
+            return redirect(url_for('profil_mahasiswa', _anchor='password_tab', error=error))
+
+        # Validasi password baru dan ulangi password
+        if password_baru != ulangi_password_baru:
+            error = flash(
+                f'Password baru dan ulangi password tidak cocok!', 'danger')
+            return redirect(url_for('profil_mahasiswa', _anchor='password_tab', error=error))
+
+        # Validasi syarat password
+        if not (any(c.isupper() for c in password_baru) and any(c.isdigit() for c in password_baru) and any(not c.isalnum() for c in password_baru)):
+            error = flash(
+                f'Password harus terdiri dari huruf kapital, angka, dan simbol!', 'warning')
+            return redirect(url_for('profil_mahasiswa', _anchor='password_tab', error=error))
+
+        # Jika semua validasi berhasil, lakukan perubahan password
+        hashed_password_baru = generate_password_hash(
+            password_baru, method='pbkdf2:sha256', salt_length=16)
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE tb_datamahasiswa SET password=%s WHERE id=%s",
+                    (hashed_password_baru, session['id']))
+        mysql.connection.commit()
+        cur.close()
+        flash(f'Password anda berhasil diganti!', 'success')
+        return redirect(url_for('profil_mahasiswa'))
+
+    else:
+        return redirect(url_for('profil_mahasiswa'))
 
 
 if __name__ == '__main__':
