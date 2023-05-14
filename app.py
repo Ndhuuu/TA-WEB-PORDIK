@@ -1,17 +1,22 @@
 from flask import Flask, render_template, request, redirect, url_for, session, abort
+import os
 from flask import flash
 from flask_mysqldb import MySQL
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 
 application = Flask(__name__)
 application.secret_key = 'portalakademik'
 
-application.config['UPLOAD_FOLDER'] = 'uploads'
+UPLOAD_FOLDER = 'static/img/foto'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
 application.config['MYSQL_HOST'] = 'localhost'
 application.config['MYSQL_USER'] = 'root'
 application.config['MYSQL_PASSWORD'] = ''
 application.config['MYSQL_DB'] = 'db_pordik'
+application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 mysql = MySQL(application)
 
@@ -65,6 +70,11 @@ def keluar():
 @application.route('/lupa-password')
 def lupa_password():
     return render_template('before login/lupa_password.html')
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 # RESTRICTION PAGE AREA
@@ -137,10 +147,23 @@ def create_mahasiswa():
         alamat = request.form['alamat']
         no_telepon = request.form['no_telepon']
         email = request.form['email']
-        foto = request.form['foto']
         role_id = request.form['role_id']
+        # Mengubah role_id string menjadi integer
         if role_id == 'mahasiswa':
             role_id = 2
+        # check if the post request has the file part
+        if 'foto' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        foto = request.files['foto']
+        # If the user does not select a file, the browser submits an empty file without a filename.
+        if foto.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if foto and allowed_file(foto.filename):
+            filename = secure_filename(foto.filename)
+            foto.save(os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
+            return redirect(url_for('download_file', name=filename))
         data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO tb_datamahasiswa (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
@@ -176,10 +199,25 @@ def update_process_mahasiswa():
     alamat = request.form['alamat']
     no_telepon = request.form['no_telepon']
     email = request.form['email']
-    foto = request.form['foto']
+    foto = request.files['foto']
     role_id = request.form['role_id']
     if role_id == 'mahasiswa':
         role_id = 2
+    else:
+        None
+    # check if the post request has the file part
+    if 'foto' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    foto = request.files['foto']
+    # If the user does not select a file, the browser submits an empty file without a filename.
+    if foto.filename == '':
+        flash('No selected file')
+        return redirect(request.url)
+    if foto and allowed_file(foto.filename):
+        filename = secure_filename(foto.filename)
+        foto.save(os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
+        return redirect(url_for('download_file', name=filename))
     data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id, id)
     cur = mysql.connection.cursor()
     cur.execute("UPDATE tb_datamahasiswa SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', foto='%s', role_id='%s' WHERE id=%s" % data_user)
