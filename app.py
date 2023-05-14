@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 application = Flask(__name__)
 application.secret_key = 'portalakademik'
 
+application.config['UPLOAD_FOLDER'] = 'uploads'
 application.config['MYSQL_HOST'] = 'localhost'
 application.config['MYSQL_USER'] = 'root'
 application.config['MYSQL_PASSWORD'] = ''
@@ -309,8 +310,7 @@ def edit_data_diri_admin():
         alamat = request.form['alamat']
         data_diri = (agama, no_telepon, email, alamat, session['id'])
         cur = mysql.connection.cursor()
-        cur.execute(
-            "UPDATE tb_dataadmin SET agama='%s', no_telepon='%s', email='%s', alamat='%s' WHERE id=%s", (data_diri))
+        cur.execute("UPDATE tb_dataadmin SET agama=%s, no_telepon=%s, email=%s, alamat=%s WHERE id=%s", (data_diri))
         mysql.connection.commit()
         cur.close()
         return redirect(url_for('profil_admin'))
@@ -428,8 +428,7 @@ def edit_data_diri_mahasiswa():
         alamat = request.form['alamat']
         data_diri = (agama, no_telepon, email, alamat, session['id'])
         cur = mysql.connection.cursor()
-        cur.execute(
-            "UPDATE tb_datamahasiswa SET agama='%s', no_telepon='%s', email='%s', alamat='%s' WHERE id=%s", (data_diri))
+        cur.execute("UPDATE tb_datamahasiswa SET agama=%s, no_telepon=%s, email=%s, alamat=%s WHERE id=%s", (data_diri))
         mysql.connection.commit()
         cur.close()
         return redirect(url_for('profil_mahasiswa'))
