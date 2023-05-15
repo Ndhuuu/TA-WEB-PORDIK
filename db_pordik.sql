@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2023 at 11:27 AM
+-- Generation Time: May 15, 2023 at 05:19 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,7 +39,7 @@ CREATE TABLE `tb_dataadmin` (
   `alamat` varchar(255) NOT NULL,
   `no_telepon` varchar(15) NOT NULL,
   `email` varchar(20) NOT NULL,
-  `foto` longblob DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -48,9 +48,9 @@ CREATE TABLE `tb_dataadmin` (
 --
 
 INSERT INTO `tb_dataadmin` (`id`, `username`, `password`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `alamat`, `no_telepon`, `email`, `foto`, `role_id`) VALUES
-(8, 'admin1', 'pbkdf2:sha256:260000$0XUGKJsKJ5QuYKjR$88219c8c4ef7bda1489b4c1c875f63bffd3f4a865e2bf9beb6f643cfc93dd0b4', 'Ferdy Sambo', 'Barru', '1973-02-09', 'Laki-laki', 'Islam', 'Jakarta', '0895', 'sambocs@gmail.com', NULL, 1),
+(8, 'admin1', 'pbkdf2:sha256:260000$4hL0mUpj6KahYk9u$ea8c3f269d8c24025c9eb1eef71e53b2311ce3bf1616a62cf532033a3a5b66cf', 'Ferdy Sambo', 'Barru', '1973-02-09', 'Laki-laki', 'Kristen', 'Jakarta Timur, DKI Jakarta', '089652532796', 'sambocs@gmail.com', NULL, 1),
 (9, 'admin2', 'pbkdf2:sha256:260000$1kT5XLlYmVW8Ml5y$66c6fa52aaaeab64118605be4b558f38d096bef660102ca162fde719646fd6c5', 'Teddy Minahasa', 'Manado', '1970-11-23', 'Laki-laki', 'Kristen', 'Sulawesi', '0895', 'teddycs@gmail.com', NULL, 1),
-(10, 'admin3', 'pbkdf2:sha256:260000$VtAqND69yZjKuv2Q$7f928323e0e80058ca3f8ac533f4ca545471547b6f03ff576e843ff2d1866b30', 'Tjahjo Kumolo', 'Papua', '2023-04-21', 'Laki-laki', 'Islam', 'Papua', '0895', 'ndhu0612@gmail.com', NULL, 1);
+(10, 'admin3', 'pbkdf2:sha256:260000$f61hB0NO2wix9Vzy$65b47a2798c32efb085e7f22c4c6669abfc2bf5cd5db19c8646dadc9708310b5', 'Puan Maharani', 'Jakarta', '1973-09-06', 'Perempuan', 'Islam', 'Jakarta', '0895', 'puancs@gmail.com', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,7 @@ CREATE TABLE `tb_datamahasiswa` (
   `alamat` varchar(255) NOT NULL,
   `no_telepon` varchar(15) NOT NULL,
   `email` varchar(20) NOT NULL,
-  `foto` longblob DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -79,8 +79,9 @@ CREATE TABLE `tb_datamahasiswa` (
 --
 
 INSERT INTO `tb_datamahasiswa` (`id`, `username`, `password`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `alamat`, `no_telepon`, `email`, `foto`, `role_id`) VALUES
-(1, '212103032', 'mahasiswa', 'Muhammad Randu Diva', 'Sleman', '2001-12-06', 'Laki-Laki', 'Islam', 'Sleman', '089652532796', 'ndhu2001@gmail.com', NULL, 2),
-(2, '212103035', 'mahasiswa', 'Rakhmat Mukti Wibowo', 'Kebumen', '1945-12-01', 'Laki-Laki', 'Islam', 'Kebumen', '085157780118', 'rakhmatcs@gmail.com', NULL, 2);
+(1, '212103032', 'pbkdf2:sha256:260000$i1F03SvoktbmDgcu$396fe48dd7aee055ae0fa50a36a9123b67ffc9f57850faafa76165bdf1738b1c', 'Muhammad Randu Diva', 'Sleman', '2001-12-06', 'Laki-laki', 'Islam', 'Sleman', '089652532796', 'ndhu2001@gmail.com', 'static/img/fotoFerdy_Sambo.png', 2),
+(2, '212103035', 'pbkdf2:sha256:260000$5SIXFlDM2JZVGdFl$91a40454476c2ffffab1225c0c1b5a2af9ef4c276baebedab5720dd4dc1ec873', 'Rakhmat Mukti Wibowo', 'Kebumen', '1945-12-01', 'Laki-laki', 'Islam', 'Kebumen', '085157780118', 'rakhmatcs@gmail.com', '', 2),
+(3, '111111111', 'pbkdf2:sha256:260000$Cm2QdXUZ4s0dxFVw$b76c043fd9f0683177f40dbfa5c973ed63e221845d2fcb34b0df00d9d212bebf', 'Agung Hapsah', 'Solo', '2023-04-27', 'Laki-laki', 'Islam', 'Solo', '0895', 'agungcs@gmail.com', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -139,7 +140,7 @@ ALTER TABLE `tb_dataadmin`
 -- AUTO_INCREMENT for table `tb_datamahasiswa`
 --
 ALTER TABLE `tb_datamahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

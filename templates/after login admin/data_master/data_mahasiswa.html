@@ -47,16 +47,23 @@
                         <td>{{ mahasiswa[6] }}</td>
                         <td>{{ mahasiswa[7] }}</td>
                         <td>{{ mahasiswa[8] }}</td>
-                        <td>{{ mahasiswa[9] }}</td>
+                        <td>
+                            {% if mahasiswa[9] %}
+                                <img src="{{ url_for('static', filename='img/foto/' + mahasiswa[9].replace('\\', '/')) }}" alt="Foto" width="100px">
+                                <a href="{{ url_for('static', filename='img/foto/' + mahasiswa[9].replace('\\', '/')) }}" target="_blank">File</a>
+                            {% else %}
+                                <p>Tidak ada foto</p>
+                            {% endif %}
+                        </td>
                         <td>
                             <a href="{{ url_for('update_mahasiswa', id=mahasiswa[0]) }}">
                                 <button type="button" class="btn btn-warning">
-                                <i class="fa-solid fa-pencil"></i>
+                                    <i class="fa-solid fa-pencil"></i>
                                 </button>
                             </a>
                             <a href="{{ url_for('delete_mahasiswa', id=mahasiswa[0]) }}">
                                 <button type="button" class="btn btn-danger">
-                                <i class="fa-solid fa-trash-can"></i>
+                                    <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             </a>
                         </td>

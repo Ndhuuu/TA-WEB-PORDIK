@@ -125,7 +125,7 @@ def home_admin():
 @login_required(1)
 def read_mahasiswa():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT id, username, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_datamahasiswa")
+    cur.execute("SELECT id, username, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email, foto FROM tb_datamahasiswa")
     data_mahasiswa = cur.fetchall()
     cur.close()
     return render_template('after login admin/data_master/data_mahasiswa.html', data_mahasiswa=data_mahasiswa)
@@ -163,7 +163,7 @@ def create_mahasiswa():
         if foto and allowed_file(foto.filename):
             filename = secure_filename(foto.filename)
             foto.save(os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
-            return redirect(url_for('download_file', name=filename))
+            return redirect(url_for('read_mahasiswa', name=filename))
         data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO tb_datamahasiswa (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
@@ -208,22 +208,22 @@ def update_process_mahasiswa():
     # check if the post request has the file part
     if 'foto' not in request.files:
         flash('No file part')
-        return redirect(request.url)
+        return redirect('update_mahasiswa')
     foto = request.files['foto']
     # If the user does not select a file, the browser submits an empty file without a filename.
     if foto.filename == '':
         flash('No selected file')
-        return redirect(request.url)
+        return redirect('update_mahasiswa')
     if foto and allowed_file(foto.filename):
         filename = secure_filename(foto.filename)
         foto.save(os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
-        return redirect(url_for('download_file', name=filename))
-    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id, id)
-    cur = mysql.connection.cursor()
-    cur.execute("UPDATE tb_datamahasiswa SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', foto='%s', role_id='%s' WHERE id=%s" % data_user)
-    mysql.connection.commit()
-    cur.close()
-    return redirect(url_for('read_mahasiswa'))
+        file_path = os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/'))
+        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, file_path, role_id, id)
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE tb_datamahasiswa SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', foto='%s', role_id='%s' WHERE id=%s" % data_user)
+        mysql.connection.commit()
+        cur.close()
+        return redirect(url_for('read_mahasiswa'))
 
 
 # HAPUS DATA MAHASISWA
