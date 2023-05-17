@@ -207,18 +207,17 @@ def update_process_mahasiswa():
         None
     # check if the post request has the file part
     if 'foto' not in request.files:
-        flash('No file part')
-        return redirect('update_mahasiswa')
+        flash(f'Anda mengunggah jenis file yang salah!', 'danger')
+        return redirect(url_for('update_mahasiswa', id=id))
     foto = request.files['foto']
     # If the user does not select a file, the browser submits an empty file without a filename.
     if foto.filename == '':
-        flash('No selected file')
-        return redirect('update_mahasiswa')
+        flash(f'Anda belum mengunggah file apapun', 'warning')
+        return redirect(url_for('update_mahasiswa', id=id))
     if foto and allowed_file(foto.filename):
         filename = secure_filename(foto.filename)
         foto.save(os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
-        file_path = os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/'))
-        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, file_path, role_id, id)
+        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id, id)
         cur = mysql.connection.cursor()
         cur.execute("UPDATE tb_datamahasiswa SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', foto='%s', role_id='%s' WHERE id=%s" % data_user)
         mysql.connection.commit()
