@@ -49,7 +49,7 @@
                         <td>{{ mahasiswa[8] }}</td>
                         <td>
                             {% if mahasiswa[9] %}
-                                <a href="{{ url_for('static', filename='img/foto/' + mahasiswa[9].replace('\\', '/')) }}" target="_blank">File</a>
+                                <a href="{{ url_for('static', filename='img/foto/' + mahasiswa[9].replace('\\', '/')) }}" target="_blank">Tampilkan foto</a>
                             {% else %}
                                 <p>Tidak ada foto</p>
                             {% endif %}

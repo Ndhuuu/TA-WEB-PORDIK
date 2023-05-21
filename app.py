@@ -151,20 +151,15 @@ def create_mahasiswa():
         # Mengubah role_id string menjadi integer
         if role_id == 'mahasiswa':
             role_id = 2
-        # check if the post request has the file part
+        # Periksa apakah permintaan POST memiliki bagian file yang benar
         if 'foto' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
+            flash(f'Anda mengunggah jenis file yang salah!', 'danger')
+            return redirect(url_for('create_mahasiswa'))
         foto = request.files['foto']
-        # If the user does not select a file, the browser submits an empty file without a filename.
-        if foto.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
         if foto and allowed_file(foto.filename):
             filename = secure_filename(foto.filename)
             foto.save(os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
-            return redirect(url_for('read_mahasiswa', name=filename))
-        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id)
+        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO tb_datamahasiswa (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
         mysql.connection.commit()
@@ -201,28 +196,32 @@ def update_process_mahasiswa():
     email = request.form['email']
     foto = request.files['foto']
     role_id = request.form['role_id']
+    # Mengubah role_id string menjadi integer
     if role_id == 'mahasiswa':
         role_id = 2
     else:
         None
-    # check if the post request has the file part
+    # Periksa apakah permintaan POST memiliki bagian file yang benar
     if 'foto' not in request.files:
         flash(f'Anda mengunggah jenis file yang salah!', 'danger')
         return redirect(url_for('update_mahasiswa', id=id))
     foto = request.files['foto']
-    # If the user does not select a file, the browser submits an empty file without a filename.
-    if foto.filename == '':
-        flash(f'Anda belum mengunggah file apapun', 'warning')
-        return redirect(url_for('update_mahasiswa', id=id))
+    # Periksa apakah permintaan POST memiliki value input foto
     if foto and allowed_file(foto.filename):
         filename = secure_filename(foto.filename)
         foto.save(os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
         data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id, id)
         cur = mysql.connection.cursor()
-        cur.execute("UPDATE tb_datamahasiswa SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', foto='%s', role_id='%s' WHERE id=%s" % data_user)
+        cur.execute("UPDATE tb_datamahasiswa SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, foto=%s, role_id=%s WHERE id=%s", data_user)
         mysql.connection.commit()
         cur.close()
-        return redirect(url_for('read_mahasiswa'))
+    else:
+        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE tb_datamahasiswa SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, role_id=%s WHERE id=%s", data_user)
+        mysql.connection.commit()
+        cur.close()
+    return redirect(url_for('read_mahasiswa'))
 
 
 # HAPUS DATA MAHASISWA
