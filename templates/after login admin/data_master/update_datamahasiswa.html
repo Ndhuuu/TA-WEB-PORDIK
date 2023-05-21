@@ -116,6 +116,13 @@ style="text-align: center;">
                 <div class="col-md-10">
                     <input type="file" name="foto" accept=".jpg, .jpeg, .png" class="form-control-file">
                     <small class="form-text text-muted">Format file harus .jpg, .jpeg, atau .png</small>
+                    <div>
+                        {% if data_user[11] %}
+                            <img src="{{ url_for('static', filename='img/foto/' + data_user[11]) }}" alt="Foto Mahasiswa" class="uploaded-photo">
+                        {% else %}
+                            <span class="no-file-selected">Tidak ada file dipilih</span>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             <!-- Role -->

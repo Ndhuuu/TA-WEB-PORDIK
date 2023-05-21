@@ -151,14 +151,12 @@ def create_mahasiswa():
         # Mengubah role_id string menjadi integer
         if role_id == 'mahasiswa':
             role_id = 2
-        # Periksa apakah permintaan POST memiliki bagian file yang benar
-        if 'foto' not in request.files:
-            flash(f'Anda mengunggah jenis file yang salah!', 'danger')
-            return redirect(url_for('create_mahasiswa'))
         foto = request.files['foto']
         if foto and allowed_file(foto.filename):
             filename = secure_filename(foto.filename)
             foto.save(os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
+        else:
+            filename = ''  # Set filename menjadi string kosong jika tidak ada file foto yang diunggah
         data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO tb_datamahasiswa (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
@@ -194,33 +192,30 @@ def update_process_mahasiswa():
     alamat = request.form['alamat']
     no_telepon = request.form['no_telepon']
     email = request.form['email']
-    foto = request.files['foto']
     role_id = request.form['role_id']
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id FROM tb_datamahasiswa WHERE id='%s'" % id)
+    data_user = cur.fetchone()
     # Mengubah role_id string menjadi integer
     if role_id == 'mahasiswa':
         role_id = 2
     else:
         None
-    # Periksa apakah permintaan POST memiliki bagian file yang benar
-    if 'foto' not in request.files:
-        flash(f'Anda mengunggah jenis file yang salah!', 'danger')
-        return redirect(url_for('update_mahasiswa', id=id))
     foto = request.files['foto']
     # Periksa apakah permintaan POST memiliki value input foto
-    if foto and allowed_file(foto.filename):
+    if foto and foto.filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS:
         filename = secure_filename(foto.filename)
         foto.save(os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
-        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id, id)
-        cur = mysql.connection.cursor()
-        cur.execute("UPDATE tb_datamahasiswa SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, foto=%s, role_id=%s WHERE id=%s", data_user)
-        mysql.connection.commit()
-        cur.close()
     else:
-        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
-        cur = mysql.connection.cursor()
-        cur.execute("UPDATE tb_datamahasiswa SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, role_id=%s WHERE id=%s", data_user)
-        mysql.connection.commit()
-        cur.close()
+        filename = data_user[11]  # Ambil nama file foto dari data user yang ada di database
+    data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id, id)
+    # Periksa apakah ekstensi file tidak sesuai
+    if foto and '.' in foto.filename and foto.filename.rsplit('.', 1)[1].lower() not in ALLOWED_EXTENSIONS:
+        flash('Anda mengunggah jenis file yang salah!', 'danger')
+        return redirect(url_for('update_mahasiswa', id=id))
+    cur.execute("UPDATE tb_datamahasiswa SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, foto=%s, role_id=%s WHERE id=%s", data_user)
+    mysql.connection.commit()
+    cur.close()
     return redirect(url_for('read_mahasiswa'))
 
 
