@@ -1,0 +1,17 @@
+{% extends 'after login mahasiswa/dashboard/base_mahasiswa.html' %}
+{% block title %} PORTAL AKADEMIK | TAGIHAN MAHASISWA {% endblock %}
+{% block bread %}
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/mahasiswa">Dashboard</a></li>
+    <li class="breadcrumb-item active">Upload</li>
+</ul>
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block script %}
+<script>
+    $('#myTable').DataTable({
+        pagingType: 'full_numbers',
+    });
+</script>
+{% endblock %}

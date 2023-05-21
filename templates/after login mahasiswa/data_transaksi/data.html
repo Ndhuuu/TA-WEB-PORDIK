@@ -1,0 +1,548 @@
+{% extends 'after login mahasiswa/dashboard/base_mahasiswa.html' %}
+{% block title %} PORTAL AKADEMIK | TAGIHAN MAHASISWA {% endblock %}
+{% block bread %}
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/mahasiswa">Dashboard</a></li>
+    <li class="breadcrumb-item active">Tagihan dan Transaksi</li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="card invoices-tabs-card border-0">
+    <div class="card-body card-body pt-0 pb-0">
+        <div class="invoices-main-tabs">
+            <div class="row align-items-center">
+                <div class="col-lg-8 col-md-8">
+                    <div class="invoices-tabs">
+                        <ul>
+                            <li>
+                                <a href="/tagihan-mahasiswa" class="active">
+                                    <h4>Rekap Keuangan</h4>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card inovices-card">
+            <div class="card-body py-0">
+                <p class="inovices-all">Semua Tagihan</p>
+                <div class="inovices-widget-header">
+                    <span class="inovices-widget-icon">
+                        <img src="static/img/icon/invoices-icon1.svg" alt="">
+                    </span>
+                    <div class="inovices-dash-count">
+                        <div class="inovices-amount fs-1">50</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card inovices-card">
+            <div class="card-body py-0">
+                <p class="inovices-all">Tagihan Dibayar
+                </p>
+                <div class="inovices-widget-header">
+                    <span class="inovices-widget-icon">
+                        <img src="static/img/icon/invoices-icon2.svg" alt="">
+                    </span>
+                    <div class="inovices-dash-count">
+                        <div class="inovices-amount fs-1">50</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card inovices-card">
+            <div class="card-body py-0">
+                <p class="inovices-all">Tagihan Belum Dibayar
+                </p>
+                <div class="inovices-widget-header">
+                    <span class="inovices-widget-icon">
+                        <img src="static/img/icon/invoices-icon3.svg" alt="">
+                    </span>
+                    <div class="inovices-dash-count">
+                        <div class="inovices-amount fs-1">30</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="datatable table table-stripped" id="myTable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>No. Transaksi</th>
+                                <th>Tunggakan</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <!-- Data transaksi -->
+                        <tbody>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr class="align-items-center">
+                                <th>1</th>
+                                <th>Rp 0</th>
+                                <th><span class="badge rounded-pill bg-success">Lunas</span></th>
+                                <th>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </a>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    $('#myTable').DataTable({
+        pagingType: 'full_numbers',
+    });
+</script>
+{% endblock %}
