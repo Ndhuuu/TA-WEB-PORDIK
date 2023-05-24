@@ -346,25 +346,6 @@ def edit_foto_profil_admin():
         data_user = (foto, session['id'])
         cur = mysql.connection.cursor()
 
-    # check if the post request has the file part
-    # if 'foto' not in request.files:
-    #     flash(f'Anda mengunggah jenis file yang salah!', 'danger')
-    #     return redirect(url_for('update_mahasiswa', id=id))
-    # foto = request.files['foto']
-    # If the user does not select a file, the browser submits an empty file without a filename.
-    # if foto.filename == '':
-    #     flash(f'Anda belum mengunggah file apapun', 'warning')
-    #     return redirect(url_for('update_mahasiswa', id=id))
-    # if foto and allowed_file(foto.filename):
-    #     filename = secure_filename(foto.filename)
-    #     foto.save(os.path.join(application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
-    #     data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id, id)
-    #     cur = mysql.connection.cursor()
-    #     cur.execute("UPDATE tb_datamahasiswa SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', foto='%s', role_id='%s' WHERE id=%s" % data_user)
-    #     mysql.connection.commit()
-    #     cur.close()
-    #     return redirect(url_for('read_mahasiswa'))
-
 
 # EDIT DATA DIRI ADMIN
 @application.route('/edit-data-diri-admin', methods=['GET', 'POST'])
@@ -438,12 +419,6 @@ def tagihan_mahasiswa():
     return render_template('after login admin/data_transaksi/data_tagihanmahasiswa.html')
 
 
-# LIHAT TAGIHAN MAHASISWA
-@application.route('/lihat-tagihan-mahasiswa')
-def read_tagihanmahasiswa():
-    return render_template('after login admin/data_transaksi/read_datatagihanmahasiswa.html')
-
-
 # TAMBAH TAGIHAN MAHASISWA
 @application.route('/tambah-tagihan-mahasiswa')
 def create_tagihanmahasiswa():
@@ -503,7 +478,7 @@ def edit_data_diri_mahasiswa():
         return redirect(url_for('profil_mahasiswa'))
 
 
-# EDIT PASSWORD ADMIN
+# EDIT PASSWORD MAHASISWA
 @application.route('/edit-password-mahasiswa', methods=['GET', 'POST'])
 @login_required(2)
 def edit_password_mahasiswa():
@@ -549,12 +524,20 @@ def edit_password_mahasiswa():
     else:
         return redirect(url_for('profil_mahasiswa'))
 
-# Test Area
+# TAGIHAN SAYA
+@application.route('/tagihan-saya')
+def tagihan_saya():
+    return render_template('after login mahasiswa/data_transaksi/data_tagihanmahasiswa.html')
 
 
-@application.route('/test')
-def test():
-    return render_template('after login mahasiswa/data_transaksi/upload.html')
+# UPLOAD BUKTI BAYAR
+@application.route('/unggah-bukti-bayar')
+def unggah_bukti_bayar():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM tb_datamahasiswa WHERE id=%s", (session['id'],))
+    data_mahasiswa = cur.fetchall()
+    cur.close()
+    return render_template('after login mahasiswa/data_transaksi/bukti_bayar.html', data_mahasiswa=data_mahasiswa)
 
 
 if __name__ == '__main__':
