@@ -151,6 +151,8 @@ def create_mahasiswa():
         # Mengubah role_id string menjadi integer
         if role_id == 'mahasiswa':
             role_id = 2
+        else:
+            None
         foto = request.files['foto']
         if foto and allowed_file(foto.filename):
             filename = secure_filename(foto.filename)
@@ -158,8 +160,7 @@ def create_mahasiswa():
                 application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
         else:
             filename = ''  # Set filename menjadi string kosong jika tidak ada file foto yang diunggah
-        data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
-                     jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id)
+        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO tb_datamahasiswa (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
         mysql.connection.commit()
@@ -213,7 +214,7 @@ def update_process_mahasiswa():
         # Ambil nama file foto dari data user yang ada di database
         filename = data_user[11]
     data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
-                 jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id, id)
+                jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id, id)
     # Periksa apakah ekstensi file tidak sesuai
     if foto and '.' in foto.filename and foto.filename.rsplit('.', 1)[1].lower() not in ALLOWED_EXTENSIONS:
         flash('Anda mengunggah jenis file yang salah!', 'danger')
@@ -262,14 +263,22 @@ def create_admin():
         alamat = request.form['alamat']
         no_telepon = request.form['no_telepon']
         email = request.form['email']
-        # foto = request.form['foto']
+        foto = request.form['foto']
         role_id = request.form['role_id']
         if role_id == 'admin':
             role_id = 1
-        data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
-                     jenis_kelamin, agama, alamat, no_telepon, email, role_id)
+        else:
+            None
+        foto = request.files['foto']
+        if foto and allowed_file(foto.filename):
+            filename = secure_filename(foto.filename)
+            foto.save(os.path.join(
+                application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
+        else:
+            filename = ''  # Set filename menjadi string kosong jika tidak ada file foto yang diunggah
+        data_user = (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id)
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
+        cur.execute("INSERT INTO tb_dataadmin (username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", data_user)
         mysql.connection.commit()
         cur.close()
         return redirect(url_for('read_admin'))
@@ -302,14 +311,31 @@ def update_process_admin():
     alamat = request.form['alamat']
     no_telepon = request.form['no_telepon']
     email = request.form['email']
-    # foto = request.form['foto']
     role_id = request.form['role_id']
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id FROM tb_dataadmin WHERE id='%s'" % id)
+    data_user = cur.fetchone()
+    # Mengubah role_id string menjadi integer
     if role_id == 'admin':
         role_id = 1
+    else:
+        None
+    foto = request.files['foto']
+    # Periksa apakah permintaan POST memiliki value input foto
+    if foto and foto.filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS:
+        filename = secure_filename(foto.filename)
+        foto.save(os.path.join(
+            application.config['UPLOAD_FOLDER'], filename.replace('\\', '/')))
+    else:
+        # Ambil nama file foto dari data user yang ada di database
+        filename = data_user[11]
     data_user = (username, password, nama, tempat_lahir, tanggal_lahir,
-                 jenis_kelamin, agama, alamat, no_telepon, email, role_id, id)
-    cur = mysql.connection.cursor()
-    cur.execute("UPDATE tb_dataadmin SET username='%s', password='%s', nama='%s', tempat_lahir='%s', tanggal_lahir='%s', jenis_kelamin='%s', agama='%s', alamat='%s', no_telepon='%s', email='%s', role_id='%s' WHERE id=%s" % data_user)
+                jenis_kelamin, agama, alamat, no_telepon, email, filename, role_id, id)
+    # Periksa apakah ekstensi file tidak sesuai
+    if foto and '.' in foto.filename and foto.filename.rsplit('.', 1)[1].lower() not in ALLOWED_EXTENSIONS:
+        flash('Anda mengunggah jenis file yang salah!', 'danger')
+        return redirect(url_for('update_admin', id=id))
+    cur.execute("UPDATE tb_dataadmin SET username=%s, password=%s, nama=%s, tempat_lahir=%s, tanggal_lahir=%s, jenis_kelamin=%s, agama=%s, alamat=%s, no_telepon=%s, email=%s, foto=%s, role_id=%s WHERE id=%s", data_user)
     mysql.connection.commit()
     cur.close()
     return redirect(url_for('read_admin'))
@@ -412,32 +438,36 @@ def edit_password_admin():
         return redirect(url_for('profil_admin'))
 
 
-# MASIH PENGEMBANGAN AKSES TANPA AKUN
 # DATA TAGIHAN DAN TRANSAKSI
+@login_required(1)
 @application.route('/tagihan-mahasiswa')
 def tagihan_mahasiswa():
     return render_template('after login admin/data_transaksi/data_tagihanmahasiswa.html')
 
 
 # TAMBAH TAGIHAN MAHASISWA
+@login_required(1)
 @application.route('/tambah-tagihan-mahasiswa')
 def create_tagihanmahasiswa():
     return render_template('after login admin/data_transaksi/create_datatagihanmahasiswa.html')
 
 
 # EDIT TAGIHAN MAHASISWA
+@login_required(1)
 @application.route('/edit-tagihan-mahasiswa')
 def update_tagihanmahasiswa():
     return render_template('after login admin/data_transaksi/update_datatagihanmahasiswa.html')
 
 
 # HAPUS TAGIHAN MAHASISWA
+@login_required(1)
 @application.route('/hapus-tagihan-mahasiswa')
 def delete_tagihanmahasiswa():
     return redirect(url_for('tagihan_mahasiswa'))
 
 
 @application.route('/validasi-bukti-bayar')
+@login_required(1)
 def validasi_tagihan():
     return render_template('after login admin/data_transaksi/validasi.html')
 
@@ -526,16 +556,18 @@ def edit_password_mahasiswa():
 
 # TAGIHAN SAYA
 @application.route('/tagihan-saya')
+@login_required(2)
 def tagihan_saya():
     return render_template('after login mahasiswa/data_transaksi/data_tagihanmahasiswa.html')
 
 
 # UPLOAD BUKTI BAYAR
 @application.route('/unggah-bukti-bayar')
+@login_required(2)
 def unggah_bukti_bayar():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM tb_datamahasiswa WHERE id=%s", (session['id'],))
-    data_mahasiswa = cur.fetchall()
+    data_mahasiswa = cur.fetchone()
     cur.close()
     return render_template('after login mahasiswa/data_transaksi/bukti_bayar.html', data_mahasiswa=data_mahasiswa)
 

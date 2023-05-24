@@ -47,7 +47,13 @@
                         <td>{{ admin[6] }}</td>
                         <td>{{ admin[7] }}</td>
                         <td>{{ admin[8] }}</td>
-                        <td>{{ admin[9] }}</td>
+                        <td>
+                            {% if admin[9] %}
+                                <a href="{{ url_for('static', filename='img/foto/' + admin[9].replace('\\', '/')) }}" target="_blank">Tampilkan foto</a>
+                            {% else %}
+                                <p>Tidak ada foto</p>
+                            {% endif %}
+                        </td>
                         <td>
                             <a href="{{ url_for('update_admin', id=admin[0]) }}">
                                 <button type="button" class="btn btn-warning">
