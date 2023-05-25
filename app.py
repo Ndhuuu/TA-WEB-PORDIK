@@ -241,7 +241,7 @@ def delete_mahasiswa(id):
 @login_required(1)
 def read_admin():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT id, username, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email FROM tb_dataadmin")
+    cur.execute("SELECT id, username, nama, CONCAT(tempat_lahir, ',', ' ',tanggal_lahir), jenis_kelamin, agama, alamat, no_telepon, email, foto FROM tb_dataadmin")
     data_admin = cur.fetchall()
     cur.close()
     return render_template('after login admin/data_master/data_admin.html', data_admin=data_admin)
@@ -291,7 +291,7 @@ def create_admin():
 @login_required(1)
 def update_admin(id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, role_id FROM tb_dataadmin WHERE id='%s'" % id)
+    cur.execute("SELECT id, username, password, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, alamat, no_telepon, email, foto, role_id FROM tb_dataadmin WHERE id='%s'" % id)
     data_user = cur.fetchone()
     return render_template('after login admin/data_master/update_dataadmin.html', data_user=data_user)
 
